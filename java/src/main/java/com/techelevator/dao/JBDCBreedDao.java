@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import com.techelevator.model.Trait;
 
 
 import javax.sql.DataSource;
@@ -102,6 +103,20 @@ public class JBDCBreedDao implements BreedDao{
 
 
     }
+
+    @Override
+    public Breed updateTraitForBreed(int breedId, int traitId) throws DaoException {
+        String sql = "update breed_trait set trait_id = ? where breed_id = ?";
+        try{
+            jdbcTemplate.update(sql,traitId, breedId);
+            return getBreedById(breedId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+    }
+
 
     // MApRow
     public Breed mapRowToBreed(SqlRowSet rs) {

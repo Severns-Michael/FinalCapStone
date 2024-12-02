@@ -21,7 +21,7 @@ public class JDBCTraitDao implements TraitDao{
     @Override
     public List<Trait> listAllTraits() throws DaoException {
         List<Trait> traitList = new ArrayList<>();
-        String sql = "select * from traits"; // edit later
+        String sql = "select * from trait"; // edit later
         try {
             SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
             while (rs.next()) {
@@ -36,7 +36,7 @@ public class JDBCTraitDao implements TraitDao{
     @Override
     public Trait getTraitById(int id) throws DaoException {
         Trait trait = new Trait();
-        String sql = "select * from Traits where trait_id = ?"; // edit
+        String sql = "select * from Trait where trait_id = ?"; // edit
         try {
             SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, id);
             if (rs.next()) {

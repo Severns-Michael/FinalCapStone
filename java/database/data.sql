@@ -172,4 +172,7 @@ values  ('australian','kelpie'),
 ('waterdog','spanish'),
 ('wolfhound','irish');
 
+insert into trait (trait_name)
+values ('hypoallergenic'),('test trait 1'),('hairless'),('likes to boogie'),('alien');
+
 COMMIT TRANSACTION;

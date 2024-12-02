@@ -68,24 +68,24 @@ public class JBDCBreedDao implements BreedDao{
         return breed;
     }
 
-    @Override
-    public Breed updateBreed(Breed breed) throws DaoException {
-        String sql = "update breed set breed_name = ?, sub_breed = ? where breed_id = ?";// edit
-        try{
-           int rows= jdbcTemplate.update(sql, breed.getBreedName(), breed.getSubBreed());
-            if(rows!=1) {
-                throw new DaoException("Unable to update breed");
-            }
-            breed= getBreedById(breed.getBreedId());
-
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
-
-        }  catch (DataIntegrityViolationException e) {
-            throw new DaoException("Data integrity violation", e);
-        }
-        return breed;
-    }
+//    @Override
+//    public Breed updateBreed(Breed breed) throws DaoException {
+//        String sql = "update breed set breed_name = ?, sub_breed = ? where breed_id = ?";// edit
+//        try{
+//           int rows= jdbcTemplate.update(sql, breed.getBreedName(), breed.getSubBreed());
+//            if(rows!=1) {
+//                throw new DaoException("Unable to update breed");
+//            }
+//            breed= getBreedById(breed.getBreedId());
+//
+//        } catch (CannotGetJdbcConnectionException e) {
+//            throw new DaoException("Unable to connect to server or database", e);
+//
+//        }  catch (DataIntegrityViolationException e) {
+//            throw new DaoException("Data integrity violation", e);
+//        }
+//        return breed;
+//    }
 
     @Override
     public void deleteBreed(int breedId) throws DaoException {

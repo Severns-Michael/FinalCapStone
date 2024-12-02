@@ -16,16 +16,12 @@
                     <li>trait 1</li>
                     <li>trait 2</li>
                     <li>trait 3</li>
-                    <li v-for="trait in traits" v-bind:key="trait.id" ></li> 
                 </ul>
                 
             </div>
         
             <div class="listbox">
                 <ul>
-                    <li>trait 1</li>
-                    <li>trait 2</li>
-                    <li>trait 3</li>
                     <li v-for="trait in traits" v-bind:key="trait.id" ></li> 
                 </ul>
             </div>

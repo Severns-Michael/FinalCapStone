@@ -55,7 +55,7 @@ public class JBDCBreedDao implements BreedDao{
     @Override
     public Breed createBreed(Breed breed) throws DaoException {
         int breedId;
-        String sql = "INSERT INTO breed (breed_name,sub_breed) VALUES (?,?) RETURNING breed_id"; // check
+        String sql = "INSERT INTO breed (breed_name,sub_breed,official_name) VALUES (?,?,?) RETURNING breed_id"; // check
         try{
             breedId = jdbcTemplate.queryForObject(sql, int.class, breed.getBreedName(), breed.getSubBreed());
             breed = getBreedById(breedId);
@@ -108,6 +108,8 @@ public class JBDCBreedDao implements BreedDao{
         Breed breed = new Breed();
         breed.setBreedId(rs.getInt("breed_id"));
         breed.setBreedName(rs.getString("breed_name"));
+        breed.setSubBreed(rs.getString("sub_breed"));
+        breed.setOfficialName(rs.getString("official_name"));
         return breed;
     }
 }

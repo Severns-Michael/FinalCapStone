@@ -44,7 +44,4 @@ export default {
     label {
         margin: 10px;
     }
-    button {
-        
-    }
 </style>

@@ -3,8 +3,8 @@
         <div>
             <label>Breed: </label>
             <select>
-                <option v-for="breed in breeds" v-bind:key="breed.id">
-                    {{ breed.name }}
+                <option v-for="breed in breeds" v-bind:key="breed.breedId" v-bind="this.selectedBreed">
+                    {{ breed.breedName }}
                 </option>
             </select>
         </div>
@@ -13,12 +13,20 @@
 </template>
 
 <script>
-export default {
+import BreedService from '../services/BreedService';
 
+export default {
     data() {
-        
+        return {
+            breeds: [],
+            selectedBreed: {}
+        }
     },
-    
+    created() {
+        BreedService.getBreeds().then(response => {
+            this.breeds = response.data;
+        })
+    },
     methods: {
         deleteBreed() {
 

@@ -3,9 +3,7 @@
         <div class="breed">
             <label>Breed: </label>
             <select v-model="this.selectedBreed">
-                <option v-for="breed in this.breeds" v-bind:key="breed.id">
-                    {{ breed.breed_name }}
-                </option>
+                <option v-for="breed in this.breeds" v-bind:key="breed.breedId" v-text="breed.officialName"></option>
             </select>
         </div>
         <div class="traits">
@@ -13,16 +11,17 @@
           <p class = "title">all traits</p>
             <div class="listbox">
                 <ul>
+                    <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="this.selectedTraits.push(trait)"> {{ trait.traitName }} </li>
                     <li>trait 1</li>
-                    <li>trait 2</li>
-                    <li>trait 3</li>
+                    <li>trait 1</li>
+                    <li>trait 1</li>
                 </ul>
-                
+                <button class="switch" v-on:click="removeSelectedTraits"> Remove </button>
             </div>
-        
             <div class="listbox">
+                <button class="switch" v-on:click="addSelectedTraits"> Add </button>
                 <ul>
-                    <li v-for="trait in traits" v-bind:key="trait.id" ></li> 
+                    <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="this.selectedTraits.push(trait)"> {{ trait.traitName }}</li> 
                 </ul>
             </div>
         </div>
@@ -38,7 +37,9 @@ export default {
         return {
             breeds: [],
             traits: [],
-            selectedBreed: ''
+            currentTraits: [],
+            selectedTraits: [],
+            selectedBreed: '',
         }
     },
     created() {
@@ -49,6 +50,14 @@ export default {
             this.traits = response.data;
         })
 
+    },
+    methods: {
+        removeSelectedTraits() {
+            
+        },
+        addSelectedTraits() {
+
+        },
     }
 }
 
@@ -59,12 +68,12 @@ export default {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-      width: 70%;
+        width: 70%;
 
         
     }
     .listbox {
-      justify-content: space-between;
+      justify-content: space-evenly;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
@@ -94,13 +103,21 @@ export default {
       border: black solid 1px;
       display: flex;
       flex-direction: column;
-      order: 6;
       height: 100px;
       list-style: none;
+      overflow: scroll;
     }
     li{
         flex-basis: 80%;
         padding-right: 20px;
+    }
+    .switch {
+        display: flex;
+        height: 20%;
+        width: 20%;
+        align-items: center;
+        flex-wrap: nowrap;
+        margin: 25px;
     }
 
 </style>

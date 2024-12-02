@@ -57,18 +57,18 @@ public class BreedController {
         return breedDao.createBreed(breed);
     }
 
-    /**
-     * /breeds
-     * @param breed breed you would like to update.
-     * @return the updated breed.
-     * @throws DaoException
-     */
-
-    @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(path = "/breeds/{breedId}", method = RequestMethod.PUT)
-    public Breed updateBreed(@PathVariable Breed breed) throws DaoException {
-        return breedDao.updateBreed(breed);
-    }
+//    /**
+//     * /breeds
+//     * @param breed breed you would like to update.
+//     * @return the updated breed.
+//     * @throws DaoException
+//     */
+//
+//    @ResponseStatus(HttpStatus.OK)
+//    @RequestMapping(path = "/breeds/{breedId}", method = RequestMethod.PUT)
+//    public Breed updateBreed(@PathVariable Breed breed) throws DaoException {
+//        return breedDao.updateBreed(breed);
+//    }
     /**
      * path = /breeds/breedId
      * @param breedId the id of the breed to return

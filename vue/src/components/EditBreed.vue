@@ -2,7 +2,7 @@
     <form> 
         <div class="breed">
             <label>Breed: </label>
-            <select>
+            <select v-model="this.selectedBreed">
                 <option v-for="breed in breeds" v-bind:key="breed.id">
                     {{ breed.name }}
                 </option>
@@ -12,31 +12,48 @@
           <p class = "title">current traits</p>
           <p class = "title">all traits</p>
             <div class="listbox">
-
-              <ul>
-                <li>trait 1</li>
-                <li>trait 2</li>
-                <li>trait 3</li>
-                <li v-for="trait in traits" v-bind:key="trait.id" ></li> </ul>
-                <!-- need to make this out of just traits for this breed -->
+                <ul>
+                    <li>trait 1</li>
+                    <li>trait 2</li>
+                    <li>trait 3</li>
+                    <li v-for="trait in traits" v-bind:key="trait.id" ></li> 
+                </ul>
+                
             </div>
         
             <div class="listbox">
                 <ul>
-                  <li>trait 1</li>
-                  <li>trait 2</li>
-                  <li>trait 3</li>
-                <li v-for="trait in traits" v-bind:key="trait.id" ></li> </ul>
+                    <li>trait 1</li>
+                    <li>trait 2</li>
+                    <li>trait 3</li>
+                    <li v-for="trait in traits" v-bind:key="trait.id" ></li> 
+                </ul>
             </div>
         </div>
     </form>
-
 </template>
 
 <script>
+import BreedService from '../services/BreedService';
+import TraitService from '../services/TraitService';
 
 export default {
-    
+    data() {
+        return {
+            breeds: [],
+            traits: [],
+            selectedBreed: ''
+        }
+    },
+    created() {
+        BreedService.getBreeds().then(response => {
+            this.breeds = response.data;
+        }),
+        TraitService.getTraits().then(response => {
+            this.traits = response.data;
+        })
+
+    }
 }
 
 </script>
@@ -86,8 +103,8 @@ export default {
       list-style: none;
     }
     li{
-      flex-basis: 80%;
-
+        flex-basis: 80%;
+        padding-right: 20px;
     }
 
 </style>

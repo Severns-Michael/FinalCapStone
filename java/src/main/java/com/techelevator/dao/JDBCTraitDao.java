@@ -5,12 +5,13 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Trait;
+import org.springframework.stereotype.Component;
 
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class JDBCTraitDao implements TraitDao{
     private final JdbcTemplate jdbcTemplate;
     public JDBCTraitDao(DataSource dataSource) {
@@ -20,7 +21,7 @@ public class JDBCTraitDao implements TraitDao{
     @Override
     public List<Trait> listAllTraits() throws DaoException {
         List<Trait> traitList = new ArrayList<>();
-        String sql = "select * from traits"; // edit later
+        String sql = "select * from trait"; // edit later
         try {
             SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
             while (rs.next()) {
@@ -35,7 +36,7 @@ public class JDBCTraitDao implements TraitDao{
     @Override
     public Trait getTraitById(int id) throws DaoException {
         Trait trait = new Trait();
-        String sql = "select * from Traits where trait_id = ?"; // edit
+        String sql = "select * from Trait where trait_id = ?"; // edit
         try {
             SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, id);
             if (rs.next()) {

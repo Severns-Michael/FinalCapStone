@@ -55,9 +55,9 @@ public class JBDCBreedDao implements BreedDao{
     @Override
     public Breed createBreed(Breed breed) throws DaoException {
         int breedId;
-        String sql = "INSERT INTO breed (breed_name) VALUES (?) RETURNING breed_id"; // check
+        String sql = "INSERT INTO breed (breed_name,sub_breed) VALUES (?,?) RETURNING breed_id"; // check
         try{
-            breedId = jdbcTemplate.queryForObject(sql, int.class, breed.getBreedName());
+            breedId = jdbcTemplate.queryForObject(sql, int.class, breed.getBreedName(), breed.getSubBreed());
             breed = getBreedById(breedId);
 
         } catch (CannotGetJdbcConnectionException e) {
@@ -70,9 +70,9 @@ public class JBDCBreedDao implements BreedDao{
 
     @Override
     public Breed updateBreed(Breed breed) throws DaoException {
-        String sql = "update breed set breed_name = ? where breed_id = ?";// edit
+        String sql = "update breed set breed_name = ?, sub_breed = ? where breed_id = ?";// edit
         try{
-           int rows= jdbcTemplate.update(sql, breed.getBreedName());
+           int rows= jdbcTemplate.update(sql, breed.getBreedName(), breed.getSubBreed());
             if(rows!=1) {
                 throw new DaoException("Unable to update breed");
             }

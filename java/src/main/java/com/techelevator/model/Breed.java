@@ -5,6 +5,7 @@ public class Breed {
 
     private int breedId;
     private String breedName;
+    private String subBreed;
 //empty constructor
 
     public Breed() {
@@ -14,6 +15,7 @@ public class Breed {
     public Breed(int breedId, String breedName) {
         this.breedId = breedId;
         this.breedName = breedName;
+        this.subBreed = null;
     }
 
 // getter and setters
@@ -32,5 +34,13 @@ public class Breed {
 
     public void setBreedName(String breedName) {
         this.breedName = breedName;
+    }
+
+    public String getSubBreed() {
+        return subBreed;
+    }
+
+    public void setSubBreed(String subBreed) {
+        this.subBreed = subBreed;
     }
 }

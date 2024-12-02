@@ -5,12 +5,13 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Trait;
+import org.springframework.stereotype.Component;
 
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class JDBCTraitDao implements TraitDao{
     private final JdbcTemplate jdbcTemplate;
     public JDBCTraitDao(DataSource dataSource) {

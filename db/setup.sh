@@ -24,3 +24,13 @@ create table breed_trait(
 	constraint fk_bt_breed foreign key (breed_id) references breed(breed_id),	
 	constraint fk_bt_trait foreign key (trait_id) references trait(trait_id)	
 );
+
+insert into breed(breed_name)
+		values  ('samoyed'),
+				('husky'),
+				('beagle'),
+				('french bulldog');
+				
+				
+commit transaction;
+

@@ -3,8 +3,8 @@
         <div class="breed">
             <label>Breed: </label>
             <select v-model="this.selectedBreed">
-                <option v-for="breed in breeds" v-bind:key="breed.id">
-                    {{ breed.name }}
+                <option v-for="breed in this.breeds" v-bind:key="breed.id">
+                    {{ breed.breed_name }}
                 </option>
             </select>
         </div>

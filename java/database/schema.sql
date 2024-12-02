@@ -12,17 +12,19 @@ CREATE TABLE users (
 
 create table breed(
 	breed_id serial,
-	breed_name varchar,
+	breed_name varchar NOT NULL,
+	sub_breed varchar,
 	
 	constraint pk_breed primary key (breed_id)
 );
 
 create table trait(
 	trait_id serial,
-	trait_name varchar,
+	trait_name varchar NOT NULL,
 	
 	constraint pk_trait primary key (trait_id)
 );
+--create dog table with dog_id, img, name, breed, age, size
 
 create table breed_trait(
 	breed_id serial,

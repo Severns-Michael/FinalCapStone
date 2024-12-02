@@ -14,6 +14,7 @@ create table breed(
 	breed_id serial,
 	breed_name varchar NOT NULL,
 	sub_breed varchar,
+	official_name varchar,
 	
 	constraint pk_breed primary key (breed_id)
 );

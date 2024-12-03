@@ -7,7 +7,7 @@
         <div>$<span id="second">6 465</span></div>
       </div>
       <small class="current-range">
-        Current Range:
+        Dog Size
         <div>$<span id="third">7 200</span></div>
       </small>
       <div data-range="#third" data-value-1="#second" data-value-0="#first" class="slider">

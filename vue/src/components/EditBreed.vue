@@ -2,7 +2,7 @@
     <form> 
         <div class="breed">
             <label>Breed: </label>
-            <select v-model="this.selectedBreed" v-on:input="getCurrentBreedTraits">
+            <select v-model="this.selectedBreed.officialName" @change="getSelectedBreed">
                 <option v-for="breed in this.$store.state.breeds" v-bind:key="breed.breedName"> {{ breed.officialName }} </option>
             </select>
         </div>
@@ -12,9 +12,6 @@
             <div class="listbox">
                 <ul>
                     <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
-                    <li>trait 1</li>
-                    <li>trait 1</li>
-                    <li>trait 1</li>
                 </ul>
                 <button class="switch" v-on:click.prevent="removeSelectedTraits"> Remove </button>
             </div>
@@ -40,17 +37,21 @@ export default {
             traits: [],
             currentTraits: [],
             selectedTraits: [],
-            selectedBreed: {}
+          selectedBreedName: '',
+          selectedBreed: {},
         }
     },
-  computed: {
-    currentTraits() {
-    BreedService.getBreedById(this.selectedBreed.id).then(response => {
-        this.currentTraits = response.data.traits;
-      });
-    }
-  },
-    created() {
+  // computed: {
+  //     selectedBreed(){
+  //     return this.breeds.find(breed=>{
+  //       if(this.selectedBreedName === breed.name){
+  //         this.currentTraits = breed.traits;
+  //         return breed;
+  //       }
+  //     })
+  //     }
+  // },
+    created(){
         BreedService.getBreeds().then(response => {
             this.$store.commit('SET_BREEDS', response.data);
         }),
@@ -59,10 +60,13 @@ export default {
         })
     },
     methods: {
-      getCurrentBreedTraits(){
-       BreedService.getBreedById(this.selectedBreed.id).then(response => {
-       this.currentTraits = response.data.traits;
-        });
+      getSelectedBreed(){
+         this.$store.state.breeds.find(breed => {
+           if(breed.officialName === this.selectedBreed.officialName){
+             this.selectedBreed = breed;
+             this.currentTraits = breed.traits;
+           }
+         });
       },
         removeSelectedTraits() {
             this.currentTraits = this.currentTraits.filter(trait => {

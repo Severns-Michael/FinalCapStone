@@ -89,17 +89,31 @@ public class JdbcUserDao implements UserDao {
         return newUser;
     }
 
+    @Override
+    public List<Trait> getYesTraits(User user) {
+
+
+        return List.of();
+    }
+
+    @Override
+    public List<Trait> getNoTraits(User user) {
+        return List.of();
+    }
+
     //users_trait_yes
     @Override
-    public List<Trait> UserYesTraits(Trait trait) throws DaoException {
+    public List<Trait> UserYesTraits(User user) throws DaoException {
+
 
         return List.of();
     }
 
     @Override
-    public List<Trait> UserNoTraits(Trait trait) throws DaoException {
+    public List<Trait> UserNoTraits(User user) throws DaoException {
         return List.of();
     }
+
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();

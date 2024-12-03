@@ -178,5 +178,9 @@ values ('hypoallergenic'),('test trait 1'),('hairless'),('likes to boogie'),('al
 
 insert into dog (dog_name,breed_id, age, size)
 		values  ('rover',9,6,1);
+		
+insert into breed_trait (breed_id,trait_id)
+		values  (9,4),
+				(11,5);
 
 COMMIT TRANSACTION;

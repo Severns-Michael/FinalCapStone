@@ -84,9 +84,11 @@ private TraitDao traitDao;
 //    }
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/breeds", method = RequestMethod.PUT)
-    public Breed updateTraitForBreed(@RequestBody Breed breed) throws DaoException {
-        return breedDao.updateTraitForBreed(breed , breed.getTraits());
+    public Breed updateBreedTraits(@RequestBody Breed breed) throws DaoException {
+        return breedDao.updateTraitForBreed(breed);
     }
+
+
     /**
      * path = /breeds/breedId
      * @param breedId the id of the breed to return

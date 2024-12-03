@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Breed;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -114,20 +115,35 @@ public class JBDCBreedDao implements BreedDao{
     }
 
     @Override
-    public Breed updateTraitForBreed(Breed breed , List<Trait> traits) throws DaoException {
-        String sql = "insert into breed_trait (breed_id,trait_id) VALUES (?,?)";
-        for(Trait t : traits){
-
-            try{
-                jdbcTemplate.update(sql, breed.getBreedId(), t.getTraitId());
-                return getBreedById(breed.getBreedId());
-            } catch (CannotGetJdbcConnectionException e) {
-                throw new DaoException("Unable to connect to server or database", e);
-            }catch (DataIntegrityViolationException e) {
-                throw new DaoException("Data integrity violation", e);
-            }
-
+    public Breed updateTraitForBreed(Breed breed) throws DaoException {
+        String sqlInsert = "insert into breed_trait (breed_id,trait_id) values(?,?);";
+        String sqlDelete = "delete from breed_trait where breed_id=?;";
+        try {
+            jdbcTemplate.update(sqlDelete,breed.getBreedId());
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
         }
+        for (Trait trait : breed.getTraits()) {
+            try {
+                jdbcTemplate.update(sqlInsert, breed.getBreedId(), trait.getTraitId());
+
+            }  catch (CannotGetJdbcConnectionException e) {
+                throw new DaoException("Unable to connect to server or database", e);
+            }
+        }
+//
+//        for(Trait t : breed.getTraits()){
+//            try{
+//                jdbcTemplate.update(sql, breed.getBreedId(), t.getTraitId());
+//                return getBreedById(breed.getBreedId());
+//            } catch (CannotGetJdbcConnectionException e) {
+//                throw new DaoException("Unable to connect to server or database", e);
+//            }catch (DataIntegrityViolationException e) {
+//                throw new DaoException("Data integrity violation", e);
+//            }
+//
+//        }
+//        return breed;
         return breed;
     }
 

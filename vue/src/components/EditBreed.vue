@@ -3,7 +3,7 @@
         <div class="breed">
             <label>Breed: </label>
             <select v-model="this.selectedBreed">
-                <option v-for="breed in this.breeds" v-bind:key="breed.breedName"></option>
+                <option v-for="breed in this.$store.state.breeds" v-bind:key="breed.breedName"> {{ breed.officialName }} </option>
             </select>
         </div>
         <div class="traits">
@@ -16,14 +16,15 @@
                     <li>trait 1</li>
                     <li>trait 1</li>
                 </ul>
-                <button class="switch" v-on:click="removeSelectedTraits"> Remove </button>
+                <button class="switch" v-on:click.prevent="removeSelectedTraits"> Remove </button>
             </div>
             <div class="listbox">
-                <button class="switch" v-on:click="addSelectedTraits"> Add </button>
+                <button class="switch" v-on:click.prevent="addSelectedTraits"> Add </button>
                 <ul>
                     <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li> 
                 </ul>
             </div>
+            <button v-on:click.prevent="updateBreed"> Save Changes </button>
         </div>
     </form>
 </template>
@@ -44,16 +45,15 @@ export default {
     },
     created() {
         BreedService.getBreeds().then(response => {
-            this.$store.state.breeds = response.data;
+            this.$store.commit('SET_BREEDS', response.data);
         }),
         TraitService.getTraits().then(response => {
             this.traits = response.data;
         })
-
     },
     methods: {
         removeSelectedTraits() {
-            this.currentTraits.filter(trait => {
+            this.currentTraits = this.currentTraits.filter(trait => {
                 if (!this.selectedTraits.includes(trait)) {
                     return trait;
                 } else {
@@ -62,12 +62,28 @@ export default {
             });
         },
         addSelectedTraits() {
-
+            this.traits = this.traits.filter(trait => {
+                if (!this.selectedTraits.includes(trait)) {
+                    return trait;
+                } else {
+                    this.currentTraits.push(trait);
+                }
+            });
         },
         addToSelected(trait) {
             if (!this.selectedTraits.includes(trait)) {
                 this.selectedTraits.push(trait);
             }
+        },
+        updateBreed() {
+            BreedService.updateBreed(this.selectedBreed, this.currentTraits).then(response => {
+                if (response.status === 200) {
+                    this.selectedBreed = {};
+                    this.currentTraits = [];
+                }
+            }).catch(error => {
+                console.log(error);
+            });
         }
     }
 }
@@ -124,11 +140,12 @@ export default {
     }
     .switch {
         display: flex;
-        height: 20%;
-        width: 20%;
+        height: 30%;
+        width: 30%;
         align-items: center;
         flex-wrap: nowrap;
         margin: 25px;
+        text-align: center;
     }
 
 </style>

@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div class="container">
         <div>
             <label>Breed: </label>
             <select>
                 <option v-for="breed in breeds" v-bind:key="breed.breedId" v-bind="this.selectedBreed">
-                    {{ breed.breedName }}
+                    {{ breed.officialName }}
                 </option>
             </select>
         </div>
@@ -45,5 +45,11 @@ export default {
 <style scoped>
     label {
         margin: 10px;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 </style>

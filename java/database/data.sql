@@ -181,5 +181,9 @@ values ('Hypoallergenic'),('Family Dog'),('Likes to Boogie'),('Vocal'),('Swimmer
 
 insert into dog (dog_name,breed_id, age, size)
 		values  ('rover',9,6,1);
+		
+insert into breed_trait (breed_id,trait_id)
+		values  (9,4),
+				(11,5);
 
 COMMIT TRANSACTION;

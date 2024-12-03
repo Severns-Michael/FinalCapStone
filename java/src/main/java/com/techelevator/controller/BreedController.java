@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 import com.techelevator.dao.BreedDao;
+import com.techelevator.dao.TraitDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Breed;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,8 @@ public class BreedController {
     @Autowired
     private BreedDao breedDao;
     private String BASE_URL = "/breed";
-
+@Autowired
+private TraitDao traitDao;
 
 
     /**
@@ -38,11 +40,22 @@ public class BreedController {
     @RequestMapping(path = "/breeds/{breedId}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Breed getBreedById(@PathVariable int breedId) {
-        if (breedDao.getBreedById(breedId).getBreedId()==0) {
+      Breed returnedBreed = new Breed();
+        try {
+            returnedBreed = breedDao.getBreedById(breedId);
+            returnedBreed.setTraits(traitDao.getTraitsByBreed(breedId));
+
+        } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Breed not found");
-        } else {
-            return breedDao.getBreedById(breedId);
         }
+        return returnedBreed;
+
+
+//        if (breedDao.getBreedById(breedId).getBreedId()==0) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Breed not found");
+//        } else {
+//            return breedDao.getBreedById(breedId);
+//        }
 
     }
     /**

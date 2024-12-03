@@ -1,4 +1,5 @@
 package com.techelevator.dao;
+import com.techelevator.model.Breed;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
@@ -46,6 +47,23 @@ public class JDBCTraitDao implements TraitDao{
             throw new DaoException("Unable to connect to server or database", e);
         }
         return trait;
+    }
+
+    @Override
+    public List<Trait> getTraitsByBreed(int breedId) throws DaoException {
+        List<Trait> traitList = new ArrayList<>();
+        String sql = "select trait.trait_id,trait.trait_name " +
+                "from trait " +
+                "inner join breed_trait ON breed_trait.trait_id = trait.trait_id " +
+                "where breed_trait.breed_id=?";
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, breedId);
+        while (rs.next()) {
+            Trait tempTrait = new Trait();
+            tempTrait.setTraitId(rs.getInt("trait_id"));
+            tempTrait.setTraitName(rs.getString("trait_name"));
+            traitList.add(tempTrait);
+        }
+        return traitList;
     }
 
 

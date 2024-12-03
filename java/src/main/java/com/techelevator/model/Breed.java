@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 import java.lang.reflect.Array;
+import java.util.List;
 
 public class Breed {
     //class variables
@@ -9,7 +10,7 @@ public class Breed {
     private String breedName;
     private String subBreed;
     private String OfficialName;
-    private Trait[] traits;
+    private List<Trait> traits;
 
 //empty constructor
 
@@ -60,11 +61,11 @@ public class Breed {
         OfficialName = officialName;
     }
 
-    public Trait[] getTraits() {
+    public List<Trait> getTraits() {
         return traits;
     }
 
-    public void setTraits(Trait[] traits) {
+    public void setTraits(List<Trait> traits) {
         this.traits = traits;
     }
 }

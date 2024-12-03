@@ -1,14 +1,14 @@
 <template>
-    <div>
+    <div class="container">
         <div>
             <label>Breed: </label>
             <select>
                 <option v-for="breed in breeds" v-bind:key="breed.breedId" v-bind="this.selectedBreed">
-                    {{ breed.breedName }}
+                    {{ breed.officialName }}
                 </option>
             </select>
         </div>
-        <button v-on:click="this.deleteBreed()">Delete Breed</button>
+        <button v-on:click="deleteBreed">Delete Breed</button>
     </div>
 </template>
 
@@ -18,7 +18,7 @@ import BreedService from '../services/BreedService';
 export default {
     data() {
         return {
-            breeds: [],
+            breeds: this.$store.state.breeds,
             selectedBreed: {}
         }
     },
@@ -29,7 +29,13 @@ export default {
     },
     methods: {
         deleteBreed() {
-
+            BreedService.deleteBreed(this.selectedBreed.breedId).then(response => {
+                if (response.status === 200) {
+                    this.selectedBreed = {};
+                }
+            }).catch(error => {
+                console.log(error);
+            });
         }
     }
 }
@@ -39,5 +45,11 @@ export default {
 <style scoped>
     label {
         margin: 10px;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 </style>

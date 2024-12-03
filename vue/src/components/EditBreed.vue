@@ -3,7 +3,7 @@
         <div class="breed">
             <label>Breed: </label>
             <select v-model="this.selectedBreed">
-                <option v-for="breed in this.breeds" v-bind:key="breed.breedId" v-text="breed.officialName"></option>
+                <option v-for="breed in this.$store.state.breeds" v-bind:key="breed.breedName"> {{ breed.officialName }} </option>
             </select>
         </div>
         <div class="traits">
@@ -11,19 +11,20 @@
           <p class = "title">all traits</p>
             <div class="listbox">
                 <ul>
-                    <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="this.selectedTraits.push(trait)"> {{ trait.traitName }} </li>
+                    <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
                     <li>trait 1</li>
                     <li>trait 1</li>
                     <li>trait 1</li>
                 </ul>
-                <button class="switch" v-on:click="removeSelectedTraits"> Remove </button>
+                <button class="switch" v-on:click.prevent="removeSelectedTraits"> Remove </button>
             </div>
             <div class="listbox">
-                <button class="switch" v-on:click="addSelectedTraits"> Add </button>
+                <button class="switch" v-on:click.prevent="addSelectedTraits"> Add </button>
                 <ul>
-                    <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="this.selectedTraits.push(trait)"> {{ trait.traitName }}</li> 
+                    <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li> 
                 </ul>
             </div>
+            <span class="btn"><button class="save" v-on:click.prevent="updateBreed"> Save Changes </button></span>
         </div>
     </form>
 </template>
@@ -35,29 +36,55 @@ import TraitService from '../services/TraitService';
 export default {
     data() {
         return {
-            breeds: [],
+            breeds: this.$store.state.breeds,
             traits: [],
             currentTraits: [],
             selectedTraits: [],
-            selectedBreed: '',
+            selectedBreed: {}
         }
     },
     created() {
         BreedService.getBreeds().then(response => {
-            this.breeds = response.data;
+            this.$store.commit('SET_BREEDS', response.data);
         }),
         TraitService.getTraits().then(response => {
             this.traits = response.data;
         })
-
     },
     methods: {
         removeSelectedTraits() {
-            
+            this.currentTraits = this.currentTraits.filter(trait => {
+                if (!this.selectedTraits.includes(trait)) {
+                    return trait;
+                } else {
+                    this.traits.push(trait);
+                }
+            });
         },
         addSelectedTraits() {
-
+            this.traits = this.traits.filter(trait => {
+                if (!this.selectedTraits.includes(trait)) {
+                    return trait;
+                } else {
+                    this.currentTraits.push(trait);
+                }
+            });
         },
+        addToSelected(trait) {
+            if (!this.selectedTraits.includes(trait)) {
+                this.selectedTraits.push(trait);
+            }
+        },
+        updateBreed() {
+            BreedService.updateBreed(this.selectedBreed, this.currentTraits).then(response => {
+                if (response.status === 200) {
+                    this.selectedBreed = {};
+                    this.currentTraits = [];
+                }
+            }).catch(error => {
+                console.log(error);
+            });
+        }
     }
 }
 
@@ -113,11 +140,16 @@ export default {
     }
     .switch {
         display: flex;
-        height: 20%;
-        width: 20%;
+        height: 30%;
+        width: 30%;
         align-items: center;
         flex-wrap: nowrap;
         margin: 25px;
+        text-align: center;
+    }
+    .btn {
+        flex-basis: 100%;
+        flex-grow: 1;
     }
 
 </style>

@@ -1,6 +1,8 @@
 <template>
-<trait-switch-box> </trait-switch-box>
-  <slider> </slider>
+  <div class="container">
+    <trait-switch-box class="traitSwitcher"></trait-switch-box>
+    <slider></slider>
+  </div>
 </template>
 
 <script>
@@ -17,5 +19,11 @@ export default {
 </script>
 
 <style scoped>
-
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .traitSwitcher {
+    margin: 100px;
+  }
 </style>

@@ -34,7 +34,6 @@
 
 
 <script>
-import BreedService from "@/services/BreedService";
 import TraitService from "@/services/TraitService";
 
 export default{
@@ -129,10 +128,9 @@ ul{
   border: black solid 1px;
   display: flex;
   flex-direction: column;
-  height: 100px;
   list-style: none;
   overflow: scroll;
-  height: 50vh;
+  height: 40vh;
 
 }
 li{
@@ -151,6 +149,7 @@ li{
 .btn {
   flex-basis: 100%;
   flex-grow: 1;
+  align-content: center;
 }
 
 </style>

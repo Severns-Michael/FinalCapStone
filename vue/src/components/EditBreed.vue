@@ -63,9 +63,11 @@ export default {
       getSelectedBreed(){
          this.$store.state.breeds.find(breed => {
            if(breed.officialName === this.selectedBreed.officialName){
-             this.selectedBreed = breed;
-             this.currentTraits = breed.traits;
+             this.selectedBreed = breed; // this gets the current breed's breedId, breedName, subBreed, and officialName
            }
+         });
+         BreedService.getBreedById(this.selectedBreed.breedId).then(response => {
+            this.selectedBreed = response.data; // this gets the current breed's traits[] but still coming back empty bc its a list on server side (I think)
          });
       },
         removeSelectedTraits() {
@@ -147,7 +149,7 @@ export default {
       border: black solid 1px;
       display: flex;
       flex-direction: column;
-      height: 100px;
+      height: 30vh;
       list-style: none;
       overflow: scroll;
     }

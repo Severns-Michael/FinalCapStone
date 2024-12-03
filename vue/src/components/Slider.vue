@@ -52,6 +52,7 @@ export default {
   --color-primary: #275efe;
   --color-headline: #3f4656;
   --color-text: #99a3ba;
+  margin-bottom: 50px;
 }
 
 .card-content {

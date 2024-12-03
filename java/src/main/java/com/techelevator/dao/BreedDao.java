@@ -11,6 +11,6 @@ public interface BreedDao {
     Breed createBreed(Breed breed) throws DaoException;
 //    Breed updateBreed(Breed breed) throws DaoException;
     void deleteBreed(int breedId) throws DaoException;
-    Breed updateTraitForBreed(Breed breed , List<Trait> traits) throws DaoException;
+    Breed updateTraitForBreed(Breed breed) throws DaoException;
 
 }

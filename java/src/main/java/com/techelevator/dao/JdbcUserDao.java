@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.RegisterUserDto;
+import com.techelevator.model.Trait;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -86,6 +87,18 @@ public class JdbcUserDao implements UserDao {
             throw new DaoException("Data integrity violation", e);
         }
         return newUser;
+    }
+
+    //users_trait_yes
+    @Override
+    public List<Trait> UserYesTraits(Trait trait) throws DaoException {
+
+        return List.of();
+    }
+
+    @Override
+    public List<Trait> UserNoTraits(Trait trait) throws DaoException {
+        return List.of();
     }
 
     private User mapRowToUser(SqlRowSet rs) {

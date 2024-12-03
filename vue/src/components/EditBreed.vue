@@ -24,7 +24,7 @@
                     <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li> 
                 </ul>
             </div>
-            <button v-on:click.prevent="updateBreed"> Save Changes </button>
+            <span class="btn"><button class="save" v-on:click.prevent="updateBreed"> Save Changes </button></span>
         </div>
     </form>
 </template>
@@ -146,6 +146,10 @@ export default {
         flex-wrap: nowrap;
         margin: 25px;
         text-align: center;
+    }
+    .btn {
+        flex-basis: 100%;
+        flex-grow: 1;
     }
 
 </style>

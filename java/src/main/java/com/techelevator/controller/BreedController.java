@@ -69,6 +69,11 @@ public class BreedController {
 //    public Breed updateBreed(@PathVariable Breed breed) throws DaoException {
 //        return breedDao.updateBreed(breed);
 //    }
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "/breeds/{traitId}", method = RequestMethod.PUT)
+    public Breed updateTraitForBreed(@PathVariable  int breedId , int traitId ) throws DaoException {
+        return breedDao.updateTraitForBreed(breedId,traitId);
+    }
     /**
      * path = /breeds/breedId
      * @param breedId the id of the breed to return

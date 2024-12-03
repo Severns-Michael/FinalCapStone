@@ -2,7 +2,7 @@
     <form> 
         <div class="breed">
             <label>Breed: </label>
-            <select v-model="this.selectedBreed">
+            <select v-model="this.selectedBreed" v-on:input="getCurrentBreedTraits">
                 <option v-for="breed in this.$store.state.breeds" v-bind:key="breed.breedName"> {{ breed.officialName }} </option>
             </select>
         </div>
@@ -43,6 +43,13 @@ export default {
             selectedBreed: {}
         }
     },
+  computed: {
+    currentTraits() {
+    BreedService.getBreedById(this.selectedBreed.id).then(response => {
+        this.currentTraits = response.data.traits;
+      });
+    }
+  },
     created() {
         BreedService.getBreeds().then(response => {
             this.$store.commit('SET_BREEDS', response.data);
@@ -52,6 +59,11 @@ export default {
         })
     },
     methods: {
+      getCurrentBreedTraits(){
+       BreedService.getBreedById(this.selectedBreed.id).then(response => {
+       this.currentTraits = response.data.traits;
+        });
+      },
         removeSelectedTraits() {
             this.currentTraits = this.currentTraits.filter(trait => {
                 if (!this.selectedTraits.includes(trait)) {
@@ -76,7 +88,8 @@ export default {
             }
         },
         updateBreed() {
-            BreedService.updateBreed(this.selectedBreed, this.currentTraits).then(response => {
+          this.selectedBreed.traits =this.currentTraits;
+            BreedService.updateBreed(this.selectedBreed).then(response => {
                 if (response.status === 200) {
                     this.selectedBreed = {};
                     this.currentTraits = [];

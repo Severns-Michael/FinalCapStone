@@ -7,6 +7,7 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import AdminPageView from '../views/AdminPageView.vue';
+import SetCriteriaView from "@/views/SetCriteriaView.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -56,7 +57,15 @@ const routes = [
     meta: {
       requiresAuth: true
     }
-  }
+  },
+  {
+    path: "/setcriteria",
+    name: "setcriteria",
+    component: SetCriteriaView,
+    meta: {
+      requiresAuth: true
+    }
+  },
 ];
 
 // Create the router

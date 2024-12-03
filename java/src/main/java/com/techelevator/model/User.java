@@ -3,6 +3,7 @@ package com.techelevator.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,6 +16,8 @@ public class User {
    @JsonIgnore
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
+   private List<Trait> yesTraits;
+   private List<Trait> noTraits;
 
    public User() { }
 
@@ -64,6 +67,22 @@ public class User {
 
    public void setAuthorities(Set<Authority> authorities) {
       this.authorities = authorities;
+   }
+
+   public List<Trait> getYesTraits() {
+      return yesTraits;
+   }
+
+   public void setYesTraits(List<Trait> yesTraits) {
+      this.yesTraits = yesTraits;
+   }
+
+   public List<Trait> getNoTraits() {
+      return noTraits;
+   }
+
+   public void setNoTraits(List<Trait> noTraits) {
+      this.noTraits = noTraits;
    }
 
    public void setAuthorities(String authorities) {

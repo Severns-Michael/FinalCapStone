@@ -14,6 +14,7 @@ create table breed(
 	breed_id serial,
 	breed_name varchar NOT NULL,
 	sub_breed varchar,
+	official_name varchar,
 	
 	constraint pk_breed primary key (breed_id)
 );
@@ -33,6 +34,19 @@ create table breed_trait(
 	constraint pk_bt primary key (breed_id, trait_id),
 	constraint fk_bt_breed foreign key (breed_id) references breed(breed_id),	
 	constraint fk_bt_trait foreign key (trait_id) references trait(trait_id)	
+);
+
+create table dog(
+	dog_id serial,
+	dog_name varchar,
+	breed_id serial,
+	age int,
+	size int,
+	img varchar,
+	
+	constraint pk_dog primary key(dog_id),
+	constraint fk_dog foreign key(breed_id)
+		references breed(breed_id)	
 );
 
 COMMIT TRANSACTION;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 export default {
     getBreeds(){
-        return axios.get('/breeds/')
+        return axios.get('/breeds')
     },
     getBreedById(id){
         return axios.get(`/breeds/${id}`)

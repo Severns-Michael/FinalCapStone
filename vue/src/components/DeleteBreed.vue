@@ -8,7 +8,7 @@
                 </option>
             </select>
         </div>
-        <button v-on:click="this.deleteBreed()">Delete Breed</button>
+        <button v-on:click="deleteBreed">Delete Breed</button>
     </div>
 </template>
 
@@ -18,7 +18,7 @@ import BreedService from '../services/BreedService';
 export default {
     data() {
         return {
-            breeds: [],
+            breeds: this.$store.state.breeds,
             selectedBreed: {}
         }
     },
@@ -29,7 +29,13 @@ export default {
     },
     methods: {
         deleteBreed() {
-
+            BreedService.deleteBreed(this.selectedBreed.breedId).then(response => {
+                if (response.status === 200) {
+                    this.selectedBreed = {};
+                }
+            }).catch(error => {
+                console.log(error);
+            });
         }
     }
 }

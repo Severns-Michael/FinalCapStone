@@ -3,7 +3,7 @@
         <div class="breed">
             <label>Breed: </label>
             <select v-model="this.selectedBreed">
-                <option v-for="breed in this.breeds" v-bind:key="breed.breedId" v-text="breed.officialName"></option>
+                <option v-for="breed in this.breeds" v-bind:key="breed.breedName"></option>
             </select>
         </div>
         <div class="traits">
@@ -11,7 +11,7 @@
           <p class = "title">all traits</p>
             <div class="listbox">
                 <ul>
-                    <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="this.selectedTraits.push(trait)"> {{ trait.traitName }} </li>
+                    <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
                     <li>trait 1</li>
                     <li>trait 1</li>
                     <li>trait 1</li>
@@ -21,7 +21,7 @@
             <div class="listbox">
                 <button class="switch" v-on:click="addSelectedTraits"> Add </button>
                 <ul>
-                    <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="this.selectedTraits.push(trait)"> {{ trait.traitName }}</li> 
+                    <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li> 
                 </ul>
             </div>
         </div>
@@ -35,16 +35,16 @@ import TraitService from '../services/TraitService';
 export default {
     data() {
         return {
-            breeds: [],
+            breeds: this.$store.state.breeds,
             traits: [],
             currentTraits: [],
             selectedTraits: [],
-            selectedBreed: '',
+            selectedBreed: {}
         }
     },
     created() {
         BreedService.getBreeds().then(response => {
-            this.breeds = response.data;
+            this.$store.state.breeds = response.data;
         }),
         TraitService.getTraits().then(response => {
             this.traits = response.data;
@@ -53,11 +53,22 @@ export default {
     },
     methods: {
         removeSelectedTraits() {
-            
+            this.currentTraits.filter(trait => {
+                if (!this.selectedTraits.includes(trait)) {
+                    return trait;
+                } else {
+                    this.traits.push(trait);
+                }
+            });
         },
         addSelectedTraits() {
 
         },
+        addToSelected(trait) {
+            if (!this.selectedTraits.includes(trait)) {
+                this.selectedTraits.push(trait);
+            }
+        }
     }
 }
 

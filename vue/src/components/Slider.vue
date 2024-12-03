@@ -1,29 +1,49 @@
 <template>
   <div class="card-conteiner">
     <div class="card-content">
-      <div class="card-title">Price <span>Range</span></div>
+      <div class="card-title">Dog Size</div>
       <div class="values">
-        <div>$<span id="first">735</span></div> -
-        <div>$<span id="second">6 465</span></div>
-      </div>
-      <small class="current-range">
-        Dog Size
-        <div>$<span id="third">7 200</span></div>
-      </small>
-      <div data-range="#third" data-value-1="#second" data-value-0="#first" class="slider">
-        <label class="label-min-value">1</label>
-        <label class="label-max-value">10 000</label>
+        <div><span id="current-size">Small</span></div>
       </div>
       <div class="rangeslider">
-        <input class="min input-ranges" name="range_1" type="range" min="1" max="10000" value="735">
-        <input class="max input-ranges" name="range_1" type="range" min="1" max="10000" value="6465">
+        <input
+            class="input-ranges"
+            id="size-slider"
+            type="range"
+            min="1"
+            max="3"
+            step="1"
+            value="1"
+        />
+      </div>
+      <div class="slider-labels">
+        <span>Small</span>
+        <span>Medium</span>
+        <span>Large</span>
       </div>
     </div>
   </div>
 </template>
 
-<script >
+<script>
+export default {
+  mounted() {
+    const slider = document.getElementById("size-slider");
+    const currentSize = document.getElementById("current-size");
 
+    // Map slider values to size labels
+    const sizeLabels = {
+      1: "Small",
+      2: "Medium",
+      3: "Large",
+    };
+
+    // Update displayed size based on slider value
+    slider.addEventListener("input", (e) => {
+      currentSize.textContent = sizeLabels[e.target.value];
+    });
+  },
+};
 </script>
 
 <style scoped>
@@ -43,131 +63,57 @@
   box-shadow: 0 1px 4px rgba(18, 22, 33, .12);
 }
 
-.card-content .card-title {
-  font-family: inherit;
+.card-title {
   font-size: 32px;
   font-weight: 700;
-  margin: 0 0 10px 0;
   color: var(--color-headline);
+  margin-bottom: 10px;
 }
 
-.card-content .card-title span {
-  font-weight: 500;
-}
-
-.card-content .values div, .card-content .current-range div {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.card-content .values {
-  margin: 0;
-  font-weight: 500;
+.values {
+  margin-bottom: 20px;
+  font-size: 18px;
   color: var(--color-primary);
 }
 
-.card-content .values > div:first-child {
-  margin-right: 2px;
+.rangeslider {
+  margin: 20px 0;
 }
 
-.card-content .values > div:last-child {
-  margin-left: 2px;
-}
-
-.card-content .current-range {
-  display: block;
-  color: var(--color-text);
-  margin-top: 8px;
-  font-size: 14px;
-}
-
-.card-content .slider {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  font-size: .6em;
-  color: var(--color-text);
-}
-
-/* Range Slider */
-.input-ranges[type='range'] {
-  width: 210px;
-  height: 30px;
-  overflow: hidden;
+.input-ranges {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--color-headline);
+  height: 6px;
+  border-radius: 5px;
   outline: none;
 }
 
-.input-ranges[type='range'],
-.input-ranges[type='range']::-webkit-slider-runnable-track,
-.input-ranges[type='range']::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  background: none;
-}
-
-.input-ranges[type='range']::-webkit-slider-runnable-track {
-  width: 200px;
-  height: 1px;
-  background: var(--color-headline);
-}
-
-.input-ranges[type='range']:nth-child(2)::-webkit-slider-runnable-track {
-  background: none;
-}
-
-.input-ranges[type='range']::-webkit-slider-thumb {
-  position: relative;
-  height: 15px;
-  width: 15px;
-  margin-top: -7px;
-  background: #fff;
-  border: 1px solid var(--color-headline);
-  border-radius: 25px;
-  cursor: pointer;
-  z-index: 1;
-  transition: .5s;
-  -webkit-transition: .5s;
-  -moz-transition: .5s;
-  -ms-transition: .5s;
-  -o-transition: .5s;
-}
-
-.input-ranges[type='range']::-webkit-slider-thumb:hover {
-  background: #eaefff;
-  border: 1px solid var(--color-primary);
-  outline: .5px solid var(--color-primary);
-}
-
-.input-ranges[type='range']::-webkit-slider-thumb:active {
-  cursor: grabbing;
-}
-
-.input-ranges[type='range']:nth-child(1)::-webkit-slider-thumb {
-  z-index: 2;
-}
-
-.rangeslider {
-  font-family: sans-serif;
-  font-size: 14px;
-  position: relative;
+.input-ranges::-webkit-slider-thumb {
+  width: 20px;
   height: 20px;
-  width: 210px;
-  display: inline-block;
-  margin-top: -5px;
+  background: #fff;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.rangeslider input {
-  position: absolute;
+.input-ranges::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.rangeslider span {
-  position: absolute;
-  margin-top: 20px;
-  left: 0;
-}
-
-.rangeslider .right {
-  position: relative;
-  float: right;
-  margin-right: -5px;
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--color-text);
 }
 </style>

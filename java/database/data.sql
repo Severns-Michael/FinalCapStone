@@ -174,7 +174,10 @@ values
 ('wolfhound','irish','Irish Wolfhound');
 
 insert into trait (trait_name)
-values ('hypoallergenic'),('test trait 1'),('hairless'),('likes to boogie'),('alien');
+values ('Hypoallergenic'),('Family Dog'),('Likes to Boogie'),('Vocal'),('Swimmer'),
+('Anxious'),('Intelligent'),('Hunting'),('Pedigree'),('Needs Yard'),('Requires Regular Grooming'),
+('Working Dog'),('Cold Weather'),('Potential Health Issues'),('Pack Oriented'),('Good with Cats'),('Territorial'),('Drools'),
+('Portable'),('Longhair');
 
 insert into dog (dog_name,breed_id, age, size)
 		values  ('rover',9,6,1);

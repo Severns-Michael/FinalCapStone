@@ -70,9 +70,9 @@ public class BreedController {
 //        return breedDao.updateBreed(breed);
 //    }
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(path = "/breeds/{traitId}", method = RequestMethod.PUT)
-    public Breed updateTraitForBreed(@PathVariable  int breedId , int traitId ) throws DaoException {
-        return breedDao.updateTraitForBreed(breedId,traitId);
+    @RequestMapping(path = "/breeds", method = RequestMethod.PUT)
+    public Breed updateTraitForBreed(@RequestBody Breed breed) throws DaoException {
+        return breedDao.updateTraitForBreed(breed , breed.getTraits());
     }
     /**
      * path = /breeds/breedId

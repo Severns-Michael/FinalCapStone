@@ -105,16 +105,21 @@ public class JBDCBreedDao implements BreedDao{
     }
 
     @Override
-    public Breed updateTraitForBreed(int breedId, int traitId) throws DaoException {
-        String sql = "update breed_trait set trait_id = ? where breed_id = ?";
-        try{
-            jdbcTemplate.update(sql, traitId, breedId);
-            return getBreedById(breedId);
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
-        }catch (DataIntegrityViolationException e) {
-            throw new DaoException("Data integrity violation", e);
+    public Breed updateTraitForBreed(Breed breed , Trait[] traits) throws DaoException {
+        String sql = "insert into breed_trait (breed_id,trait_id) VALUES (?,?)";
+        for(Trait t : traits){
+
+            try{
+                jdbcTemplate.update(sql, breed.getBreedId(), t.getTraitId());
+                return getBreedById(breed.getBreedId());
+            } catch (CannotGetJdbcConnectionException e) {
+                throw new DaoException("Unable to connect to server or database", e);
+            }catch (DataIntegrityViolationException e) {
+                throw new DaoException("Data integrity violation", e);
+            }
+
         }
+        return breed;
     }
 
 

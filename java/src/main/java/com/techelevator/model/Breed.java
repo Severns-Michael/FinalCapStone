@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.lang.reflect.Array;
+
 public class Breed {
     //class variables
 
@@ -7,6 +9,7 @@ public class Breed {
     private String breedName;
     private String subBreed;
     private String OfficialName;
+    private Trait[] traits;
 
 //empty constructor
 
@@ -55,5 +58,13 @@ public class Breed {
 
     public void setOfficialName(String officialName) {
         OfficialName = officialName;
+    }
+
+    public Trait[] getTraits() {
+        return traits;
+    }
+
+    public void setTraits(Trait[] traits) {
+        this.traits = traits;
     }
 }

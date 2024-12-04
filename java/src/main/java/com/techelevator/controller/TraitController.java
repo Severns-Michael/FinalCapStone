@@ -54,16 +54,16 @@ public class TraitController {
         return traitDao.getTraitById(traitId);
     }
 
-    @GetMapping(path="/traits/{userId}/include")
+    @GetMapping(path="/traits/include")
     @ResponseStatus(HttpStatus.OK)
-    public List<Trait> getYesTraitsByUser(@PathVariable int userId) throws DaoException{
-        return userDao.getYesTraits(userId);
+    public List<Trait> getYesTraitsByUser(Principal principal) throws DaoException{
+        return userDao.getYesTraits(userDao.getUserByUsername(principal.getName()).getId());
     }
 
-    @GetMapping(path="/traits/{userId}/exclude")
+    @GetMapping(path="/traits/exclude")
     @ResponseStatus(HttpStatus.OK)
-    public List<Trait> getNoTraitsByUser(@PathVariable int userId) throws DaoException{
-        return userDao.getNoTraits(userId);
+    public List<Trait> getNoTraitsByUser(Principal principal) throws DaoException{
+        return userDao.getNoTraits(userDao.getUserByUsername(principal.getName()).getId());
     }
 
     @PutMapping(path="/traits/include")

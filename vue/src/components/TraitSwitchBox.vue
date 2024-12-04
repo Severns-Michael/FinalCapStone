@@ -6,26 +6,20 @@
     <div class="listbox">
       <ul>
         <li v-for="trait in wantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
-        <li>trait 1</li>
-        <li>trait 2</li>
-        <li>trait 3</li>
       </ul>
-      <button class="switchBtn" v-on:click.prevent="removeSelectedWantedTraits"> Remove </button>
+      <button class="switchBtn" v-on:click.prevent="removeSelectedWantedTraits; updateUserPreferences"> Remove </button>
     </div>
     <div class="listbox">
-      <button class="switchBtn" v-on:click.prevent="addSelectedWantedTraits"> Add </button>
+      <button class="switchBtn" v-on:click.prevent="addSelectedWantedTraits; updateUserPreferences"> Add </button>
       <ul>
         <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
       </ul>
-      <button class="switchBtn" v-on:click.prevent="addSelectedUnwantedTraits"> Add </button>
+      <button class="switchBtn" v-on:click.prevent="addSelectedUnwantedTraits; updateUserPreferences"> Add </button>
     </div>
     <div class="listbox">
-      <button class="switchBtn" v-on:click.prevent="removeSelectedUnwantedTraits"> Remove </button>
+      <button class="switchBtn" v-on:click.prevent="removeSelectedUnwantedTraits; updateUserPreferences"> Remove </button>
       <ul>
         <li v-for="trait in unwantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
-        <li>trait 1</li>
-        <li>trait 2</li>
-        <li>trait 3</li>
       </ul>
     </div>
   </div>
@@ -33,7 +27,7 @@
 
 
 <script>
-import TraitService from "@/services/TraitService";
+import TraitService from "../services/TraitService";
 import UserPreferencesService from "../services/UserPreferencesService";
 
 export default{
@@ -102,10 +96,13 @@ export default{
       });
       this.selectedTraits = [];
     },
+    updateUserPreferences() {
+      UserPreferencesService.updateYesTraits(this.$store.state.currentUser.id, this.wantedTraits);
+      UserPreferencesService.updateNoTraits(this.$store.state.currentUser.id, this.unwantedTraits);
+    }
   }
 
 }
-
 
 </script>
 
@@ -151,6 +148,16 @@ li{
   text-wrap: wrap;
   padding: 1px;
 }
-
+.saveBtn {
+  flex-basis: 100%;
+  flex-grow: 1;
+  text-align: center;
+}
+.save {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 15%;
+  height: 100%;
+}
 
 </style>

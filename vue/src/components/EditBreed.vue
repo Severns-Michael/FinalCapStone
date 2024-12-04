@@ -47,6 +47,7 @@ export default {
         return {
             breeds: this.$store.state.breeds,
             traits: [],
+            filteredTraits: [],
             currentTraits: [],
             selectedTraits: [],
           selectedBreedName: '',
@@ -75,12 +76,18 @@ export default {
       getSelectedBreed(){
          this.$store.state.breeds.find(breed => {
            if(breed.officialName === this.selectedBreed.officialName){
-             this.selectedBreed = breed; // this gets the current breed's breedId, breedName, subBreed, and officialName
+             this.selectedBreed = breed; 
            }
          });
          BreedService.getBreedById(this.selectedBreed.breedId).then(response => {
-            this.selectedBreed = response.data; // this gets the current breed's traits[] but still coming back empty bc its a list on server side (I think)
+            this.selectedBreed = response.data; 
             this.currentTraits = this.selectedBreed.traits;
+            this.filteredTraits = this.traits.filter(allTrait => {
+                if (!this.currentTraits.includes(allTrait)) {
+                    return allTrait;
+                }
+            });
+            this.traits = this.filteredTraits;
          });
       },
         removeSelectedTraits() {

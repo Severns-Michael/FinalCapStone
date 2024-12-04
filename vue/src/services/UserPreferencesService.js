@@ -6,10 +6,10 @@ export default {
     getNoTraits(userId) {
         return axios.get(`/traits/${userId}/exclude`)
     },
-    updateYesTraits(userId) {
+    updateYesTraits(userId, wantedTraits) {
         return axios.put(`/traits/${userId}/include`)
     },
-    updateNoTraits(userId) {
+    updateNoTraits(userId, unwantedTraits) {
         return axios.put(`/traits/${userId}/exclude`)
     }
 }

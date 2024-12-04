@@ -10,7 +10,7 @@ export default {
         return axios.post('/breeds', breed)
     },
     updateBreed(breed){
-        return axios.put(`/breeds/${breed.breedId}`, breed)
+        return axios.put('/breeds', breed)
     },
     deleteBreed(id) {
         return axios.delete(`/breeds/${id}`)

@@ -1,7 +1,10 @@
 <template>
     <div class="admin">
+        <label>Add a Breed</label>
         <add-breed class="component"/>
+        <Label>Edit a Breed</Label>
         <edit-breed class="component"/>
+        <label>Delete a Breed</label>
         <delete-breed class="component"/>
     </div>
 </template>
@@ -28,10 +31,10 @@ export default {
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-evenly;
+        margin-top: 40px;
     }
     .component {
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         border: 1px solid black;
         padding: 10px;
     }

@@ -2,13 +2,13 @@
     <div class="container">
         <div>
             <label>Breed: </label>
-            <select>
+            <select v-model="this.selectedBreed.officialName">
                 <option v-for="breed in breeds" v-bind:key="breed.breedId" v-bind="this.selectedBreed">
                     {{ breed.officialName }}
                 </option>
             </select>
         </div>
-        <button v-on:click="deleteBreed">Delete Breed</button>
+        <button v-on:click.prevent="deleteBreed">Delete Breed</button>
     </div>
 </template>
 
@@ -29,6 +29,12 @@ export default {
     },
     methods: {
         deleteBreed() {
+            this.breeds.find(breed => {
+                if (breed.officialName === this.selectedBreed.officialName) {
+                    this.selectedBreed = breed;
+                }
+            });
+            this.$store.commit('REMOVE_BREED', this.selectedBreed.breedId);
             BreedService.deleteBreed(this.selectedBreed.breedId).then(response => {
                 if (response.status === 200) {
                     this.selectedBreed = {};
@@ -36,6 +42,7 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
+            this.selectedBreed = {};
         }
     }
 }
@@ -51,5 +58,6 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        flex-basis: 60%;
     }
 </style>

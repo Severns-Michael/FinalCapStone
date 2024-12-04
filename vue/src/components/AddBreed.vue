@@ -1,8 +1,8 @@
 <template>
     <div class="form">
-        <form v-on:sumbit.prevent="addBreed()">
+        <form v-on:submit.prevent="addBreed">
             <label for="breedName">Breed Name: </label>
-            <input id="breedName" type="text" v-model="this.newBreed.name"/>
+            <input id="breedName" type="text" v-model="this.newBreed.officialName"/>
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -14,10 +14,10 @@ export default {
     data() {
         return {
             newBreed: {
-                // need to assign new id and subbreed
-                id: 0,
-                name: '',
-                subBreed: ''
+                breedName: '',
+                subBreed: '',
+                officialName: '',
+                traits: []
             }
         }
         

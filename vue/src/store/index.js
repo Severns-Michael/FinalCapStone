@@ -27,6 +27,16 @@ export function createStore(currentToken, currentUser) {
       },
       SET_BREEDS(state, data) {
        state.breeds = data;
+      },
+      REMOVE_BREED(state, id) {
+        state.breeds.filter(breed => {
+          if (!breed.breedId === id) {
+            return breed;
+          }
+        });
+      },
+      ADD_BREED(state, breed) {
+
       }
     },
   });

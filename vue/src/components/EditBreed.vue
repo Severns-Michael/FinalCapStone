@@ -6,23 +6,35 @@
                 <option v-for="breed in this.$store.state.breeds" v-bind:key="breed.breedName"> {{ breed.officialName }} </option>
             </select>
         </div>
-        <div class="traits">
-          <p class = "title">current traits</p>
-          <p class = "title">all traits</p>
-            <div class="listbox">
-                <ul>
-                    <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
-                </ul>
-                <button class="switchBtn" v-on:click.prevent="removeSelectedTraits"> Remove </button>
-            </div>
-            <div class="listbox">
-                <button class="switchBtn" v-on:click.prevent="addSelectedTraits"> Add </button>
-                <ul>
-                    <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li> 
-                </ul>
-            </div>
-            <span class="saveBtn"><button class="save" v-on:click.prevent="updateBreed"> Save Changes </button></span>
-        </div>
+            <div class="traits">
+  <div class="list-group">
+    <p class="title">Current Traits</p>
+    <div class="listbox">
+      <ul>
+        <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)">
+          <a href="#">{{ trait.traitName }}</a>
+        </li>
+      </ul>
+      <button class="switchBtn" v-on:click.prevent="removeSelectedTraits">Remove</button>
+    </div>
+  </div>
+
+  <div class="list-group">
+    <p class="title1">All Traits</p>
+    <div class="listbox">
+      <button class="switchBtn" v-on:click.prevent="addSelectedTraits">Add</button>
+      <ul>
+        <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)">
+          <a href="#">{{ trait.traitName }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <span class="saveBtn">
+    <button class="save" v-on:click.prevent="updateBreed">Save Changes</button>
+  </span>
+</div>
     </form>
 </template>
 
@@ -113,6 +125,7 @@ export default {
 </script>
 
 <style scoped>
+
     form {
         display: flex;
         flex-direction: column;
@@ -147,7 +160,16 @@ export default {
       text-decoration: underline;
       flex-basis: 50%;
       text-align: center;
+      margin-right: 45%;
     }
+    .title1{
+      text-decoration: underline;
+      flex-basis: 50%;
+      text-align: center;
+      margin-left: 40%;
+
+    }
+
     ul{
       border: black solid 1px;
       display: flex;

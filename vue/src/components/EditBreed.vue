@@ -84,16 +84,14 @@ export default {
             this.selectedBreed = response.data; 
             console.log(this.selectedBreed.traits);
             this.currentTraits = this.selectedBreed.traits;
-                this.traits.forEach(allTrait => {
-                    this.currentTraits.forEach(currTrait => {
-                        if (!currTrait.traitId === allTrait.traitId) {
-                            this.filteredTraits.push(allTrait);
-                            
-                        }
-                    });
-                });
-            
+            this.traits.forEach(allTrait => {
+                const isTraitPresent = this.currentTraits.some(currTrait => currTrait.traitId === allTrait.traitId);
+                if (!isTraitPresent) {
+                    this.filteredTraits.push(allTrait);
+                }
+            });
             this.traits = this.filteredTraits;
+            this.filteredTraits = [];
          });
       },
         removeSelectedTraits() {
@@ -104,6 +102,7 @@ export default {
                     this.traits.push(trait);
                 }
             });
+            this.updateBreed();
             this.selectedTraits = [];
         },
         addSelectedTraits() {
@@ -114,6 +113,7 @@ export default {
                     this.currentTraits.push(trait);
                 }
             });
+            this.updateBreed();
             this.selectedTraits = [];
         },
         addToSelected(trait) {

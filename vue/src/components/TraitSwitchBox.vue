@@ -1,8 +1,8 @@
 <template>
   <div class="traits">
-    <p class = "title">My Dream Dog</p>
-    <p class = "title">Puppy Possibilities</p>
-    <p class = "title">Things to Avoid</p>
+    <p class = "title">wanted traits</p>
+    <p class = "title">all traits</p>
+    <p class = "title">unwanted traits</p>
     <div class="listbox">
       <ul>
         <li v-for="trait in wantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>

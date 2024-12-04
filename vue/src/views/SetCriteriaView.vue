@@ -22,7 +22,6 @@ export default {
   }
 }
 
-
 </script>
 
 <style scoped>
@@ -31,11 +30,12 @@ export default {
     flex-direction: column;
   }
   .traitSwitcher {
-    margin: 100px;
+    margin: 70px;
   }
   .sliders {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
   }
+
 </style>

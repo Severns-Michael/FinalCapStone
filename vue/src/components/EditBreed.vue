@@ -11,7 +11,7 @@
     <p class="title">Current Traits</p>
     <div class="listbox">
       <ul>
-        <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)">
+        <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)" v-bind:class="{selected: this.selectedTraits.includes(trait)}">
           <a href="#">{{ trait.traitName }}</a>
         </li>
       </ul>
@@ -24,7 +24,7 @@
     <div class="listbox">
       <button class="switchBtn" v-on:click.prevent="addSelectedTraits">Add</button>
       <ul>
-        <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)">
+        <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)" v-bind:class="{selected: this.selectedTraits.includes(trait)}">
           <a href="#">{{ trait.traitName }}</a>
         </li>
       </ul>
@@ -47,6 +47,7 @@ export default {
         return {
             breeds: this.$store.state.breeds,
             traits: [],
+            filteredTraits: [],
             currentTraits: [],
             selectedTraits: [],
           selectedBreedName: '',
@@ -75,12 +76,18 @@ export default {
       getSelectedBreed(){
          this.$store.state.breeds.find(breed => {
            if(breed.officialName === this.selectedBreed.officialName){
-             this.selectedBreed = breed; // this gets the current breed's breedId, breedName, subBreed, and officialName
+             this.selectedBreed = breed; 
            }
          });
          BreedService.getBreedById(this.selectedBreed.breedId).then(response => {
-            this.selectedBreed = response.data; // this gets the current breed's traits[] but still coming back empty bc its a list on server side (I think)
+            this.selectedBreed = response.data; 
             this.currentTraits = this.selectedBreed.traits;
+            this.filteredTraits = this.traits.filter(allTrait => {
+                if (!this.currentTraits.includes(allTrait)) {
+                    return allTrait;
+                }
+            });
+            this.traits = this.filteredTraits;
          });
       },
         removeSelectedTraits() {
@@ -118,6 +125,13 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
+        },
+        isSelected() {
+            if (this.selectedTraits.includes(this.trait)) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }
@@ -195,5 +209,8 @@ export default {
         flex-grow: 1;
         text-align: center; 
     }
-
+    .selected {
+        background-color: aqua;
+        opacity: 10%;
+    }
 </style>

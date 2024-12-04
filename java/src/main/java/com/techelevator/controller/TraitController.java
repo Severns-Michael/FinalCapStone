@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,6 +31,15 @@ public class TraitController {
     @RequestMapping(path = "/traits", method = RequestMethod.GET)
     public List<Trait> getAllTraits() throws DaoException {
         return traitDao.listAllTraits();
+    }
+
+    @GetMapping(path="/users")
+    public List<User> getAllUsers(){
+        return userDao.getUsers();
+    }
+    @GetMapping(path="/users/{userId}")
+    public User getUserById(@PathVariable int userId){
+        return userDao.getUserById(userId);
     }
 
     /**
@@ -55,4 +65,14 @@ public class TraitController {
         return userDao.getNoTraits(userId);
     }
 
+    @PutMapping(path="/traits/include")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Trait> updateYesTraitsForUser(@RequestBody User user){
+        return userDao.setUserYesTraits(user);
+    }
+    @PutMapping(path="/traits/exclude")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Trait> updateNoTraitsForUser(@RequestBody User user){
+        return userDao.setUserNoTraits(user);
+    }
 }

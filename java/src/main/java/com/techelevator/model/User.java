@@ -69,20 +69,19 @@ public class User {
       this.authorities = authorities;
    }
 
-   public List<Trait> getYesTraits() {
-      return yesTraits;
-   }
 
    public void setYesTraits(List<Trait> yesTraits) {
       this.yesTraits = yesTraits;
    }
-
-   public List<Trait> getNoTraits() {
-      return noTraits;
+   public List<Trait> getYesTraits() {
+      return yesTraits;
    }
 
    public void setNoTraits(List<Trait> noTraits) {
       this.noTraits = noTraits;
+   }
+   public List<Trait> getNoTraits(){
+      return noTraits;
    }
 
    public void setAuthorities(String authorities) {

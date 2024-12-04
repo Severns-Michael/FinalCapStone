@@ -21,18 +21,44 @@ public class JdbcUserDao implements UserDao {
 
     private final JdbcTemplate jdbcTemplate;
 
+
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     public User getUserById(int userId) {
-        User user = null;
-        String sql = "SELECT user_id, username, password_hash, role FROM users WHERE user_id = ?";
+        User user = new User();
+//        String sql = "SELECT user_id, username, password_hash, role FROM users WHERE user_id = ?";
+//        try {
+//            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+//            if (results.next()) {
+//                user = mapRowToUser(results);
+//            }
+//        } catch (CannotGetJdbcConnectionException e) {
+//            throw new DaoException("Unable to connect to server or database", e);
+//        }
+        String sql = "SELECT user_id, username, password_hash, role FROM users where user_id=?";
+        String yesSql="select distinct users.user_id, users_trait_yes.trait_id as yes_trait_id, trait.trait_name as yes_trait_name  from users  full join users_trait_yes ON users_trait_yes.user_id = users.user_id full join trait ON trait.trait_id = users_trait_yes.trait_id  where users.user_id=?";
+        String noSql="select distinct users.user_id, users_trait_no.trait_id as no_trait_id, trait.trait_name as no_trait_name  from users  full join users_trait_no ON users_trait_no.user_id = users.user_id full join trait ON trait.trait_id = users_trait_no.trait_id  where users.user_id=?";
         try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-            if (results.next()) {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql,userId);
+            while (results.next()) {
                 user = mapRowToUser(results);
+                SqlRowSet yesResults= jdbcTemplate.queryForRowSet(yesSql,user.getId());
+                SqlRowSet noResults=jdbcTemplate.queryForRowSet(noSql,user.getId());
+                List<Trait> yesTraits=new ArrayList<>();
+                List<Trait> noTraits=new ArrayList<>();
+                while(yesResults.next()){
+                    Trait yesTrait=new Trait(yesResults.getInt("yes_trait_id"),yesResults.getString("yes_trait_name"));
+                    yesTraits.add(yesTrait);
+                }
+                while(noResults.next()){
+                    Trait noTrait=new Trait(noResults.getInt("no_trait_id"),noResults.getString("no_trait_name"));
+                    noTraits.add(noTrait);
+                }
+                user.setYesTraits(yesTraits);
+                user.setNoTraits(noTraits);
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -44,10 +70,26 @@ public class JdbcUserDao implements UserDao {
     public List<User> getUsers() {
         List<User> users = new ArrayList<>();
         String sql = "SELECT user_id, username, password_hash, role FROM users";
+        String yesSql="select distinct users.user_id, users_trait_yes.trait_id as yes_trait_id, trait.trait_name as yes_trait_name  from users  full join users_trait_yes ON users_trait_yes.user_id = users.user_id full join trait ON trait.trait_id = users_trait_yes.trait_id  where users.user_id=?";
+        String noSql="select distinct users.user_id, users_trait_no.trait_id as no_trait_id, trait.trait_name as no_trait_name  from users  full join users_trait_no ON users_trait_no.user_id = users.user_id full join trait ON trait.trait_id = users_trait_no.trait_id  where users.user_id=?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
                 User user = mapRowToUser(results);
+                SqlRowSet yesResults= jdbcTemplate.queryForRowSet(yesSql,user.getId());
+                SqlRowSet noResults=jdbcTemplate.queryForRowSet(noSql,user.getId());
+                List<Trait> yesTraits=new ArrayList<>();
+                List<Trait> noTraits=new ArrayList<>();
+                while(yesResults.next()){
+                    Trait yesTrait=new Trait(yesResults.getInt("yes_trait_id"),yesResults.getString("yes_trait_name"));
+                    yesTraits.add(yesTrait);
+                }
+                while(noResults.next()){
+                    Trait noTrait=new Trait(noResults.getInt("no_trait_id"),noResults.getString("no_trait_name"));
+                    noTraits.add(noTrait);
+                }
+                user.setYesTraits(yesTraits);
+                user.setNoTraits(noTraits);
                 users.add(user);
             }
         } catch (CannotGetJdbcConnectionException e) {
@@ -123,18 +165,48 @@ public class JdbcUserDao implements UserDao {
         return noTraits;
     }
 
+    @Override
+    public List<Trait> setUserYesTraits(User user) throws DaoException {
+        List<Trait> newYesTraits =user.getNoTraits();
+        String sqlDelete="delete from users_trait_yes where user_id=?";
+        String sqlInsert="insert into users_trait_yes(user_id,trait_id) values (?,?)";
+        try {
+            jdbcTemplate.update(sqlDelete,user.getId());
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to DB",e);
+        }
+        for(Trait t:user.getNoTraits()){
+            try {
+                jdbcTemplate.update(sqlInsert,user.getId(),t.getTraitId());
+            } catch (CannotGetJdbcConnectionException e) {
+                throw new DaoException("Unable to connect to DB",e);
+            }
+        }
+        return newYesTraits;
+    }
+
+    @Override
+    public List<Trait> setUserNoTraits(User user) throws DaoException {
+        List<Trait> newNoTraits=user.getNoTraits();
+        String sqlDelete="delete from users_trait_no where user_id=?";
+        String sqlInsert="insert into users_trait_no(user_id,trait_id) values (?,?)";
+        try {
+            jdbcTemplate.update(sqlDelete,user.getId());
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to DB",e);
+        }
+        for(Trait t:user.getNoTraits()){
+            try {
+                jdbcTemplate.update(sqlInsert,user.getId(),t.getTraitId());
+            } catch (CannotGetJdbcConnectionException e) {
+                throw new DaoException("Unable to connect to DB",e);
+            }
+        }
+        return newNoTraits;
+    }
+
     //users_trait_yes
-    @Override
-    public List<Trait> UserYesTraits(User user) throws DaoException {
 
-
-        return List.of();
-    }
-
-    @Override
-    public List<Trait> UserNoTraits(User user) throws DaoException {
-        return List.of();
-    }
 
 
     private User mapRowToUser(SqlRowSet rs) {

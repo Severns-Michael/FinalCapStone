@@ -90,15 +90,37 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public List<Trait> getYesTraits(User user) {
-
-
-        return List.of();
+    public List<Trait> getYesTraits(int userId) {
+        List<Trait> yesTraits = new ArrayList<>();
+        String sql="select trait.trait_id,trait.trait_name " +
+                "from users_trait_yes " +
+                "inner join trait ON trait.trait_id = users_trait_yes.trait_id " +
+                "where users_trait_yes.user_id=?";
+        SqlRowSet results=jdbcTemplate.queryForRowSet(sql, userId);
+        while(results.next()){
+            Trait temp=new Trait();
+            temp.setTraitId(results.getInt("trait_id"));
+            temp.setTraitName(results.getString("trait_name"));
+            yesTraits.add(temp);
+        }
+        return yesTraits;
     }
 
     @Override
-    public List<Trait> getNoTraits(User user) {
-        return List.of();
+    public List<Trait> getNoTraits(int userId) {
+        List<Trait> noTraits = new ArrayList<>();
+        String sql="select trait.trait_id,trait.trait_name " +
+                "from users_trait_no " +
+                "inner join trait ON trait.trait_id = users_trait_no.trait_id " +
+                "where users_trait_no.user_id=?";
+        SqlRowSet results=jdbcTemplate.queryForRowSet(sql, userId);
+        while(results.next()){
+            Trait temp=new Trait();
+            temp.setTraitId(results.getInt("trait_id"));
+            temp.setTraitName(results.getString("trait_name"));
+            noTraits.add(temp);
+        }
+        return noTraits;
     }
 
     //users_trait_yes

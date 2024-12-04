@@ -16,8 +16,8 @@ public interface UserDao {
 
     User createUser(RegisterUserDto user);
 
-    List<Trait> getYesTraits(User user);
-    List<Trait> getNoTraits(User user);
+    List<Trait> getYesTraits(int userId);
+    List<Trait> getNoTraits(int userId);
 
     List<Trait> UserYesTraits(User user) throws DaoException;
     List<Trait> UserNoTraits(User user) throws DaoException;

@@ -1,6 +1,8 @@
 package com.techelevator.dao;
 
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -166,43 +168,41 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public List<Trait> setUserYesTraits(User user) throws DaoException {
-        List<Trait> newYesTraits =user.getNoTraits();
+    public List<Trait> setUserYesTraits(List<Trait> yesTraits, Principal principal) throws DaoException {
         String sqlDelete="delete from users_trait_yes where user_id=?";
         String sqlInsert="insert into users_trait_yes(user_id,trait_id) values (?,?)";
         try {
-            jdbcTemplate.update(sqlDelete,user.getId());
+            jdbcTemplate.update(sqlDelete,getUserByUsername(principal.getName()).getId());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to DB",e);
         }
-        for(Trait t:user.getNoTraits()){
+        for(Trait t:yesTraits){
             try {
-                jdbcTemplate.update(sqlInsert,user.getId(),t.getTraitId());
+                jdbcTemplate.update(sqlInsert,getUserByUsername(principal.getName()).getId(),t.getTraitId());
             } catch (CannotGetJdbcConnectionException e) {
                 throw new DaoException("Unable to connect to DB",e);
             }
         }
-        return newYesTraits;
+        return getUserByUsername(principal.getName()).getYesTraits();
     }
 
     @Override
-    public List<Trait> setUserNoTraits(User user) throws DaoException {
-        List<Trait> newNoTraits=user.getNoTraits();
+    public List<Trait> setUserNoTraits(List<Trait> noTraits, Principal principal) throws DaoException {
         String sqlDelete="delete from users_trait_no where user_id=?";
         String sqlInsert="insert into users_trait_no(user_id,trait_id) values (?,?)";
         try {
-            jdbcTemplate.update(sqlDelete,user.getId());
+            jdbcTemplate.update(sqlDelete,getUserByUsername(principal.getName()).getId());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to DB",e);
         }
-        for(Trait t:user.getNoTraits()){
+        for(Trait t:noTraits){
             try {
-                jdbcTemplate.update(sqlInsert,user.getId(),t.getTraitId());
+                jdbcTemplate.update(sqlInsert,getUserByUsername(principal.getName()).getId());
             } catch (CannotGetJdbcConnectionException e) {
                 throw new DaoException("Unable to connect to DB",e);
             }
         }
-        return newNoTraits;
+        return getUserByUsername(principal.getName()).getYesTraits();
     }
 
     //users_trait_yes

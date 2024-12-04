@@ -34,7 +34,7 @@
 
 
 <script>
-import TraitService from "@/services/TraitService";
+import TraitService from "../services/TraitService";
 
 export default{
   data(){

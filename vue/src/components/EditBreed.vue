@@ -13,15 +13,15 @@
                 <ul>
                     <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
                 </ul>
-                <button class="switch" v-on:click.prevent="removeSelectedTraits"> Remove </button>
+                <button class="switchBtn" v-on:click.prevent="removeSelectedTraits"> Remove </button>
             </div>
             <div class="listbox">
-                <button class="switch" v-on:click.prevent="addSelectedTraits"> Add </button>
+                <button class="switchBtn" v-on:click.prevent="addSelectedTraits"> Add </button>
                 <ul>
                     <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li> 
                 </ul>
             </div>
-            <span class="btn"><button class="save" v-on:click.prevent="updateBreed"> Save Changes </button></span>
+            <span class="saveBtn"><button class="save" v-on:click.prevent="updateBreed"> Save Changes </button></span>
         </div>
     </form>
 </template>
@@ -63,9 +63,12 @@ export default {
       getSelectedBreed(){
          this.$store.state.breeds.find(breed => {
            if(breed.officialName === this.selectedBreed.officialName){
-             this.selectedBreed = breed;
-             this.currentTraits = breed.traits;
+             this.selectedBreed = breed; // this gets the current breed's breedId, breedName, subBreed, and officialName
            }
+         });
+         BreedService.getBreedById(this.selectedBreed.breedId).then(response => {
+            this.selectedBreed = response.data; // this gets the current breed's traits[] but still coming back empty bc its a list on server side (I think)
+            this.currentTraits = this.selectedBreed.traits;
          });
       },
         removeSelectedTraits() {
@@ -76,6 +79,7 @@ export default {
                     this.traits.push(trait);
                 }
             });
+            this.selectedTraits = [];
         },
         addSelectedTraits() {
             this.traits = this.traits.filter(trait => {
@@ -85,6 +89,7 @@ export default {
                     this.currentTraits.push(trait);
                 }
             });
+            this.selectedTraits = [];
         },
         addToSelected(trait) {
             if (!this.selectedTraits.includes(trait)) {
@@ -122,7 +127,7 @@ export default {
       flex-direction: row;
       flex-wrap: nowrap;
       margin: 5px;
-
+        align-items: center;
     }
     label {
         margin: 10px;
@@ -147,7 +152,8 @@ export default {
       border: black solid 1px;
       display: flex;
       flex-direction: column;
-      height: 100px;
+      height: 30vh;
+      width: 20vw;
       list-style: none;
       overflow: scroll;
     }
@@ -155,18 +161,17 @@ export default {
         flex-basis: 80%;
         padding-right: 20px;
     }
-    .switch {
-        display: flex;
-        height: 30%;
-        width: 30%;
+    .switchBtn {
+        height: 20%;
+        width: 40%;
         align-items: center;
-        flex-wrap: nowrap;
         margin: 25px;
         text-align: center;
     }
-    .btn {
+    .saveBtn {
         flex-basis: 100%;
         flex-grow: 1;
+        text-align: center; 
     }
 
 </style>

@@ -10,17 +10,17 @@
         <li>trait 2</li>
         <li>trait 3</li>
       </ul>
-      <button class="switch" v-on:click.prevent="removeSelectedWantedTraits"> Remove </button>
+      <button class="switchBtn" v-on:click.prevent="removeSelectedWantedTraits"> Remove </button>
     </div>
     <div class="listbox">
-      <button class="switch" v-on:click.prevent="addSelectedWantedTraits"> Add </button>
+      <button class="switchBtn" v-on:click.prevent="addSelectedWantedTraits"> Add </button>
       <ul>
         <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
       </ul>
-      <button class="switch" v-on:click.prevent="addSelectedUnwantedTraits"> Add </button>
+      <button class="switchBtn" v-on:click.prevent="addSelectedUnwantedTraits"> Add </button>
     </div>
     <div class="listbox">
-      <button class="switch" v-on:click.prevent="removeSelectedUnwantedTraits"> Remove </button>
+      <button class="switchBtn" v-on:click.prevent="removeSelectedUnwantedTraits"> Remove </button>
       <ul>
         <li v-for="trait in unwantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
         <li>trait 1</li>
@@ -28,13 +28,12 @@
         <li>trait 3</li>
       </ul>
     </div>
-    <span class="btn"><button class="save" v-on:click.prevent="updateBreed"> Save Changes </button></span>
+    <span class="saveBtn"><button class="save" v-on:click.prevent="updateBreed"> Save Changes </button></span>
   </div>
 </template>
 
 
 <script>
-import BreedService from "@/services/BreedService";
 import TraitService from "@/services/TraitService";
 
 export default{
@@ -112,6 +111,7 @@ export default{
   flex-direction: row;
   flex-wrap: nowrap;
   margin: 5px;
+  align-items: center;
 }
 .traits {
   flex-basis: 50%;
@@ -129,28 +129,32 @@ ul{
   border: black solid 1px;
   display: flex;
   flex-direction: column;
-  height: 100px;
   list-style: none;
   overflow: scroll;
-  height: 50vh;
+  height: 40vh;
 
 }
 li{
   flex-basis: 80%;
   padding-right: 20px;
 }
-.switch {
-  display: flex;
-  height: 30%;
-  width: 30%;
+.switchBtn {
+  height: 20%;
+  width: 40%;
   align-items: center;
-  flex-wrap: nowrap;
   margin: 25px;
   text-align: center;
 }
-.btn {
+.saveBtn {
   flex-basis: 100%;
   flex-grow: 1;
+  text-align: center;
+}
+.save {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 25%;
+  height: 80%;
 }
 
 </style>

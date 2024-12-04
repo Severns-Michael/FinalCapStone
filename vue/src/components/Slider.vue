@@ -1,7 +1,7 @@
 <template>
   <div class="card-conteiner">
     <div class="card-content">
-      <div class="card-title">Dog Size</div>
+      <div class="card-title">{{sliderType}}</div>
       <div class="values">
         <div><span id="current-size">Small</span></div>
       </div>
@@ -27,6 +27,9 @@
 
 <script>
 export default {
+  props: [
+    'sliderType'
+  ],
   mounted() {
     const slider = document.getElementById("size-slider");
     const currentSize = document.getElementById("current-size");
@@ -52,6 +55,7 @@ export default {
   --color-primary: #275efe;
   --color-headline: #3f4656;
   --color-text: #99a3ba;
+  margin-bottom: 50px;
 }
 
 .card-content {

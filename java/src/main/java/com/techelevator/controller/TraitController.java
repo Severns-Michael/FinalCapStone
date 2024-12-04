@@ -37,6 +37,10 @@ public class TraitController {
     public List<User> getAllUsers(){
         return userDao.getUsers();
     }
+    @GetMapping(path="/users/{userId}")
+    public User getUserById(@PathVariable int userId){
+        return userDao.getUserById(userId);
+    }
 
     /**
      * path = /traits/traitId

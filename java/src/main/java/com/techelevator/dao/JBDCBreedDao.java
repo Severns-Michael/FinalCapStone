@@ -30,7 +30,8 @@ public class JBDCBreedDao implements BreedDao{
         String sql = "SELECT b.breed_id, b.breed_name, b.sub_breed, b.official_name, bt.trait_id, t.trait_name " +
                 "from breed b " +
                 "full join breed_trait bt ON bt.breed_id = b.breed_id " +
-                "full join trait t ON t.trait_id = bt.trait_id"; //need to edit
+                "full join trait t ON t.trait_id = bt.trait_id " +
+                "order by official_name ASC"; //need to edit
         try {
             SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
             while (rs.next()) {

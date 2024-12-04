@@ -22,7 +22,7 @@ public class JDBCTraitDao implements TraitDao{
     @Override
     public List<Trait> listAllTraits() throws DaoException {
         List<Trait> traitList = new ArrayList<>();
-        String sql = "select * from trait"; // edit later
+        String sql = "select * from trait order by trait_name ASC"; // TODO edit later
         try {
             SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
             while (rs.next()) {

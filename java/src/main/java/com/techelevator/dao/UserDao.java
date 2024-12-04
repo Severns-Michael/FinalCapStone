@@ -4,6 +4,7 @@ import com.techelevator.model.RegisterUserDto;
 import com.techelevator.model.Trait;
 import com.techelevator.model.User;
 
+import java.security.Principal;
 import java.util.List;
 
 public interface UserDao {
@@ -16,9 +17,9 @@ public interface UserDao {
 
     User createUser(RegisterUserDto user);
 
-    List<Trait> getYesTraits(User user);
-    List<Trait> getNoTraits(User user);
+    List<Trait> getYesTraits(int userId);
+    List<Trait> getNoTraits(int userId);
 
-    List<Trait> UserYesTraits(User user) throws DaoException;
-    List<Trait> UserNoTraits(User user) throws DaoException;
+    List<Trait> setUserYesTraits(List<Trait> yesTraits, Principal principal) throws DaoException;
+    List<Trait> setUserNoTraits(List<Trait> noTraits, Principal principal) throws DaoException;
 }

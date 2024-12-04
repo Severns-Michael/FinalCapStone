@@ -5,8 +5,7 @@ export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
       token: currentToken || '',
-      user: currentUser || {},
-      breeds: []
+      user: currentUser || {}
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -24,19 +23,6 @@ export function createStore(currentToken, currentUser) {
         state.token = '';
         state.user = {};
         axios.defaults.headers.common = {};
-      },
-      SET_BREEDS(state, data) {
-       state.breeds = data;
-      },
-      REMOVE_BREED(state, id) {
-        state.breeds.filter(breed => {
-          if (!breed.breedId === id) {
-            return breed;
-          }
-        });
-      },
-      ADD_BREED(state, breed) {
-
       }
     },
   });

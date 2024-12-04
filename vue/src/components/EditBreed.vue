@@ -11,7 +11,7 @@
     <p class="title">Current Traits</p>
     <div class="listbox">
       <ul>
-        <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)">
+        <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)" v-bind:class="{selected: this.selectedTraits.includes(trait)}">
           <a href="#">{{ trait.traitName }}</a>
         </li>
       </ul>
@@ -24,7 +24,7 @@
     <div class="listbox">
       <button class="switchBtn" v-on:click.prevent="addSelectedTraits">Add</button>
       <ul>
-        <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)">
+        <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)" v-bind:class="{selected: this.selectedTraits.includes(trait)}">
           <a href="#">{{ trait.traitName }}</a>
         </li>
       </ul>
@@ -125,6 +125,13 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
+        },
+        isSelected() {
+            if (this.selectedTraits.includes(this.trait)) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }
@@ -202,5 +209,8 @@ export default {
         flex-grow: 1;
         text-align: center; 
     }
-
+    .selected {
+        background-color: aqua;
+        opacity: 10%;
+    }
 </style>

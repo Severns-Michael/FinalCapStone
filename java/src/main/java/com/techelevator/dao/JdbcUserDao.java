@@ -197,7 +197,7 @@ public class JdbcUserDao implements UserDao {
         }
         for(Trait t:noTraits){
             try {
-                jdbcTemplate.update(sqlInsert,getUserByUsername(principal.getName()).getId());
+                jdbcTemplate.update(sqlInsert,getUserByUsername(principal.getName()).getId(),t.getTraitId());
             } catch (CannotGetJdbcConnectionException e) {
                 throw new DaoException("Unable to connect to DB",e);
             }

@@ -74,7 +74,7 @@ public class TraitController {
     }
     @PutMapping(path="/traits/exclude")
     @ResponseStatus(HttpStatus.OK)
-    public List<Trait> updateNoTraitsForUser(@RequestBody List<Trait> yesTraits, Principal principal){
-        return userDao.setUserNoTraits(yesTraits, principal);
+    public List<Trait> updateNoTraitsForUser(@RequestBody List<Trait> noTraits, Principal principal){
+        return userDao.setUserNoTraits(noTraits, principal);
     }
 }

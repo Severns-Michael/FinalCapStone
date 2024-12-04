@@ -1,8 +1,8 @@
 <template>
   <div class="traits">
-    <p class = "title">wanted traits</p>
-    <p class = "title">all traits</p>
-    <p class = "title">unwanted traits</p>
+    <p class = "title">Wanted Traits</p>
+    <p class = "title">All Traits</p>
+    <p class = "title">Unwanted Traits</p>
     <div class="listbox">
       <ul>
         <li v-for="trait in wantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
@@ -28,13 +28,13 @@
         <li>trait 3</li>
       </ul>
     </div>
-    <span class="saveBtn"><button class="save" v-on:click.prevent="updateBreed"> Save Changes </button></span>
   </div>
 </template>
 
 
 <script>
 import TraitService from "@/services/TraitService";
+import UserPreferencesService from "../services/UserPreferencesService";
 
 export default{
   data(){
@@ -49,6 +49,12 @@ export default{
     TraitService.getTraits().then(response => {
       this.traits = response.data;
     })
+    // UserPreferencesService.getYesTraits(this.$store.state.currentUser.id).then(response => {
+    //   this.wantedTraits = response.data;
+    // }),
+    // UserPreferencesService.getNoTraits(this.$store.state.currentUser.id).then(response => {
+    //   this.unwantedTraits = response.data;
+    // })
   },
   methods:{
     removeSelectedWantedTraits() {
@@ -132,7 +138,6 @@ ul{
   list-style: none;
   overflow: scroll;
   height: 40vh;
-
 }
 li{
   flex-basis: 80%;
@@ -141,20 +146,11 @@ li{
 .switchBtn {
   height: 20%;
   width: 40%;
-  align-items: center;
   margin: 25px;
   text-align: center;
+  text-wrap: wrap;
+  padding: 1px;
 }
-.saveBtn {
-  flex-basis: 100%;
-  flex-grow: 1;
-  text-align: center;
-}
-.save {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 25%;
-  height: 80%;
-}
+
 
 </style>

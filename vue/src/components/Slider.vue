@@ -60,7 +60,6 @@ export default {
   padding: 36px 32px;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(18, 22, 33, .12);
 }
 
 .card-title {
@@ -68,6 +67,7 @@ export default {
   font-weight: 700;
   color: var(--color-headline);
   margin-bottom: 10px;
+  ;
 }
 
 .values {

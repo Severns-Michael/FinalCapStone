@@ -2,8 +2,8 @@
     <form> 
         <div class="breed">
             <label>Breed: </label>
-            <select v-model="this.selectedBreed.officialName" @change="getSelectedBreed">
-                <option v-for="breed in this.$store.state.breeds" v-bind:key="breed.breedName"> {{ breed.officialName }} </option>
+            <select v-model="this.selectedBreed.officialName" @change="getSelectedBreed" v-on:click="getBreeds">
+                <option v-for="breed in this.breeds" v-bind:key="breed.breedName"> {{ breed.officialName }} </option>
             </select>
         </div>
             <div class="traits">
@@ -30,10 +30,6 @@
       </ul>
     </div>
   </div>
-  
-  <span class="saveBtn">
-    <button class="save" v-on:click.prevent="updateBreed">Save Changes</button>
-  </span>
 </div>
     </form>
 </template>
@@ -45,7 +41,7 @@ import TraitService from '../services/TraitService';
 export default {
     data() {
         return {
-            breeds: this.$store.state.breeds,
+            breeds: [],
             traits: [],
             filteredTraits: [],
             currentTraits: [],
@@ -66,27 +62,37 @@ export default {
   // },
     created(){
         BreedService.getBreeds().then(response => {
-            this.$store.commit('SET_BREEDS', response.data);
+            this.breeds = response.data;
         }),
         TraitService.getTraits().then(response => {
             this.traits = response.data;
         })
     },
     methods: {
+        getBreeds() {
+            BreedService.getBreeds().then(response => {
+                this.breeds = response.data;
+            });
+        },
       getSelectedBreed(){
-         this.$store.state.breeds.find(breed => {
+         this.breeds.find(breed => {
            if(breed.officialName === this.selectedBreed.officialName){
              this.selectedBreed = breed; 
            }
          });
          BreedService.getBreedById(this.selectedBreed.breedId).then(response => {
             this.selectedBreed = response.data; 
+            console.log(this.selectedBreed.traits);
             this.currentTraits = this.selectedBreed.traits;
-            this.filteredTraits = this.traits.filter(allTrait => {
-                if (!this.currentTraits.includes(allTrait)) {
-                    return allTrait;
-                }
-            });
+                this.traits.forEach(allTrait => {
+                    this.currentTraits.forEach(currTrait => {
+                        if (!currTrait.traitId === allTrait.traitId) {
+                            this.filteredTraits.push(allTrait);
+                            
+                        }
+                    });
+                });
+            
             this.traits = this.filteredTraits;
          });
       },

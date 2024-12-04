@@ -1,15 +1,15 @@
 import axios from 'axios';
 export default {
-    getYesTraits(userId) {
-        return axios.get(`/traits/${userId}/include`)
+    getYesTraits() {
+        return axios.get(`/traits/include`)
     },
-    getNoTraits(userId) {
-        return axios.get(`/traits/${userId}/exclude`)
+    getNoTraits() {
+        return axios.get(`/traits/exclude`)
     },
-    updateYesTraits(userId, wantedTraits) {
-        return axios.put(`/traits/${userId}/include`)
+    updateYesTraits(wantedTraits) {
+        return axios.put(`/traits/exclude`)
     },
-    updateNoTraits(userId, unwantedTraits) {
-        return axios.put(`/traits/${userId}/exclude`)
+    updateNoTraits(unwantedTraits) {
+        return axios.put(`/traits/exclude`)
     }
 }

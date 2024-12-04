@@ -1,25 +1,31 @@
 <template>
   <div class="traits">
-    <p class = "title">wanted traits</p>
-    <p class = "title">all traits</p>
-    <p class = "title">unwanted traits</p>
+    <p class = "title">My Dream Dog</p>
+    <p class = "title">Puppy Possibilities</p>
+    <p class = "title">Things to Avoid</p>
     <div class="listbox">
       <ul>
-        <li v-for="trait in wantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
+        <li v-for="trait in wantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)" v-bind:class="{selected: this.selectedTraits.includes(trait)}"> 
+          <a href="#">{{ trait.traitName }}</a> 
+        </li>
       </ul>
-      <button class="switchBtn" v-on:click.prevent="removeSelectedWantedTraits; updateUserPreferences"> Remove </button>
+      <button class="switchBtn" v-on:click.prevent="removeSelectedWantedTraits"> Remove </button>
     </div>
     <div class="listbox">
-      <button class="switchBtn" v-on:click.prevent="addSelectedWantedTraits; updateUserPreferences"> Add </button>
+      <button class="switchBtn" v-on:click.prevent="addSelectedWantedTraits"> Add </button>
       <ul>
-        <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
+        <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)" v-bind:class="{selected: this.selectedTraits.includes(trait)}"> 
+          <a href="#">{{ trait.traitName }}</a> 
+        </li>
       </ul>
-      <button class="switchBtn" v-on:click.prevent="addSelectedUnwantedTraits; updateUserPreferences"> Add </button>
+      <button class="switchBtn" v-on:click.prevent="addSelectedUnwantedTraits"> Add </button>
     </div>
     <div class="listbox">
-      <button class="switchBtn" v-on:click.prevent="removeSelectedUnwantedTraits; updateUserPreferences"> Remove </button>
+      <button class="switchBtn" v-on:click.prevent="removeSelectedUnwantedTraits"> Remove </button>
       <ul>
-        <li v-for="trait in unwantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"> <a href="#">{{ trait.traitName }}</a> </li>
+        <li v-for="trait in unwantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)" v-bind:class="{selected: this.selectedTraits.includes(trait)}"> 
+          <a href="#">{{ trait.traitName }}</a> 
+        </li>
       </ul>
     </div>
   </div>
@@ -39,16 +45,19 @@ export default{
       unwantedTraits: [],
     }
   },
+  computed: {
+
+  },
   created() {
     TraitService.getTraits().then(response => {
       this.traits = response.data;
     })
-    // UserPreferencesService.getYesTraits(this.$store.state.currentUser.id).then(response => {
-    //   this.wantedTraits = response.data;
-    // }),
-    // UserPreferencesService.getNoTraits(this.$store.state.currentUser.id).then(response => {
-    //   this.unwantedTraits = response.data;
-    // })
+    UserPreferencesService.getYesTraits().then(response => {
+      this.wantedTraits = response.data;
+    }),
+    UserPreferencesService.getNoTraits().then(response => {
+      this.unwantedTraits = response.data;
+    })
   },
   methods:{
     removeSelectedWantedTraits() {
@@ -60,6 +69,7 @@ export default{
         }
       });
       this.selectedTraits = [];
+      this.updateUserPreferences;
     },
     addSelectedWantedTraits() {
       this.traits = this.traits.filter(trait => {
@@ -70,6 +80,7 @@ export default{
         }
       });
       this.selectedTraits = [];
+      this.updateUserPreferences;
     },
     addToSelected(trait) {
       if (!this.selectedTraits.includes(trait)) {
@@ -85,6 +96,7 @@ export default{
         }
       });
       this.selectedTraits = [];
+      this.updateUserPreferences;
     },
     addSelectedUnwantedTraits() {
       this.traits = this.traits.filter(trait => {
@@ -95,10 +107,18 @@ export default{
         }
       });
       this.selectedTraits = [];
+      this.updateUserPreferences;
     },
     updateUserPreferences() {
-      UserPreferencesService.updateYesTraits(this.$store.state.currentUser.id, this.wantedTraits);
-      UserPreferencesService.updateNoTraits(this.$store.state.currentUser.id, this.unwantedTraits);
+      UserPreferencesService.updateYesTraits(this.wantedTraits);
+      UserPreferencesService.updateNoTraits(this.unwantedTraits);
+    },
+    isSelected() {
+      if (this.selectedTraits.includes(this.trait)) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 
@@ -158,6 +178,10 @@ li{
   margin-bottom: 20px;
   width: 15%;
   height: 100%;
+}
+.selected {
+  background-color: aqua;
+  opacity: 10%;
 }
 
 </style>

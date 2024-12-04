@@ -18,7 +18,7 @@ import BreedService from '../services/BreedService';
 export default {
     data() {
         return {
-            breeds: this.$store.state.breeds,
+            breeds: [],
             selectedBreed: {}
         }
     },
@@ -34,15 +34,14 @@ export default {
                     this.selectedBreed = breed;
                 }
             });
-            this.$store.commit('REMOVE_BREED', this.selectedBreed.breedId);
             BreedService.deleteBreed(this.selectedBreed.breedId).then(response => {
-                if (response.status === 200) {
-                    this.selectedBreed = {};
-                }
+                this.selectedBreed = {};
+                BreedService.getBreeds().then(response => {
+                    this.breeds = response.data;
+                });
             }).catch(error => {
                 console.log(error);
             });
-            this.selectedBreed = {};
         }
     }
 }

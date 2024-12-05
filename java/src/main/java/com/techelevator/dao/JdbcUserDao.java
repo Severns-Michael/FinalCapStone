@@ -205,7 +205,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<Swiped> getAllSwiped(int userId) throws DaoException {
         List<Swiped> swiped = new ArrayList<>();
-        String sql = "select * from swiped where user_id=?";
+        String sql = "select * from user_swipe_breeds where user_id=?";
 
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
@@ -227,9 +227,18 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public List<Swiped> setSwiped(List<Swiped> swiped, Principal principal) throws DaoException {
-        return List.of();
+    public Swiped addSwiped(Swiped swiped) throws DaoException {
+        String sql = "insert into user_swipe_breeds (user_id, breed_id, img, is_yes) values (?,?,?,?)";
+        try {
+            jdbcTemplate.update(sql,swiped.getUserId(),swiped.getBreedId(),swiped.getImg(),swiped.isYes());
+        }
+        catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return swiped;
+
     }
+
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();

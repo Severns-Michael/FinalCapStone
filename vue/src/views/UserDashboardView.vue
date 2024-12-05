@@ -1,11 +1,13 @@
 <template>
+  <div class="container">
     <router-link v-bind:to="{name: 'setcriteria'}"> Set Preferences </router-link>
 
     <ul class="selectedDogList">
-        <li v-for="dog in this.yesDogs" v-bind:key="dog.dogId">
-            <dog-card v-bind:dog="dog"></dog-card>
-        </li>
+      <li v-for="dog in this.yesDogs" v-bind:key="dog.dogId">
+        <dog-card v-bind:dog="dog"></dog-card>
+      </li>
     </ul>
+  </div>
 </template>
 
 <script>

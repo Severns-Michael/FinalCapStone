@@ -1,18 +1,30 @@
 <template>
-    <dog-card v-bind:swipedBreed=breed></dog-card>
+    <dog-card v-bind:swipedBreed=this.breed></dog-card>
 </template>
 
 <script>
 import DogCard from '../components/DogCard.vue';
+import BreedService from '../services/BreedService';
 
 export default {
     data() {
         return {
-            breed: {userId: 1, breedId: 11, img: null, isYes: true}
+            randomBreeds: [],
+            breed: {}
         }
     },
     components: {
         DogCard
+    },
+    created() {
+        BreedService.getRandomBreeds().then(response => {
+            this.randomBreeds = response.data
+        })
+    },
+    methods: {
+        getNextBreed() {
+            this.breed = this.randomBreeds.pop()
+        }
     }
 }
 </script>

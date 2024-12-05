@@ -18,7 +18,7 @@ export default {
     },
     data() {
         return {
-            yesBreeds: [{userId: 1, breedId: 11, img: null, isYes: true}]
+            yesBreeds: []
         }
     },
     created() {

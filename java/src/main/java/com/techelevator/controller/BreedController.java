@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import com.techelevator.model.Swiped;
+import com.techelevator.dao.UserDao;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -19,6 +22,8 @@ public class BreedController {
     private String BASE_URL = "/breed";
 @Autowired
 private TraitDao traitDao;
+@Autowired
+private UserDao userDao;
 
 
     /**
@@ -82,5 +87,15 @@ private TraitDao traitDao;
         breedDao.deleteBreed(breedId);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(path= "/swiped")
+    public List<Swiped> getSwipedBreeds(Principal principal) throws DaoException{
+        return userDao.getAllSwiped(userDao.getUserByUsername(principal.getName()).getId());
+    }
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(path="/swiped")
+    public Swiped addSwipedBreed(@RequestBody Swiped swiped) throws DaoException{
+        return userDao.addSwiped(swiped);
+    }
 }
 

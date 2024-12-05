@@ -22,17 +22,17 @@ div{
     justify-content: space-between;
     background-color: var(--purp3);
 }
-#banner>.logo{
-    flex-basis: 20%;
+#banner>.logo>img{
     align-self: center;
+    max-height: 10vh;
 }
 #banner>.title{
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 #banner>.title>h1{
-    margin: 0px;
-    flex-basis: 100%;
+    font-size:60px;
     color: white;
 }
 #banner>.log{
@@ -133,15 +133,29 @@ div.container{
 #admin-page > div> form > div.traits > div > div > ul > li:hover{
     background-color: var(--purp3);
 }
+.listbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
 .listbox>ul{
     padding: 0px;
 }
-
-
-
-
+.listbox>ul{
+    border: black solid 1px;
+    display: flex;
+    flex-direction: column;
+    height: 30vh;
+    width: 20vw;
+    list-style: none;
+}
+.selected {
+    background-color: var(--purp3);
+}
 .listbox>ul>li{
-    height: 10px;
+    flex-basis: 80%;
+    padding-right: 20px;
 }
 
 #edit > form > div.breed{

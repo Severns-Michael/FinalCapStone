@@ -180,7 +180,13 @@ values ('Hypoallergenic'),('Family Dog'),('Likes to Boogie'),('Vocal'),('Swimmer
 ('Portable'),('Longhair');
 
 insert into dog (dog_name,breed_id, age, size)
-		values  ('rover',9,6,1);
+		values  
+		('Rover',9,6,1),
+		('Rocky',16,5,1),
+		('Thaddeus',5,2,2),
+		('Fido',12,7,2),
+		('Darius',29,8,2),
+		('Nova',11,9,3);
 		
 insert into breed_trait (breed_id,trait_id)
 		values  (9,4),

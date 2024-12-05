@@ -205,10 +205,6 @@ public class JdbcUserDao implements UserDao {
         return getUserByUsername(principal.getName()).getYesTraits();
     }
 
-    //users_trait_yes
-
-
-
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));

@@ -50,13 +50,6 @@ private TraitDao traitDao;
         }
         return returnedBreed;
 
-
-//        if (breedDao.getBreedById(breedId).getBreedId()==0) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Breed not found");
-//        } else {
-//            return breedDao.getBreedById(breedId);
-//        }
-
     }
     /**
      * /breeds
@@ -70,18 +63,6 @@ private TraitDao traitDao;
         return breedDao.createBreed(breed);
     }
 
-//    /**
-//     * /breeds
-//     * @param breed breed you would like to update.
-//     * @return the updated breed.
-//     * @throws DaoException
-//     */
-//
-//    @ResponseStatus(HttpStatus.OK)
-//    @RequestMapping(path = "/breeds/{breedId}", method = RequestMethod.PUT)
-//    public Breed updateBreed(@PathVariable Breed breed) throws DaoException {
-//        return breedDao.updateBreed(breed);
-//    }
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/breeds", method = RequestMethod.PUT)
     public Breed updateBreedTraits(@RequestBody Breed breed) throws DaoException {

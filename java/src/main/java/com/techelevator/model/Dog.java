@@ -8,8 +8,10 @@ public class Dog {
     private String img;
     private int age;
     private int size;
-// empty constructor
-    public Dog() {}
+
+    // empty constructor
+    public Dog() {
+    }
 
     // constructor
     public Dog(int dogId, String dogName, String breed, String img, int age, int size) {
@@ -20,6 +22,7 @@ public class Dog {
         this.age = age;
         this.size = size;
     }
+
     //getter and setters
     public int getDogId() {
         return dogId;

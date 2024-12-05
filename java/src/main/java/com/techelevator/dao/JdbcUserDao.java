@@ -239,6 +239,16 @@ public class JdbcUserDao implements UserDao {
 
     }
 
+    @Override
+    public List<Breed> getBreedUserHasntSwiped(int userId) throws DaoException {
+        List<Breed> breeds = new ArrayList<>();
+        String sql = "select * from breed where breed_id not in (select breed_id from user_swipe_breeds where user_id=?)";
+
+        try {
+
+        }
+    }
+
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();

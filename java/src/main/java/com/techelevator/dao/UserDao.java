@@ -30,6 +30,8 @@ public interface UserDao {
 
     Swiped addSwiped(Swiped swiped) throws DaoException;
 
+    List<Breed> getBreedUserHasntSwiped(int userId) throws DaoException;
+
 
 
 

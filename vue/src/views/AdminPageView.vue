@@ -1,17 +1,21 @@
 <template>
     <div class="container" id="admin-page">
-      <div class="admin-form" id="add">
+
+      <div class="admin-block" id="add">
         <h2>Add a Breed</h2>
         <add-breed />
       </div>
-      <div class="admin-form" id="edit">
+
+      <div class="admin-block" id="edit">
         <h2>Edit a Breed</h2>
         <edit-breed />
       </div>
-      <div class="admin-form">
+
+      <div class="admin-block" id="delete">
         <h2>Delete a Breed</h2>
         <delete-breed />
       </div>
+
     </div>
 </template>
 

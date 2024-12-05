@@ -5,19 +5,24 @@
     --purp4: #8a2cac !important;
     --purp5: #a04ebd !important;
 }
+html, body {
+    height: fit-content;
+}
 div{
     font-family: "Parkinsans", sans-serif;
 }
 #capstone-app{
+    height: 100vh;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
+    align-content: flex-start;
+/*BANNER*/
 }
 #banner{
     display: flex;
     flex-basis: 100%;
-    max-height: 10vh;
+    height: 10vh;
     flex-direction: row;
     justify-content: space-between;
     background-color: var(--purp3);
@@ -59,9 +64,10 @@ div{
     flex-grow: 10;
     text-align: center;
 }
-
+/*NAV*/
 #nav{
     display: flex;
+    height: 90%;
     flex-direction: column;
     flex-basis: 15%;
     align-items: center;
@@ -85,22 +91,38 @@ div{
 #nav>#about{
  border-top: 1px solid var(--purp3);
 }
+/*THE MAIN APP*/
 div.container{
     flex-basis: 85%;
     display: flex;
 }
+/*THE ADMIN PAGE*/
 .container#admin-page{
     flex-direction: column;
+    flex-wrap: nowrap;
 }
-.admin-form {
+/*THE BOXES ON ADMIN PAGE*/
+.admin-block {
+    flex-basis: 85%;
+    flex-grow: 1;
     border: 1px solid var(--purp3);
     background-color: var(--purp5);
     border-radius: 10px;
     display: flex;
     align-self: center;
     padding: 10px;
+    margin: 20px
 }
-.admin-form#add{
+.admin-block>h2{
+    color: white;
+    text-align: center;
+}
+
+.admin-block>form>div>div>h3{
+    color: white;
+    text-align: center;
+}
+.admin-block#add{
     width: fit-content;
     flex-direction: column;
     align-items: center;
@@ -108,56 +130,74 @@ div.container{
     margin: 20px;
     padding: 10px;
 }
-.admin-form#edit{
+.admin-block#edit{
+    width: 85%;
     flex-direction: row;
     flex-wrap: wrap;
 }
-.admin-form#edit>h2{
+.admin-block#edit>h2{
     flex-basis: 100%;
     height: fit-content;
 }
-
-.admin-form>h2{
-    color: white;
-    text-align: center;
+.admin-block#edit>form.breed>div.trait-switcher{
+    background-color: var(--purp4);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
-.admin-form>a{
+.admin-block#edit>form.breed>div.trait-switcher>.spacer{
+    background-color: var(--purp5);
+}
+.admin-block#edit>form.breed>div.trait-switcher>.trait-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    padding: 10px;
+}
+.admin-block#edit>form.breed>div.trait-switcher>.trait-list>ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 120%;
+}
+.admin-block#edit>form.breed>div.trait-switcher>.trait-list>ul>li{
+    border-bottom: 1px solid white;
+    width: 80%;
+    padding: 2px 10px 2px 10px;
+}
+.admin-block#edit>form.breed>div.trait-switcher>.switch-buttons{
+    display: flex;
+    flex-shrink: 2;
+}
+.admin-block#delete{
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.admin-block#delete>h2{
+    flex-basis: 100%;
+}
+
+div.trait-switcher>div>ul{
+    background-color: var(--purp4);
+    max-width: 20vw;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0px;
+    padding-left: 0px;
+    list-style-type: none;
+}
+div.trait-switcher>div>ul>li>a{
     color: white;
     text-decoration: none;
 }
-
-#admin-page > div> form > div.traits > div > div > ul > li > a{
+.admin-block>a{
     color: white;
     text-decoration: none;
-}
-#admin-page > div> form > div.traits > div > div > ul > li:hover{
-    background-color: var(--purp3);
-}
-.listbox {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-}
-.listbox>ul{
-    padding: 0px;
-}
-.listbox>ul{
-    border: black solid 1px;
-    display: flex;
-    flex-direction: column;
-    height: 30vh;
-    width: 20vw;
-    list-style: none;
 }
 .selected {
     background-color: var(--purp3);
 }
-.listbox>ul>li{
-    flex-basis: 80%;
-    padding-right: 20px;
-}
 
-#edit > form > div.breed{
-    flex-basis: 100%;
-}

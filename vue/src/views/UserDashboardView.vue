@@ -24,7 +24,7 @@ export default {
     created() {
         DogService.getSwipedBreeds().then(response => {
             response.data.forEach(swiped => {
-                if (swiped.isYes) {
+                if (swiped.yes) {
                     this.yesBreeds.push(swiped)
                 }
             })

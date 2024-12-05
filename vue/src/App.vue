@@ -1,9 +1,11 @@
 <template>
   <div id="capstone-app">
     <div id="banner">
-      <img class="logo" alt="logo thumbnail" src="">
+      <div class="logo">
+      <img alt="logo thumbnail" src="../src/assets/logo-full.png">
+      </div>
       <div class="title">
-      <h1>FoundHound</h1>
+        <h1>FoundHound</h1>
       </div>
       <div class="log">
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
@@ -13,6 +15,8 @@
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>
       <router-link v-bind:to="{ name: 'adminpage' }" v-if="$store.state.token != ''">Admin</router-link>
       <router-link v-bind:to="{name: 'userdashboard'}"  v-if="$store.state.token != ''" >Dashboard</router-link>
+      <router-link v-bind:to="{name: 'setcriteria'}"> Set Preferences </router-link>
+      <router-link :to="{name: 'swipingview'}">Look at Dogs!</router-link>
       <div class="spacer"></div>
       <a id="about" href="#">About Us</a>
     </div>

@@ -1,10 +1,7 @@
 package com.techelevator.dao;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.*;
@@ -133,13 +130,13 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<Trait> getYesTraits(int userId) {
         List<Trait> yesTraits = new ArrayList<>();
-        String sql="select trait.trait_id,trait.trait_name " +
+        String sql = "select trait.trait_id,trait.trait_name " +
                 "from users_trait_yes " +
                 "inner join trait ON trait.trait_id = users_trait_yes.trait_id " +
                 "where users_trait_yes.user_id=?";
-        SqlRowSet results=jdbcTemplate.queryForRowSet(sql, userId);
-        while(results.next()){
-            Trait temp=new Trait();
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+        while (results.next()) {
+            Trait temp = new Trait();
             temp.setTraitId(results.getInt("trait_id"));
             temp.setTraitName(results.getString("trait_name"));
             yesTraits.add(temp);
@@ -150,13 +147,13 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<Trait> getNoTraits(int userId) {
         List<Trait> noTraits = new ArrayList<>();
-        String sql="select trait.trait_id,trait.trait_name " +
+        String sql = "select trait.trait_id,trait.trait_name " +
                 "from users_trait_no " +
                 "inner join trait ON trait.trait_id = users_trait_no.trait_id " +
                 "where users_trait_no.user_id=?";
-        SqlRowSet results=jdbcTemplate.queryForRowSet(sql, userId);
-        while(results.next()){
-            Trait temp=new Trait();
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+        while (results.next()) {
+            Trait temp = new Trait();
             temp.setTraitId(results.getInt("trait_id"));
             temp.setTraitName(results.getString("trait_name"));
             noTraits.add(temp);
@@ -166,18 +163,18 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public List<Trait> setUserYesTraits(List<Trait> yesTraits, Principal principal) throws DaoException {
-        String sqlDelete="delete from users_trait_yes where user_id=?";
-        String sqlInsert="insert into users_trait_yes(user_id,trait_id) values (?,?)";
+        String sqlDelete = "delete from users_trait_yes where user_id=?";
+        String sqlInsert = "insert into users_trait_yes(user_id,trait_id) values (?,?)";
         try {
-            jdbcTemplate.update(sqlDelete,getUserByUsername(principal.getName()).getId());
+            jdbcTemplate.update(sqlDelete, getUserByUsername(principal.getName()).getId());
         } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to DB",e);
+            throw new DaoException("Unable to connect to DB", e);
         }
-        for(Trait t:yesTraits){
+        for (Trait t : yesTraits) {
             try {
-                jdbcTemplate.update(sqlInsert,getUserByUsername(principal.getName()).getId(),t.getTraitId());
+                jdbcTemplate.update(sqlInsert, getUserByUsername(principal.getName()).getId(), t.getTraitId());
             } catch (CannotGetJdbcConnectionException e) {
-                throw new DaoException("Unable to connect to DB",e);
+                throw new DaoException("Unable to connect to DB", e);
             }
         }
         return getUserByUsername(principal.getName()).getYesTraits();
@@ -185,18 +182,18 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public List<Trait> setUserNoTraits(List<Trait> noTraits, Principal principal) throws DaoException {
-        String sqlDelete="delete from users_trait_no where user_id=?";
-        String sqlInsert="insert into users_trait_no(user_id,trait_id) values (?,?)";
+        String sqlDelete = "delete from users_trait_no where user_id=?";
+        String sqlInsert = "insert into users_trait_no(user_id,trait_id) values (?,?)";
         try {
-            jdbcTemplate.update(sqlDelete,getUserByUsername(principal.getName()).getId());
+            jdbcTemplate.update(sqlDelete, getUserByUsername(principal.getName()).getId());
         } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to DB",e);
+            throw new DaoException("Unable to connect to DB", e);
         }
-        for(Trait t:noTraits){
+        for (Trait t : noTraits) {
             try {
-                jdbcTemplate.update(sqlInsert,getUserByUsername(principal.getName()).getId(),t.getTraitId());
+                jdbcTemplate.update(sqlInsert, getUserByUsername(principal.getName()).getId(), t.getTraitId());
             } catch (CannotGetJdbcConnectionException e) {
-                throw new DaoException("Unable to connect to DB",e);
+                throw new DaoException("Unable to connect to DB", e);
             }
         }
         return getUserByUsername(principal.getName()).getYesTraits();
@@ -217,8 +214,7 @@ public class JdbcUserDao implements UserDao {
                 swipe.setYes(results.getBoolean("is_yes"));
                 swiped.add(swipe);
             }
-        }
-        catch (CannotGetJdbcConnectionException e) {
+        } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }
         return swiped;
@@ -230,9 +226,8 @@ public class JdbcUserDao implements UserDao {
     public Swiped addSwiped(Swiped swiped) throws DaoException {
         String sql = "insert into user_swipe_breeds (user_id, breed_id, img, is_yes) values (?,?,?,?)";
         try {
-            jdbcTemplate.update(sql,swiped.getUserId(),swiped.getBreedId(),swiped.getImg(),swiped.isYes());
-        }
-        catch (CannotGetJdbcConnectionException e) {
+            jdbcTemplate.update(sql, swiped.getUserId(), swiped.getBreedId(), swiped.getImg(), swiped.isYes());
+        } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }
         return swiped;
@@ -243,10 +238,24 @@ public class JdbcUserDao implements UserDao {
     public List<Breed> getBreedUserHasntSwiped(int userId) throws DaoException {
         List<Breed> breeds = new ArrayList<>();
         String sql = "select * from breed where breed_id not in (select breed_id from user_swipe_breeds where user_id=?)";
-            return breeds;
-//        try {
-//
-//        }
+
+        try {
+            SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
+            while (rs.next()) {
+                Breed breed = new Breed();
+                breed.setBreedId(rs.getInt("breed_id"));
+                breed.setBreedName(rs.getString("breed_name"));
+                breed.setSubBreed(rs.getString("sub_breed"));
+                breed.setOfficialName(rs.getString("official_name"));
+                breeds.add(breed);
+            }
+
+
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        Collections.shuffle(breeds);
+        return breeds;
     }
 
 
@@ -259,8 +268,6 @@ public class JdbcUserDao implements UserDao {
         user.setActivated(true);
         return user;
     }
-
-
 
 
 //    @Override

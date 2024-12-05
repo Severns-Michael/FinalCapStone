@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import com.techelevator.exception.DaoException;
+
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,21 +17,23 @@ import java.util.List;
 @Component
 public class JDBCDogDao implements DogDao {
     private final JdbcTemplate jdbcTemplate;
+
     public JDBCDogDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
     @Override
     public List<Dog> getAllDogs() throws DaoException {
-     List<Dog> dogList = new ArrayList<>();
-     String sql = "select * from dog";
-     try {
-         SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
-         while (rs.next()) {
-             dogList.add(mapRowToDog(rs));
-         }
-     } catch (CannotGetJdbcConnectionException e ) {
-         throw new DaoException("Unable to connect to server or database", e);
-     }
+        List<Dog> dogList = new ArrayList<>();
+        String sql = "select * from dog";
+        try {
+            SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
+            while (rs.next()) {
+                dogList.add(mapRowToDog(rs));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
 
         return dogList;
     }

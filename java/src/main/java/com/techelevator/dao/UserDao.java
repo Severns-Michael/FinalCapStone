@@ -28,7 +28,9 @@ public interface UserDao {
 
     List<Swiped> getAllSwiped(int userId) throws DaoException;
 
-    List<Swiped> setSwiped(List<Swiped> swiped, Principal principal) throws DaoException;
+    Swiped addSwiped(Swiped swiped) throws DaoException;
+
+    List<Breed> getBreedUserHasntSwiped(int userId) throws DaoException;
 
 
 

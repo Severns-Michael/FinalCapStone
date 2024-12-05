@@ -56,13 +56,29 @@ create table dog(
         constraint fk_ut_user foreign key (user_id) references users(user_id),
         constraint fk_ut_trait foreign key (trait_id) references trait(trait_id)
     );
-     Create table users_trait_no(
+    Create table users_trait_no(
             user_id serial,
             trait_id serial,
 
             constraint pk_ut_no primary key (user_id, trait_id),
             constraint fk_ut_user_no foreign key (user_id) references users(user_id),
             constraint fk_ut_trait_no foreign key (trait_id) references trait(trait_id)
+        );
+	Create table users_dog_yes(
+            user_id serial,
+            dog_id serial,
+
+            constraint pk_ud_yes primary key (user_id, dog_id),
+            constraint fk_ud_user_yes foreign key (user_id) references users(user_id),
+            constraint fk_ud_dog_yes foreign key (dog_id) references dog(dog_id)
+        );
+	Create table users_dog_no(
+            user_id serial,
+            dog_id serial,
+
+            constraint pk_ud_no primary key (user_id, dog_id),
+            constraint fk_ud_user_no foreign key (user_id) references users(user_id),
+            constraint fk_ud_dog_no foreign key (dog_id) references dog(dog_id)
         );
 
 COMMIT TRANSACTION;

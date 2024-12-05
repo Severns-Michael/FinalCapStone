@@ -1,0 +1,87 @@
+:root {
+    --purp1: #4B0365 !important;
+    --purp2: #600581 !important;
+    --purp3: #7c08a6 !important;
+    --purp4: #8a2cac !important;
+    --purp5: #a04ebd !important;
+}
+div{
+    font-family: "Parkinsans", sans-serif;
+}
+#capstone-app{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+#banner{
+    display: flex;
+    flex-basis: 100%;
+    max-height: 10vh;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--purp3);
+}
+#banner>.logo{
+    flex-basis: 20%;
+    align-self: center;
+}
+#banner>.title{
+    display: flex;
+    flex-direction: column;
+}
+#banner>.title>h1{
+    margin: 0px;
+    flex-basis: 100%;
+    color: white;
+}
+#banner>.log{
+    background-color: var(--purp2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid white;
+}
+#banner>.log>a{
+    font-size: 1.2em;
+    text-align: center;
+    align-self: center;
+    text-decoration: none;
+    color: white;
+    padding: 0px 20px 0px 20px;
+}
+#banner>.log>a:hover{
+    text-decoration: underline;
+    color: var(--purp5);
+}
+#banner>.title{
+    color: white;
+    flex-grow: 10;
+    text-align: center;
+}
+
+#nav{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 15%;
+    align-items: center;
+    border-right: 1px solid var(--purp3);
+}
+#nav>a{
+    height: auto;
+    text-align: center;
+    width: 80%;
+    padding: 10px;
+    border-bottom: 1px solid var(--purp1);
+    color: var(--purp3);
+    text-decoration: none;
+}
+#nav>a:hover{
+    text-decoration: underline;
+}
+.spacer{
+    flex-grow: 100;
+}
+#nav>#about{
+ border-top: 1px solid var(--purp3);
+}

@@ -1,5 +1,4 @@
 <template>
-    <router-link v-bind:to="{name: 'setcriteria'}"> Set Preferences </router-link>
 
     <ul class="selectedDogList">
         <li v-for="breed in this.yesBreeds" v-bind:key="breed.breedId">

@@ -15,6 +15,8 @@
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>
       <router-link v-bind:to="{ name: 'adminpage' }" v-if="$store.state.token != ''">Admin</router-link>
       <router-link v-bind:to="{name: 'userdashboard'}"  v-if="$store.state.token != ''" >Dashboard</router-link>
+      <router-link v-bind:to="{name: 'setcriteria'}"> Set Preferences </router-link>
+      <router-link :to="{name: 'swipingview'}">Look at Dogs!</router-link>
       <div class="spacer"></div>
       <a id="about" href="#">About Us</a>
     </div>

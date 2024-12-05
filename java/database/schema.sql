@@ -51,6 +51,7 @@ create table dog(
     Create table users_trait_yes(
         user_id serial,
         trait_id serial,
+		
 
         constraint pk_ut primary key (user_id, trait_id),
         constraint fk_ut_user foreign key (user_id) references users(user_id),

@@ -1,4 +1,5 @@
 package com.techelevator.dao;
+
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.RegisterUserDto;
 import com.techelevator.model.Trait;
@@ -21,9 +22,11 @@ public interface UserDao {
     User createUser(RegisterUserDto user);
 
     List<Trait> getYesTraits(int userId);
+
     List<Trait> getNoTraits(int userId);
 
     List<Trait> setUserYesTraits(List<Trait> yesTraits, Principal principal) throws DaoException;
+
     List<Trait> setUserNoTraits(List<Trait> noTraits, Principal principal) throws DaoException;
 
     List<Swiped> getAllSwiped(int userId) throws DaoException;

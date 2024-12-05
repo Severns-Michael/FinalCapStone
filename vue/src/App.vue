@@ -1,9 +1,11 @@
 <template>
   <div id="capstone-app">
     <div id="banner">
-      <img class="logo" alt="logo thumbnail" src="">
+      <div class="logo">
+      <img alt="logo thumbnail" src="../src/assets/logo-full.png">
+      </div>
       <div class="title">
-      <h1>FoundHound</h1>
+        <h1>FoundHound</h1>
       </div>
       <div class="log">
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>

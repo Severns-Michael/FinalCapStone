@@ -156,16 +156,8 @@ export default {
         flex-wrap: wrap;
         width: 70%;
 
-        
     }
-    .listbox {
-      justify-content: space-evenly;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      margin: 5px;
-        align-items: center;
-    }
+
     label {
         margin: 10px;
     }
@@ -194,19 +186,7 @@ export default {
 
     }
 
-    ul{
-      border: black solid 1px;
-      display: flex;
-      flex-direction: column;
-      height: 30vh;
-      width: 20vw;
-      list-style: none;
-      overflow: scroll;
-    }
-    li{
-        flex-basis: 80%;
-        padding-right: 20px;
-    }
+
     .switchBtn {
         height: 20%;
         width: 40%;
@@ -219,8 +199,5 @@ export default {
         flex-grow: 1;
         text-align: center; 
     }
-    .selected {
-        background-color: aqua;
-        opacity: 10%;
-    }
+
 </style>

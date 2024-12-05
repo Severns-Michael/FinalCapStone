@@ -205,7 +205,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<Swiped> getAllSwiped(int userId) throws DaoException {
         List<Swiped> swiped = new ArrayList<>();
-        String sql = "select * from swiped where user_id=?";
+        String sql = "select * from user_swipe_breeds where user_id=?";
 
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);

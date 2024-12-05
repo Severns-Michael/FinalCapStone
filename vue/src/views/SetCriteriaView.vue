@@ -2,8 +2,7 @@
   <div class="container">
     <trait-switch-box class="traitSwitcher"></trait-switch-box>
     <div class="sliders">
-      <slider sliderType="Dog Height"></slider>
-      <slider sliderType="Dog Weight"></slider>
+      <slider sliderType="Dog Size"></slider>
       <age-slider></age-slider>
     </div>
   </div>

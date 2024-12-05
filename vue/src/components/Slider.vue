@@ -1,25 +1,34 @@
 <template>
-  <div class="card-conteiner">
+  <div class="card-container">
     <div class="card-content">
-      <div class="card-title">{{sliderType}}</div>
+      <div class="card-title">Life Span</div>
       <div class="values">
-        <div><span id="current-size">Small</span></div>
+        From <span id="min-age">0</span> year(s) to <span id="max-age">25</span> year(s)
       </div>
-      <div class="rangeslider">
+      <div class="slider-container">
+        <div class="slider-track"></div>
         <input
-            class="input-ranges"
-            id="size-slider"
             type="range"
-            min="1"
-            max="3"
+            id="slider-min"
+            class="input-range"
+            min="0"
+            max="25"
             step="1"
             value="1"
         />
+        <input
+            type="range"
+            id="slider-max"
+            class="input-range"
+            min="0"
+            max="25"
+            step="1"
+            value="25"
+        />
       </div>
       <div class="slider-labels">
-        <span>Small</span>
-        <span>Medium</span>
-        <span>Large</span>
+        <span>0</span>
+        <span>25</span>
       </div>
     </div>
   </div>
@@ -27,30 +36,48 @@
 
 <script>
 export default {
-  props: [
-    'sliderType'
-  ],
   mounted() {
-    const slider = document.getElementById("size-slider");
-    const currentSize = document.getElementById("current-size");
+    const minSlider = document.getElementById("slider-min");
+    const maxSlider = document.getElementById("slider-max");
+    const minAge = document.getElementById("min-age");
+    const maxAge = document.getElementById("max-age");
+    const track = document.querySelector(".slider-track");
 
-    // Map slider values to size labels
-    const sizeLabels = {
-      1: "Small",
-      2: "Medium",
-      3: "Large",
+    const updateSlider = () => {
+      const minValue = parseInt(minSlider.value, 10);
+      const maxValue = parseInt(maxSlider.value, 10);
+
+      // Prevent overlap
+      if (minValue >= maxValue) {
+        minSlider.value = maxValue;
+      } else if (maxValue <= minValue) {
+        maxSlider.value = minValue ;
+      }
+
+      // Update displayed values
+      minAge.textContent = minSlider.value;
+      maxAge.textContent = maxSlider.value;
+
+      // Calculate percentages for the track
+      const percentMin = ((minSlider.value ) / 25) * 100;
+      const percentMax = ((maxSlider.value ) / 25) * 100;
+
+      // Update track background with a gradient
+      track.style.background = `linear-gradient(to right, #3f4656 ${percentMin}%, #275EFE ${percentMin}%, #275EFE ${percentMax}%, #3f4656 ${percentMax}%)`;
     };
 
-    // Update displayed size based on slider value
-    slider.addEventListener("input", (e) => {
-      currentSize.textContent = sizeLabels[e.target.value];
-    });
+    // Add event listeners
+    minSlider.addEventListener("input", updateSlider);
+    maxSlider.addEventListener("input", updateSlider);
+
+    // Initialize slider
+    updateSlider();
   },
 };
 </script>
 
 <style scoped>
-.card-conteiner {
+.card-container {
   cursor: default;
   --color-primary: #275efe;
   --color-headline: #3f4656;
@@ -64,7 +91,6 @@ export default {
   padding: 36px 32px;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(18, 22, 33, .12);
 }
 
 .card-title {
@@ -72,46 +98,66 @@ export default {
   font-weight: 700;
   color: var(--color-headline);
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .values {
   margin-bottom: 20px;
   font-size: 18px;
   color: var(--color-primary);
+  text-align: center;
 }
 
-.rangeslider {
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 6px;
   margin: 20px 0;
 }
 
-.input-ranges {
+.slider-track {
+  position: absolute;
+  height: 6px;
   width: 100%;
-  -webkit-appearance: none;
-  appearance: none;
+  border-radius: 5px;
   background: var(--color-headline);
+  z-index: 1;
+}
+
+.input-range {
+  position: absolute;
+  width: 100%;
   height: 6px;
   border-radius: 5px;
-  outline: none;
+  margin: 0;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.input-ranges::-webkit-slider-thumb {
+.input-range::-webkit-slider-thumb {
+  position: relative;
+  pointer-events: auto;
   width: 20px;
   height: 20px;
   background: #fff;
   border: 2px solid var(--color-primary);
   border-radius: 50%;
   cursor: pointer;
-  transition: 0.3s;
+  appearance: none;
 }
 
-.input-ranges::-moz-range-thumb {
+.input-range::-moz-range-thumb {
+  position: relative;
+  pointer-events: auto;
   width: 20px;
   height: 20px;
   background: #fff;
-  border: 2px solid var(--color-primary);
   border-radius: 50%;
   cursor: pointer;
-  transition: 0.3s;
+  border: 2px solid var(--color-primary);
 }
 
 .slider-labels {
@@ -121,3 +167,4 @@ export default {
   color: var(--color-text);
 }
 </style>
+

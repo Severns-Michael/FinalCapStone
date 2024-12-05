@@ -116,7 +116,7 @@ export default {
   text-align: center;
 }
 
-.slider-container-1 {
+.slider-container {
   position: relative;
   width: 100%;
   height: 6px;

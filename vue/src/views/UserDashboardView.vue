@@ -3,7 +3,7 @@
 
     <ul class="selectedDogList">
         <li v-for="breed in this.yesBreeds" v-bind:key="breed.breedId">
-            <dog-card v-bind:breed="breed"></dog-card>
+            <dog-card v-bind:swipedBreed="breed"></dog-card>
         </li>
     </ul>
 </template>
@@ -18,13 +18,13 @@ export default {
     },
     data() {
         return {
-            yesBreeds: [{userId: 1, breedId: 11, img: null, isYes: true}]
+            yesBreeds: []
         }
     },
     created() {
         DogService.getSwipedBreeds().then(response => {
             response.data.forEach(swiped => {
-                if (swiped.isYes) {
+                if (swiped.yes) {
                     this.yesBreeds.push(swiped)
                 }
             })

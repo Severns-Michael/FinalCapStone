@@ -80,9 +80,11 @@ export default {
              this.selectedBreed = breed; 
            }
          });
+         TraitService.getTraits().then(response => {
+            this.traits = response.data;
+         });
          BreedService.getBreedById(this.selectedBreed.breedId).then(response => {
             this.selectedBreed = response.data; 
-            console.log(this.selectedBreed.traits);
             this.currentTraits = this.selectedBreed.traits;
             this.traits.forEach(allTrait => {
                 const isTraitPresent = this.currentTraits.some(currTrait => currTrait.traitId === allTrait.traitId);
@@ -125,8 +127,8 @@ export default {
           this.selectedBreed.traits =this.currentTraits;
             BreedService.updateBreed(this.selectedBreed).then(response => {
                 if (response.status === 200) {
-                    this.selectedBreed = {};
-                    this.currentTraits = [];
+                    // this.selectedBreed = {};
+                    // this.currentTraits = [];
                 }
             }).catch(error => {
                 console.log(error);

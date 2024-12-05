@@ -4,7 +4,7 @@ public class Dog {
     // class variables
     private int dogId;
     private String dogName;
-    private String breed;
+    private int breedId; //official breed
     private String img;
     private int age;
     private int size;
@@ -15,7 +15,7 @@ public class Dog {
     public Dog(int dogId, String dogName, String breed, String img, int age, int size) {
         this.dogId = dogId;
         this.dogName = dogName;
-        this.breed = breed;
+        this.breedId = breedId;
         this.img = img;
         this.age = age;
         this.size = size;
@@ -37,12 +37,12 @@ public class Dog {
         this.dogName = dogName;
     }
 
-    public String getBreed() {
-        return breed;
+    public int getBreedId() {
+        return breedId;
     }
 
-    public void setBreed(String breed) {
-        this.breed = breed;
+    public void setBreedId(int breedId) {
+        this.breedId = breedId;
     }
 
     public String getImg() {

@@ -3,6 +3,7 @@ import com.techelevator.exception.DaoException;
 import com.techelevator.model.RegisterUserDto;
 import com.techelevator.model.Trait;
 import com.techelevator.model.User;
+import com.techelevator.model.Dog;
 
 import java.security.Principal;
 import java.util.List;
@@ -22,4 +23,10 @@ public interface UserDao {
 
     List<Trait> setUserYesTraits(List<Trait> yesTraits, Principal principal) throws DaoException;
     List<Trait> setUserNoTraits(List<Trait> noTraits, Principal principal) throws DaoException;
+
+    List<Dog> getSwipedYesDogs(int userId);
+    List<Dog> setSwipedYesDogs(List<Dog> favoriteDogs, Principal principal) throws DaoException;
+
+    List<Dog> getSwipedNoDogs(int userId);
+    List<Dog> setSwipedNoDogs(List<Dog> favoriteDogs, Principal principal) throws DaoException;
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.techelevator.exception.DaoException;
+import com.techelevator.model.Dog;
 import com.techelevator.model.RegisterUserDto;
 import com.techelevator.model.Trait;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -205,9 +206,70 @@ public class JdbcUserDao implements UserDao {
         return getUserByUsername(principal.getName()).getYesTraits();
     }
 
-    //users_trait_yes
+    @Override
+    public List<Dog> getSwipedYesDogs( int id) {
+        List<Dog> swipedYesDogs = new ArrayList<>();
+        String sql = "select users.user_id, users.username, d.dog_id,dog_name,breed_id,age, size, img from users " +
+                "inner join public.users_dog_yes udy on users.user_id = udy.user_id " +
+                "inner join public.dog d on d.dog_id = udy.dog_id " +
+                "where udy.user_id = ?";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+            while (results.next()) {
+                Dog dog = new Dog();
+                dog.setDogId(results.getInt("dog_id"));
+                dog.setDogName(results.getString("dog_name"));
+                dog.setBreedId(results.getInt("breed_id"));
+                dog.setImg(results.getString("img"));
+                dog.setAge(results.getInt("age"));
+                dog.setSize(results.getInt("size"));
+                swipedYesDogs.add(dog);
 
 
+            }
+
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return swipedYesDogs;
+    }
+
+    @Override
+    public List<Dog> getSwipedNoDogs(int userId) {
+        List<Dog> swipedNoDogs = new ArrayList<>();
+        String sql = "select users.user_id, users.username, d.dog_id,dog_name,breed_id,age, size, img from users " +
+                "inner join public.users_dog_no udn on users.user_id = udn.user_id " +
+                "inner join public.dog d on d.dog_id = udn.dog_id " +
+                "where udn.user_id = ?";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+            while (results.next()) {
+                Dog dog = new Dog();
+                dog.setDogId(results.getInt("dog_id"));
+                dog.setDogName(results.getString("dog_name"));
+                dog.setBreedId(results.getInt("breed_id"));
+                dog.setImg(results.getString("img"));
+                dog.setAge(results.getInt("age"));
+                dog.setSize(results.getInt("size"));
+                swipedNoDogs.add(dog);
+
+
+            }
+
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return swipedNoDogs;
+    }
+    @Override
+    public List<Dog> setSwipedYesDogs(List<Dog> favoriteDogs, Principal principal) throws DaoException {
+        return List.of();
+    }
+
+    @Override
+    public List<Dog> setSwipedNoDogs(List<Dog> favoriteDogs, Principal principal) throws DaoException {
+        return List.of();
+    }
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();

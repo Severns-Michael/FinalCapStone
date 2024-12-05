@@ -20,17 +20,11 @@ export default {
 
     // user accepted and rejected dog methods
 
-    getDogsNo() {
-        return axios.get("/userdogsno")
+    getSwipedBreeds() {
+        return axios.get("/swiped")
     },
-    getDogsYes() {
-        return axios.get("/userdogsyes")
-    },
-    addToDogsNo() {
-        return axios.post("/userdogsno")
-    },
-    addToDogsYes() {
-        return axios.post("/userdogsyes")
+    addToSwipedBreeds() {
+        return axios.post("/swiped")
     },
 
     // calls to pic api

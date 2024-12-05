@@ -1,13 +1,11 @@
 <template>
-  <div class="container">
     <router-link v-bind:to="{name: 'setcriteria'}"> Set Preferences </router-link>
 
     <ul class="selectedDogList">
-      <li v-for="dog in this.yesDogs" v-bind:key="dog.dogId">
-        <dog-card v-bind:dog="dog"></dog-card>
-      </li>
+        <li v-for="breed in this.yesBreeds" v-bind:key="breed.breedId">
+            <dog-card v-bind:breed="breed"></dog-card>
+        </li>
     </ul>
-  </div>
 </template>
 
 <script>
@@ -20,12 +18,16 @@ export default {
     },
     data() {
         return {
-            yesDogs: [{dogId: 1, dogName: 'Rufus', breedId: 11, age: 10, size: 2, img: null}]
+            yesBreeds: [{userId: 1, breedId: 11, img: null, isYes: true}]
         }
     },
     created() {
-        DogService.getDogsYes().then(response => {
-            this.yesDogs = response.data;
+        DogService.getSwipedBreeds().then(response => {
+            response.data.forEach(swiped => {
+                if (swiped.isYes) {
+                    this.yesBreeds.push(swiped)
+                }
+            })
         });
     }
 }

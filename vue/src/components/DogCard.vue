@@ -23,34 +23,33 @@ import BreedService from '../services/BreedService';
 
 export default {
     props: {
-        dog: {}
+        swipedBreed: {}
     },
     data() {
         return {
-            currentDog: this.dog,
+            currentSwipedBreed: this.swipedBreed,
             currentDogBreed: {},
         }
     },
     beforeMount() {
         this.getDogBreed();
-       
     },
     methods: {
         getDogBreed() {
-            BreedService.getBreedById(this.currentDog.breedId).then(response => {
+            BreedService.getBreedById(this.currentSwipedBreed.breedId).then(response => {
                 this.currentDogBreed = response.data;
                 this.getDogPic();
             });
         },
         getDogPic() {
-            if (this.currentDog.img === null) {
+            if (this.currentSwipedBreed.img === null) {
                 if (!this.currentDogBreed.subBreed === null) {
                     DogService.getSubBreedPic(this.currentDogBreed.breedName, this.currentDogBreed.subBreed).then(response => {
-                        this.currentDog.img = response.data.message
+                        this.currentSwipedBreed.img = response.data.message
                     });
                 } else {
                     DogService.getBreedPic(this.currentDogBreed.breedName).then(response => {
-                        this.currentDog.img = response.data.message
+                        this.currentSwipedBreed.img = response.data.message
                     });
                 }
             }

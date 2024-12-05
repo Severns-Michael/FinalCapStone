@@ -23,8 +23,8 @@ export default {
     getSwipedBreeds() {
         return axios.get("/swiped")
     },
-    addToSwipedBreeds() {
-        return axios.post("/swiped")
+    addToSwipedBreeds(swipedBreed) {
+        return axios.post("/swiped", swipedBreed)
     },
 
     // calls to pic api

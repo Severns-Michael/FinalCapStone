@@ -15,4 +15,7 @@ export default {
     deleteBreed(id) {
         return axios.delete(`/breeds/${id}`)
     },
+    getRandomBreeds() {
+        return axios.get('/breeds/random')
+    }
 }

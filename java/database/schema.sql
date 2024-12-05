@@ -64,7 +64,7 @@ create table dog(
             constraint fk_ut_user_no foreign key (user_id) references users(user_id),
             constraint fk_ut_trait_no foreign key (trait_id) references trait(trait_id)
         );
-	Create table user_swipe_breeds( 	
+	Create table user_swipe_breeds(
 		user_id serial,
 		breed_id serial,
 		img varchar,

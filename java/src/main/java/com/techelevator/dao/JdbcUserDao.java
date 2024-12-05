@@ -1,10 +1,7 @@
 package com.techelevator.dao;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.*;
@@ -245,8 +242,22 @@ public class JdbcUserDao implements UserDao {
         String sql = "select * from breed where breed_id not in (select breed_id from user_swipe_breeds where user_id=?)";
 
         try {
+            SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
+            while (rs.next()) {
+                Breed breed = new Breed();
+                breed.setBreedId(rs.getInt("breed_id"));
+                breed.setBreedName(rs.getString("breed_name"));
+                breed.setSubBreed(rs.getString("sub_breed"));
+                breed.setOfficialName(rs.getString("official_name"));
+                breeds.add(breed);
+            }
 
+
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
         }
+        Collections.shuffle(breeds);
+        return breeds;
     }
 
 

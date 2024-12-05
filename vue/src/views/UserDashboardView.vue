@@ -3,7 +3,7 @@
 
     <ul class="selectedDogList">
         <li v-for="breed in this.yesBreeds" v-bind:key="breed.breedId">
-            <dog-card v-bind:breed="breed"></dog-card>
+            <dog-card v-bind:swipedBreed="breed"></dog-card>
         </li>
     </ul>
 </template>

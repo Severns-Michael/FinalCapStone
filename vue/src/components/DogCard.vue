@@ -2,15 +2,15 @@
     <div class="container">
 
       <div class="card">
-        <img v-bind:src="this.currentDog.img" class="card-img-top"/>
+        <img v-bind:src="this.currentSwipedBreed.img" class="card-img-top"/>
         <div class="card-body">
-          <h2 class="card-title">{{ this.currentDog.dogName }}</h2>
+          <h2 class="card-title">{{ this.currentDogBreed.officialName }}</h2>
         </div>
         <ul class="card-text">
             <li v-for="trait in this.currentDogBreed.traits" v-bind:key="trait.traitId"> {{ trait.traitName }} </li>
         </ul>
         <div class="card-swipe">
-        <a href="" v-text="`I love ${this.currentDog.dogName}!`" class="btn btn-primary"></a>
+        <a href="" v-text="`I love ${this.currentSwipedBreed.officialName}!`" class="btn btn-primary"></a>
         <a href="" v-text="'Not for me!'" class="btn btn-danger"></a>
         </div>
       </div>

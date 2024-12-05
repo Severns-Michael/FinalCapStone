@@ -2,7 +2,7 @@
     <div class="container">
         <div>
             <label>Breed: </label>
-            <select v-model="this.selectedBreed.officialName">
+            <select v-model="this.selectedBreed.officialName" v-on:click="getBreeds()">
                 <option v-for="breed in breeds" v-bind:key="breed.breedId" v-bind="this.selectedBreed">
                     {{ breed.officialName }}
                 </option>
@@ -28,6 +28,11 @@ export default {
         })
     },
     methods: {
+        getBreeds() {
+            BreedService.getBreeds().then(response => {
+                this.breeds = response.data;
+            });
+        },
         deleteBreed() {
             this.breeds.find(breed => {
                 if (breed.officialName === this.selectedBreed.officialName) {

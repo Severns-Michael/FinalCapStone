@@ -8,6 +8,7 @@ import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import AdminPageView from '../views/AdminPageView.vue';
 import SetCriteriaView from "@/views/SetCriteriaView.vue";
+import UserDashboardView from '../views/UserDashboardView.vue';
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -66,6 +67,14 @@ const routes = [
       requiresAuth: true
     }
   },
+  {
+    path: "/userdashboard",
+    name: "userdashboard",
+    component: UserDashboardView,
+    meta: {
+      requiresAuth: true
+    }
+  }
 ];
 
 // Create the router

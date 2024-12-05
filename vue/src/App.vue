@@ -12,7 +12,7 @@
     <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>
       <router-link v-bind:to="{ name: 'adminpage' }" v-if="$store.state.token != ''">Admin</router-link>
-      <router-link v-bind:to="{name: 'userdashboard'}"  v-if="$store.state.token != ''" >Look at Dogs!</router-link>
+      <router-link v-bind:to="{name: 'userdashboard'}"  v-if="$store.state.token != ''" >Dashboard</router-link>
       <div class="spacer"></div>
       <a id="about" href="#">About Us</a>
     </div>

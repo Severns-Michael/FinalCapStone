@@ -1,11 +1,17 @@
 <template>
-    <div class="admin">
-        <label>Add a Breed</label>
-        <add-breed class="component"/>
-        <Label>Edit a Breed</Label>
-        <edit-breed class="component"/>
-        <label>Delete a Breed</label>
-        <delete-breed class="component"/>
+    <div class="container" id="admin-page">
+      <div class="admin-form" id="add">
+        <h2>Add a Breed</h2>
+        <add-breed />
+      </div>
+      <div class="admin-form" id="edit">
+        <h2>Edit a Breed</h2>
+        <edit-breed />
+      </div>
+      <div class="admin-form">
+        <h2>Delete a Breed</h2>
+        <delete-breed />
+      </div>
     </div>
 </template>
 
@@ -32,11 +38,6 @@ export default {
         align-items: center;
         justify-content: space-evenly;
         margin-top: 40px;
-    }
-    .component {
-        margin-bottom: 40px;
-        border: 1px solid black;
-        padding: 10px;
     }
 
 </style>

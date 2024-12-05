@@ -1,36 +1,38 @@
 <template>
-    <form> 
-        <div class="breed">
-            <label>Breed: </label>
-            <select v-model="this.selectedBreed.officialName" @change="getSelectedBreed" v-on:click="getBreeds">
-                <option v-for="breed in this.breeds" v-bind:key="breed.breedName"> {{ breed.officialName }} </option>
-            </select>
+    <form class="breed">
+      <div>
+        <label>Breed: </label>
+        <select v-model="this.selectedBreed.officialName" @change="getSelectedBreed" v-on:click="getBreeds">
+          <option v-for="breed in this.breeds" v-bind:key="breed.breedName"> {{ breed.officialName }}</option>
+        </select>
+      </div>
+      <div class="traits">
+        <div class="list-group">
+          <p class="title">Current Traits</p>
+          <div class="listbox" id="current-traits">
+            <ul>
+              <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
+                  v-bind:class="{selected: this.selectedTraits.includes(trait)}">
+                <a href="#">{{ trait.traitName }}</a>
+              </li>
+            </ul>
+            <button class="switchBtn" v-on:click.prevent="removeSelectedTraits">Remove</button>
+          </div>
         </div>
-            <div class="traits">
-  <div class="list-group">
-    <p class="title">Current Traits</p>
-    <div class="listbox">
-      <ul>
-        <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)" v-bind:class="{selected: this.selectedTraits.includes(trait)}">
-          <a href="#">{{ trait.traitName }}</a>
-        </li>
-      </ul>
-      <button class="switchBtn" v-on:click.prevent="removeSelectedTraits">Remove</button>
-    </div>
-  </div>
 
-  <div class="list-group">
-    <p class="title1">All Traits</p>
-    <div class="listbox">
-      <button class="switchBtn" v-on:click.prevent="addSelectedTraits">Add</button>
-      <ul>
-        <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)" v-bind:class="{selected: this.selectedTraits.includes(trait)}">
-          <a href="#">{{ trait.traitName }}</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+        <div class="list-group">
+          <p class="title1">All Traits</p>
+          <div class="listbox" id="all-traits">
+            <button class="switchBtn" v-on:click.prevent="addSelectedTraits">Add</button>
+            <ul>
+              <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
+                  v-bind:class="{selected: this.selectedTraits.includes(trait)}">
+                <a href="#">{{ trait.traitName }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </form>
 </template>
 

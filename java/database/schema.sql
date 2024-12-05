@@ -64,21 +64,14 @@ create table dog(
             constraint fk_ut_user_no foreign key (user_id) references users(user_id),
             constraint fk_ut_trait_no foreign key (trait_id) references trait(trait_id)
         );
-	Create table users_dog_yes(
-            user_id serial,
-            dog_id serial,
+	Create table user_swipe_dogs(
+		user_id serial,
+		breed_id serial,
 
-            constraint pk_ud_yes primary key (user_id, dog_id),
-            constraint fk_ud_user_yes foreign key (user_id) references users(user_id),
-            constraint fk_ud_dog_yes foreign key (dog_id) references dog(dog_id)
-        );
-	Create table users_dog_no(
-            user_id serial,
-            dog_id serial,
-
-            constraint pk_ud_no primary key (user_id, dog_id),
-            constraint fk_ud_user_no foreign key (user_id) references users(user_id),
-            constraint fk_ud_dog_no foreign key (dog_id) references dog(dog_id)
-        );
+		constraint pk_usd primary key(user_id, breed_id),
+		constraint fk_usd_user foreign key (user_id) references users(user_id),
+		constraint fk_usd_breed foreign key (breed_id) references breed(breed_id)
+	);
+	
 
 COMMIT TRANSACTION;

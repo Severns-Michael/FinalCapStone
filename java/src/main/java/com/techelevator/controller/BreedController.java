@@ -93,7 +93,7 @@ private UserDao userDao;
         return userDao.getAllSwiped(userDao.getUserByUsername(principal.getName()).getId());
     }
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(path="swiped")
+    @PostMapping(path="/swiped")
     public Swiped addSwipedBreed(@RequestBody Swiped swiped) throws DaoException{
         return userDao.addSwiped(swiped);
     }

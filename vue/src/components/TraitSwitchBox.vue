@@ -85,6 +85,9 @@ export default{
     addToSelected(trait) {
       if (!this.selectedTraits.includes(trait)) {
         this.selectedTraits.push(trait);
+      } else {
+        const index = this.selectedTraits.indexOf(trait);
+        this.selectedTraits.splice(index, 1);
       }
     },
     removeSelectedUnwantedTraits() {

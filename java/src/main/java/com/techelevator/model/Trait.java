@@ -14,6 +14,7 @@ public class Trait {
         this.traitId = traitId;
         this.traitName = traitName;
     }
+
     //getter and setters
     public int getTraitId() {
         return traitId;

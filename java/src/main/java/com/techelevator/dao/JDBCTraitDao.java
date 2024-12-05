@@ -12,9 +12,11 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
-public class JDBCTraitDao implements TraitDao{
+public class JDBCTraitDao implements TraitDao {
     private final JdbcTemplate jdbcTemplate;
+
     public JDBCTraitDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }

@@ -1,14 +1,14 @@
 <template>
-  <div class="card-container">
-    <div class="card-content">
-      <div class="card-title">Size Range</div>
+  <div class="card-container-1">
+    <div class="card-content-1">
+      <div class="card-title">Life Span</div>
       <!-- Display dynamic values -->
       <div class="slider-values">
         From <span id="min-size">Small</span> to <span id="max-size">Large</span>
       </div>
       <!-- Slider track and inputs -->
-      <div class="slider-container">
-        <div class="slider-track"></div>
+      <div class="slider-container-1">
+        <div class="slider-track-1"></div>
         <input
             type="range"
             id="slider-min"
@@ -59,9 +59,9 @@ export default {
 
       // Prevent overlap
       if (minValue >= maxValue) {
-        minSlider.value = maxValue - 1;
+        minSlider.value = maxValue;
       } else if (maxValue <= minValue) {
-        maxSlider.value = minValue + 1;
+        maxSlider.value = minValue;
       }
 
       // Update displayed values
@@ -69,8 +69,8 @@ export default {
       maxSize.textContent = sizeLabels[maxSlider.value];
 
       // Update track styling
-      const percentMin = ((minSlider.value - 1) / 2) * 100;
-      const percentMax = ((maxSlider.value - 1) / 2) * 100;
+      const percentMin = ((minSlider.value ) / 25) * 100;
+      const percentMax = ((maxSlider.value ) / 25) * 100;
       track.style.background = `linear-gradient(to right, #3f4656 ${percentMin}%, #275EFE ${percentMin}%, #275EFE ${percentMax}%, #3f4656 ${percentMax}%)`;
     };
 
@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style scoped>
-.card-container {
+.card-container-1 {
   cursor: default;
   --color-primary: #275efe;
   --color-headline: #3f4656;
@@ -93,7 +93,7 @@ export default {
   margin-bottom: 50px;
 }
 
-.card-content {
+.card-content-1 {
   width: 100%;
   max-width: 312px;
   padding: 36px 32px;
@@ -116,14 +116,14 @@ export default {
   text-align: center;
 }
 
-.slider-container {
+.slider-container-1 {
   position: relative;
   width: 100%;
   height: 6px;
   margin: 20px 0;
 }
 
-.slider-track {
+.slider-track-1 {
   position: absolute;
   height: 6px;
   width: 100%;

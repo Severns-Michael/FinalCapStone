@@ -1,7 +1,7 @@
 <template>
   <div class="card-container">
     <div class="card-content">
-      <div class="card-title">Life Span</div>
+      <div class="card-title">Size Range</div>
       <div class="values">
         From <span id="min-age">0</span> year(s) to <span id="max-age">25</span> year(s)
       </div>
@@ -14,7 +14,7 @@
             min="0"
             max="25"
             step="1"
-            value="1"
+            value="0"
         />
         <input
             type="range"

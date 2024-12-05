@@ -97,5 +97,10 @@ private UserDao userDao;
     public Swiped addSwipedBreed(@RequestBody Swiped swiped) throws DaoException{
         return userDao.addSwiped(swiped);
     }
+     @ResponseStatus(HttpStatus.OK)
+    @GetMapping(path="/breeds/random")
+    public List<Breed> getRandomBreeds(Principal principal) throws DaoException{
+        return userDao.getBreedUserHasntSwiped(userDao.getUserByUsername(principal.getName()).getId());
+     }
 }
 

@@ -192,4 +192,11 @@ insert into breed_trait (breed_id,trait_id)
 		values  (9,4),
 				(11,5);
 
+insert into users_dog_yes(user_id, dog_id)
+	values	
+	(1,3),
+	(1,4),
+	(2,5),
+	(2,1);
+
 COMMIT TRANSACTION;

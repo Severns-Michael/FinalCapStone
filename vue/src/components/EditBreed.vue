@@ -16,7 +16,7 @@
           <ul>
             <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
                 v-bind:class="{selected: this.selectedTraits.includes(trait)}">
-              <a href="#">{{ trait.traitName }}</a>
+              <p>{{ trait.traitName }}</p>
             </li>
           </ul>
           <button class="btn btn-light" v-on:click.prevent="removeSelectedTraits">Remove =»</button>
@@ -32,14 +32,14 @@
           <h3>All Traits</h3>
           <ul>
             <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)" v-bind:class="{selected: this.selectedTraits.includes(trait)}">
-              <a href="#">{{ trait.traitName }}</a>
+              {{ trait.traitName }}
             </li>
           </ul>
             <button class="btn btn-light" v-on:click.prevent="addSelectedTraits">«= Add</button>
 
         </div>
 
-
+      <!--trait switcher div-->
       </div>
     </form>
 </template>

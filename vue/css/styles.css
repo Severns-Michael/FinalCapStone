@@ -108,7 +108,7 @@ div.container{
     flex-grow: 1;
     border: 1px solid var(--purp3);
     background-color: var(--purp5);
-    border-radius: 10px;
+    border-radius: 20px;
     display: flex;
     align-self: center;
     padding: 10px;
@@ -119,10 +119,6 @@ div.container{
     text-align: center;
 }
 
-div.trait-list>h3{
-    color: white;
-    text-align: center;
-}
 .admin-block#add{
     transition: 1.5s ease;
     width: fit-content;
@@ -131,9 +127,6 @@ div.trait-list>h3{
     align-self: center;
     margin: 20px;
     padding: 10px;
-}
-.admin-block#add:hover{
-    transform: ;
 }
 .admin-block#edit{
     width: 85%;
@@ -145,20 +138,19 @@ div.trait-list>h3{
     height: fit-content;
 }
 div.trait-switcher{
-    background-color: var(--purp4);
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
 }
-.admin-block#edit>form.breed>div.trait-switcher>.spacer{
+div.trait-switcher>div.spacer{
     background-color: var(--purp5);
 }
-.admin-block#edit>form.breed>div.trait-switcher>.trait-list{
+div.trait-switcher>.trait-list{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40%;
+    flex-basis: 40%;
     padding: 10px;
 }
 .admin-block#edit>form.breed>div.trait-switcher>.trait-list>ul{
@@ -167,13 +159,6 @@ div.trait-switcher{
     justify-content: center;
     align-items: center;
     width: 100%;
-}
-.trait-list>ul>li{
-    border-bottom: 1px solid white;
-    padding: 2px 10px 2px 10px;
-}
-.trait-list>ul>li>a:hover{
-    text-decoration: underline; ;
 }
 .admin-block#edit>form.breed>div.trait-switcher>.switch-buttons{
     display: flex;
@@ -186,27 +171,36 @@ div.trait-switcher{
 .admin-block#delete>h2{
     flex-basis: 100%;
 }
-
-div.trait-switcher>div>ul{
+div.trait-list{
+    background-color: var(--purp4);
+    border-radius: 20px;
+}
+div.trait-list>h3{
+    color: white;
+    text-align: center;
+}
+div.trait-list>ul{
     background-color: var(--purp4);
     display: flex;
     flex-direction: column;
     margin-left: 0px;
     padding-left: 0px;
     list-style-type: none;
-}
-div.trait-switcher>div>ul>li{
+}div.trait-list>ul>li{
+     border-bottom: 1px solid white;
+     padding: 4px 10px 4px 10px;
     width: 100%;
+    border-radius: 5px;
 }
-div.trait-switcher>div>ul>li>a{
+ div.trait-list>ul>li:hover{
+     background-image: linear-gradient(to left, var(--purp2), var(--purp5));
+     cursor: pointer;
+ }
+div.trait-list>ul>li.selected {
+    background-color: var(--purp2);
+}
+div.trait-list>ul>li{
     color: white;
     text-decoration: none;
-}
-.admin-block>a{
-    color: white;
-    text-decoration: none;
-}
-.selected {
-    background-color: var(--purp3);
 }
 

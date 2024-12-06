@@ -213,3 +213,47 @@ div.trait-list>ul>li{
     text-decoration: none;
 }
 
+
+
+
+
+
+
+div.swiper{
+    border-radius: 20px;
+    padding: 20px;
+    margin:20px;
+    display: flex;
+    flex-direction: row;
+    background-color:rgba(124,8,166,0.2);
+    max-width: 85%;
+}
+div.swipe{
+    border: 1px solid var(--purp3);
+    border-radius: 20px;
+    width: 150px;
+}
+div.current-dog{
+    transition: ease-out .3s;
+}
+div.current-dog:hover{
+    cursor: grab;
+}
+div.current-dog:active{
+    cursor: grabbing;
+}
+div.swipe-btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 30px;
+}
+div.swipe-btns>a.btn-primary:hover{
+    transform: translate(-20px);
+
+}
+div.swipe-btns{
+}
+a.swipe-btn{
+
+}

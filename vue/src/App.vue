@@ -18,8 +18,7 @@
       <router-link v-bind:to="{name: 'setcriteria'}"> Set Preferences </router-link>
       <router-link :to="{name: 'swipingview'}">Look at Dogs!</router-link>
       <router-link :to="{name: 'Testview'}">Test Swiper</router-link>
-      <div class="spacer"></div>
-      <a id="about" href="#">About Us</a>
+      <a>About Us</a>
     </div>
     <router-view />
   </div>

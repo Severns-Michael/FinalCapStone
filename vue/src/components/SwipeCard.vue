@@ -23,7 +23,10 @@ import SwipingView from '../views/SwipingView.vue';
 
 export default {
     props: {
-        breed: {}
+        breed: {
+            type: Object,
+            required: true
+        }
     },
     data() {
         return {
@@ -56,10 +59,24 @@ export default {
             SwipingView.methods.getNextBreed();
         },
         initializeSwipedBreed() {
-            this.swipedBreed.breedId = this.breed.breedId;
-            this.getDogPic();
+            if (this.breed && this.breed.breedId) {
+                this.swipedBreed.breedId = this.breed.breedId;
+                this.getDogPic();
+            } else {
+                console.warn('Breed data is not ready yet');
+            }
         }
 
+    },
+    watch: {
+        breed: {
+            handler(newVal) {
+                if (newVal && newVal.breedId) {
+                    this.initializeSwipedBreed();
+                }
+            },
+            immediate: true
+        }
     }
 }
 </script>

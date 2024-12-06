@@ -1,14 +1,14 @@
 <template>
-  <div class="card-container-1">
-    <div class="card-content-1">
-      <div class="card-title">Life Span</div>
+  <div class="card-container">
+    <div class="card-content">
+      <div class="card-title">Size Range</div>
       <!-- Display dynamic values -->
       <div class="slider-values">
         From <span id="min-size">Small</span> to <span id="max-size">Large</span>
       </div>
       <!-- Slider track and inputs -->
-      <div class="slider-container-1">
-        <div class="slider-track-1"></div>
+      <div class="slider-container">
+        <div class="slider-track"></div>
         <input
             type="range"
             id="slider-min"
@@ -37,7 +37,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   mounted() {
@@ -46,61 +45,51 @@ export default {
     const minSize = document.getElementById("min-size");
     const maxSize = document.getElementById("max-size");
     const track = document.querySelector(".slider-track");
-
     const sizeLabels = {
       1: "Small",
       2: "Medium",
       3: "Large",
     };
-
     const updateSlider = () => {
       const minValue = parseInt(minSlider.value, 10);
       const maxValue = parseInt(maxSlider.value, 10);
-
       // Prevent overlap
       if (minValue >= maxValue) {
-        minSlider.value = maxValue;
+        minSlider.value = maxValue - 1;
       } else if (maxValue <= minValue) {
-        maxSlider.value = minValue;
+        maxSlider.value = minValue + 1;
       }
-
       // Update displayed values
       minSize.textContent = sizeLabels[minSlider.value];
       maxSize.textContent = sizeLabels[maxSlider.value];
-
       // Update track styling
-      const percentMin = ((minSlider.value ) / 25) * 100;
-      const percentMax = ((maxSlider.value ) / 25) * 100;
-      track.style.background = `linear-gradient(to right, #3f4656 ${percentMin}%, #275EFE ${percentMin}%, #275EFE ${percentMax}%, #3f4656 ${percentMax}%)`;
+      const percentMin = ((minSlider.value - 1) / 2) * 100;
+      const percentMax = ((maxSlider.value - 1) / 2) * 100;
+      track.style.background = `linear-gradient(to right, #3F4656 ${percentMin}%, #275EFE ${percentMin}%, #275EFE ${percentMax}%, #3F4656 ${percentMax}%)`;
     };
-
     // Add event listeners
     minSlider.addEventListener("input", updateSlider);
     maxSlider.addEventListener("input", updateSlider);
-
     // Initialize slider
     updateSlider();
   },
 };
 </script>
-
 <style scoped>
-.card-container-1 {
+.card-container {
   cursor: default;
-  --color-primary: #275efe;
-  --color-headline: #3f4656;
-  --color-text: #99a3ba;
+  --color-primary: #275EFE;
+  --color-headline: #3F4656;
+  --color-text: #99A3BA;
   margin-bottom: 50px;
 }
-
-.card-content-1 {
+.card-content {
   width: 100%;
   max-width: 312px;
   padding: 36px 32px;
   background: #fff;
   border-radius: 10px;
 }
-
 .card-title {
   font-size: 32px;
   font-weight: 700;
@@ -108,22 +97,19 @@ export default {
   margin-bottom: 10px;
   text-align: center;
 }
-
 .slider-values {
   font-size: 18px;
   color: var(--color-primary);
   margin-bottom: 15px;
   text-align: center;
 }
-
 .slider-container {
   position: relative;
   width: 100%;
   height: 6px;
   margin: 20px 0;
 }
-
-.slider-track-1 {
+.slider-track {
   position: absolute;
   height: 6px;
   width: 100%;
@@ -131,7 +117,6 @@ export default {
   background: var(--color-headline);
   z-index: 1;
 }
-
 .input-range {
   position: absolute;
   width: 100%;
@@ -144,7 +129,6 @@ export default {
   z-index: 2;
   pointer-events: none;
 }
-
 .input-range::-webkit-slider-thumb {
   position: relative;
   pointer-events: auto;
@@ -156,7 +140,6 @@ export default {
   cursor: pointer;
   appearance: none;
 }
-
 .input-range::-moz-range-thumb {
   position: relative;
   pointer-events: auto;
@@ -167,7 +150,6 @@ export default {
   cursor: pointer;
   border: 2px solid var(--color-primary);
 }
-
 .slider-labels {
   display: flex;
   justify-content: space-between;

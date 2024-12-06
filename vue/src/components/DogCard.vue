@@ -10,8 +10,8 @@
             <li v-for="trait in this.currentDogBreed.traits" v-bind:key="trait.traitId"> {{ trait.traitName }} </li>
         </ul>
         <div class="card-swipe">
-        <a href="" v-text="`I love ${this.currentDogBreed.officialName}!`" class="btn btn-primary"></a>
-        <a href="" v-text="'Not for me!'" class="btn btn-danger"></a>
+        <!-- <a href="" v-text="`I love ${this.currentDogBreed.officialName}!`" class="btn btn-primary"></a>
+        <a href="" v-text="'Not for me!'" class="btn btn-danger"></a> -->
         </div>
       </div>
     </div>

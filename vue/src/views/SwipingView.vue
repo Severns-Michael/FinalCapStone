@@ -1,5 +1,7 @@
 <template>
-    <swipe-card v-bind:breed=this.breed></swipe-card>
+    <div class="container">
+        <swipe-card v-bind:breed=this.breed></swipe-card>
+    </div>
 </template>
 
 <script>
@@ -31,5 +33,10 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 </style>

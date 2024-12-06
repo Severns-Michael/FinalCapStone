@@ -1,10 +1,23 @@
 <template>
-
-    <ul class="selectedDogList">
-        <li v-for="breed in this.yesBreeds" v-bind:key="breed.breedId">
-            <dog-card v-bind:swipedBreed="breed"></dog-card>
-        </li>
-    </ul>
+    <div class="container">
+        <div class="acceptedList">
+            <h2> Breeds I Love </h2>
+            <ul>
+                <li v-for="breed in this.yesBreeds" v-bind:key="breed.breedId">
+                    <dog-card v-bind:swipedBreed="breed"></dog-card>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="rejectedList">
+            <h2> Breeds That Aren't For Me </h2>
+            <ul>
+                <li v-for="breed in this.noBreeds" v-bind:key="breed.breedId">
+                    <dog-card v-bind:swipedBreed="breed"></dog-card>
+                </li>
+            </ul>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -17,7 +30,8 @@ export default {
     },
     data() {
         return {
-            yesBreeds: []
+            yesBreeds: [],
+            noBreeds: []
         }
     },
     created() {
@@ -25,6 +39,8 @@ export default {
             response.data.forEach(swiped => {
                 if (swiped.yes) {
                     this.yesBreeds.push(swiped)
+                } else {
+                    this.noBreeds.push(swiped)
                 }
             })
         });
@@ -35,6 +51,33 @@ export default {
 <style scoped>
 ul {
     list-style: none;
+    overflow-y: scroll;
+    height: 80vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.rejectedList {
+    flex-basis: 50%;
+    margin-left: 50px;
+}
+
+.acceptedList {
+    flex-basis: 50%;
+    margin-right: 50px;
+}
+
+h2 {
+    text-decoration: underline;
+    font-weight: bold;
+    margin-bottom: 30px;
 }
 
 </style>

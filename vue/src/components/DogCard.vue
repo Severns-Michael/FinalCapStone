@@ -9,7 +9,7 @@
         <ul class="card-text">
             <li v-for="trait in this.currentDogBreed.traits" v-bind:key="trait.traitId"> {{ trait.traitName }} </li>
         </ul>
-        <div class="card-swipe">
+        <div class="swipe-btns">
         <!-- <a href="" v-text="`I love ${this.currentDogBreed.officialName}!`" class="btn btn-primary"></a>
         <a href="" v-text="'Not for me!'" class="btn btn-danger"></a> -->
         </div>
@@ -66,12 +66,7 @@ export default {
   --purp4: #8a2cac !important;
   --purp5: #a04ebd !important;
 }
-    .card-swipe{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      margin: 30px;
-    }
+
     .card{
       border: var(--purp3) solid 2px;
       max-height: 50vh;

@@ -68,10 +68,11 @@ create table dog(
 	Create table user_swipe_breeds(
 		user_id serial,
 		breed_id serial,
+		swiped_transaction_id serial,
 		img varchar,
 		is_yes boolean,
 
-		constraint pk_usd primary key(user_id, breed_id),
+		constraint pk_usd primary key(swiped_transaction_id),
 		constraint fk_usd_user foreign key (user_id) references users(user_id),
 		constraint fk_usd_breed foreign key (breed_id) references breed(breed_id)
 	);

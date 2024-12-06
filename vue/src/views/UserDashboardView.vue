@@ -10,7 +10,7 @@
         </div>
         
         <div class="rejectedList">
-            <h2> Not For Me </h2>
+            <h2> Breeds That Aren't For Me </h2>
             <ul>
                 <li v-for="breed in this.noBreeds" v-bind:key="breed.breedId">
                     <dog-card v-bind:swipedBreed="breed"></dog-card>
@@ -60,6 +60,8 @@ ul {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .rejectedList {
@@ -70,6 +72,11 @@ ul {
 .acceptedList {
     flex-basis: 50%;
     margin-right: 50px;
+}
+
+h2 {
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 </style>

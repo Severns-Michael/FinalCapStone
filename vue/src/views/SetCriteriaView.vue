@@ -82,9 +82,9 @@ export default {
     UserPreferencesService.getYesTraits().then(response => {
       this.wantedTraits = response.data;
     }),
-        UserPreferencesService.getNoTraits().then(response => {
-          this.unwantedTraits = response.data;
-        })
+    UserPreferencesService.getNoTraits().then(response => {
+      this.unwantedTraits = response.data;
+    })
   },
   methods:{
     removeSelectedWantedTraits() {
@@ -96,7 +96,7 @@ export default {
         }
       });
       this.selectedTraits = [];
-      this.updateUserPreferences;
+      this.updateUserPreferences();
     },
     addSelectedWantedTraits() {
       this.traits = this.traits.filter(trait => {
@@ -107,7 +107,7 @@ export default {
         }
       });
       this.selectedTraits = [];
-      this.updateUserPreferences;
+      this.updateUserPreferences();
     },
     addToSelected(trait) {
       if (!this.selectedTraits.includes(trait)) {
@@ -126,7 +126,7 @@ export default {
         }
       });
       this.selectedTraits = [];
-      this.updateUserPreferences;
+      this.updateUserPreferences();
     },
     addSelectedUnwantedTraits() {
       this.traits = this.traits.filter(trait => {
@@ -137,7 +137,7 @@ export default {
         }
       });
       this.selectedTraits = [];
-      this.updateUserPreferences;
+      this.updateUserPreferences();
     },
     updateUserPreferences() {
       UserPreferencesService.updateYesTraits(this.wantedTraits);

@@ -7,9 +7,9 @@ export default {
         return axios.get(`/traits/exclude`)
     },
     updateYesTraits(wantedTraits) {
-        return axios.put(`/traits/exclude`)
+        return axios.put(`/traits/include`, wantedTraits)
     },
     updateNoTraits(unwantedTraits) {
-        return axios.put(`/traits/exclude`)
+        return axios.put(`/traits/exclude`, unwantedTraits)
     }
 }

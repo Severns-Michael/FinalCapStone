@@ -87,6 +87,7 @@ div{
     text-decoration: underline;
 }
 .spacer{
+    min-width: 60px;
     flex-grow: 100;
 }
 #nav>#about{
@@ -103,7 +104,7 @@ div.container{
     flex-wrap: nowrap;
 }
 /*THE BOXES ON ADMIN PAGE*/
-.admin-block {
+.admin-box {
     flex-basis: 85%;
     flex-grow: 1;
     border: 1px solid var(--purp3);
@@ -114,12 +115,12 @@ div.container{
     padding: 10px;
     margin: 20px
 }
-.admin-block>h2{
+.admin-box>h2{
     color: white;
     text-align: center;
 }
 
-.admin-block#add{
+.admin-box#add{
     transition: 1.5s ease;
     width: fit-content;
     flex-direction: column;
@@ -128,12 +129,12 @@ div.container{
     margin: 20px;
     padding: 10px;
 }
-.admin-block#edit{
+.admin-box#edit{
     width: 85%;
     flex-direction: row;
     flex-wrap: wrap;
 }
-.admin-block#edit>h2{
+.admin-box#edit>h2{
     flex-basis: 100%;
     height: fit-content;
 }
@@ -146,32 +147,34 @@ div.trait-switcher{
 div.trait-switcher>div.spacer{
     background-color: var(--purp5);
 }
-div.trait-switcher>.trait-list{
+div.trait-picker{
+    background-color: var(--purp5);
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-basis: 40%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    border-radius: 20px;
+    align-self: center;
     padding: 10px;
+    margin: 20px
 }
-.admin-block#edit>form.breed>div.trait-switcher>.trait-list>ul{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-.admin-block#edit>form.breed>div.trait-switcher>.switch-buttons{
+.admin-box#edit>form.breed>div.trait-switcher>.switch-buttons{
     display: flex;
     flex-shrink: 2;
 }
-.admin-block#delete{
+.admin-box#delete{
     flex-direction: row;
     flex-wrap: wrap;
 }
-.admin-block#delete>h2{
+.admin-box#delete>h2{
     flex-basis: 100%;
 }
 div.trait-list{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 40%;
+    padding: 10px;
     background-color: var(--purp4);
     border-radius: 20px;
 }
@@ -186,7 +189,12 @@ div.trait-list>ul{
     margin-left: 0px;
     padding-left: 0px;
     list-style-type: none;
-}div.trait-list>ul>li{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+div.trait-list>ul>li{
+    text-align: center;
      border-bottom: 1px solid white;
      padding: 4px 10px 4px 10px;
     width: 100%;

@@ -190,7 +190,39 @@ insert into dog (dog_name,breed_id, age, size)
 		
 insert into breed_trait (breed_id,trait_id)
 		values  (9,4),
-				(11,5);
+				(10,5),
+				(11,1),
+				(12,2),
+				(13,3),
+				(14,4),
+				(15,1),
+				(16,2),
+				(17,6),
+				(18,3),
+				(19,5),
+				(8,13),
+				(7,12),
+				(6,8),
+				(9,10),
+                (10,9),
+                (11,4),
+                (12,6),
+                (13,1),
+                (14,7),
+                (15,12),
+                (16,16),
+                (17,17),
+                (18,18),
+                (19,3),
+                (8,12),
+                (7,13),
+                (6,3),
+                (5,3),
+				(5,1);
+
+
+
+
 
 insert into users_trait_yes(user_id, trait_id)
         values
@@ -209,9 +241,21 @@ insert into users_trait_no(user_id, trait_id)
 
 insert into user_swipe_breeds(user_id, breed_id, img, is_yes)
         values
-        (1,2,'12345',true),
-        (1,3,'2351235',false),
-        (1,6,'235235',true),
-        (2,10,'idk',false);
+        (1,5,'12345',true),
+        (1,6,'2351235',false),
+        (1,7,'235235',true),
+        (1,8,'idk',false),
+        (1,9,'087234',true),
+        (1,10,'qdfaef',false),
+        (1,11,'23rvaweg',true),
+        (1,12,'1234qwer',true),
+        (1,13,'sadfwefqwefw',true),
+        (1,14,'qef34tsfv',true),
+        (1,15,'sefasfwavvr',false),
+        (1,16,'false',false),
+        (1,17,'qwefcfqw4g',true),
+        (1,18,'dfqweqwetq23',true),
+        (1,19,'99fhqwef',true);
+
 
 COMMIT TRANSACTION;

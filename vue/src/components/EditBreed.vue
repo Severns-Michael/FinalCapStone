@@ -56,7 +56,7 @@ export default {
             currentTraits: [],
             selectedTraits: [],
           selectedBreedName: '',
-          selectedBreed: {},
+          selectedBreed: this.$store.state.selectedBreed
         }
     },
   // computed: {
@@ -165,9 +165,7 @@ export default {
         flex-direction: column;
         flex-wrap: wrap;
         width: 70%;
-
     }
-
     label {
         margin: 10px;
     }
@@ -195,9 +193,6 @@ export default {
       margin-left: 40%;
 
     }
-
-
-
     .saveBtn {
         flex-basis: 100%;
         flex-grow: 1;

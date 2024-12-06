@@ -74,7 +74,7 @@ export default {
         breed: {
             handler(newVal) {
                 if (newVal && newVal.breedId) {
-                    this.initializeSwipedBreed();
+                    setTimeout(() => {this.initializeSwipedBreed()}, 100);
                 }
             },
             immediate: true

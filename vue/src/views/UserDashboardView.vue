@@ -49,6 +49,15 @@ export default {
 </script>
 
 <style scoped>
+
+:root {
+    --purp1: #4B0365 !important;
+    --purp2: #600581 !important;
+    --purp3: #7c08a6 !important;
+    --purp4: #8a2cac !important;
+    --purp5: #a04ebd !important;
+}
+
 ul {
     list-style: none;
     overflow-y: scroll;
@@ -72,12 +81,14 @@ ul {
 .acceptedList {
     flex-basis: 50%;
     margin-right: 50px;
+
 }
 
 h2 {
     text-decoration: underline;
     font-weight: bold;
     margin-bottom: 30px;
+    padding: 10px;
 }
 
 </style>

@@ -26,7 +26,12 @@ export default {
         addBreed() {
             BreedService.createBreed(this.newBreed).then(response => {
                 if (response.status === 201) {
-                    this.newBreed = {};
+                    this.newBreed = {
+                        breedName: '',
+                        subBreed: '',
+                        officialName: '',
+                        traits: []
+                    };
                 }
             }).catch(error => {
                 console.log(error);

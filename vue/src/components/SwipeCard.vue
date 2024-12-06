@@ -10,7 +10,7 @@
         <li v-for="trait in this.breed.traits" v-bind:key="trait.traitId"> {{ trait.traitName }} </li>
     </ul>
     <div class="card-swipe">
-    <a href="" v-text="`I love ${this.breed.officialName}!`" class="btn btn-primary" v-on:click="this.addToSwipedBreeds(true)"></a>
+    <a href="" v-text="`I love ${this.breed.officialName}s!`" class="btn btn-primary" v-on:click="this.addToSwipedBreeds(true)"></a>
     <a href="" v-text="'Not for me!'" class="btn btn-danger" v-on:click="this.addToSwipedBreeds(false)"></a>
   </div>
 </div>
@@ -19,6 +19,7 @@
 
 <script>
 import DogService from '../services/DogService';
+import SwipingView from '../views/SwipingView.vue';
 
 export default {
     props: {
@@ -52,6 +53,7 @@ export default {
                     this.swipedBreed = {};
                 }
             });
+            SwipingView.methods.getNextBreed();
         },
         initializeSwipedBreed() {
             this.swipedBreed.breedId = this.breed.breedId;

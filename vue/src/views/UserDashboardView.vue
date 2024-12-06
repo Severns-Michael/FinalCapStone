@@ -77,6 +77,7 @@ ul {
 h2 {
     text-decoration: underline;
     font-weight: bold;
+    margin-bottom: 30px;
 }
 
 </style>

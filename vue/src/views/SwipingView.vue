@@ -32,13 +32,15 @@ export default {
   },
   created() {
     BreedService.getRandomBreeds().then(response => {
+      console.log("initialize Random Breed")
       this.randomBreeds = response.data
       this.getNextBreed();
     });
   },
   methods: {
     getNextBreed() {
-      this.breed = this.randomBreeds.pop()
+      console.log(this.randomBreeds);
+      this.breed = this.randomBreeds.pop();
     }
   }
 }

@@ -7,6 +7,7 @@
 }
 html, body {
     height: fit-content;
+    background-image:url("../src/assets/site-background.png");
 }
 div{
     font-family: "Parkinsans", sans-serif;
@@ -65,7 +66,7 @@ div{
     text-align: center;
 }
 /*NAV*/
-#nav{
+#nav{background-color: white;
     display: flex;
     flex-direction: row;
     flex-basis: 100%;
@@ -87,6 +88,7 @@ div{
     text-decoration: underline;
 }
 .spacer{
+    min-width: 60px;
     flex-grow: 100;
 }
 #nav>#about{
@@ -103,27 +105,23 @@ div.container{
     flex-wrap: nowrap;
 }
 /*THE BOXES ON ADMIN PAGE*/
-.admin-block {
+.admin-box {
     flex-basis: 85%;
     flex-grow: 1;
     border: 1px solid var(--purp3);
     background-color: var(--purp5);
-    border-radius: 10px;
+    border-radius: 20px;
     display: flex;
     align-self: center;
     padding: 10px;
     margin: 20px
 }
-.admin-block>h2{
+.admin-box>h2{
     color: white;
     text-align: center;
 }
 
-div.trait-list>h3{
-    color: white;
-    text-align: center;
-}
-.admin-block#add{
+.admin-box#add{
     transition: 1.5s ease;
     width: fit-content;
     flex-direction: column;
@@ -132,81 +130,86 @@ div.trait-list>h3{
     margin: 20px;
     padding: 10px;
 }
-.admin-block#add:hover{
-    transform: ;
-}
-.admin-block#edit{
+.admin-box#edit{
     width: 85%;
     flex-direction: row;
     flex-wrap: wrap;
 }
-.admin-block#edit>h2{
+.admin-box#edit>h2{
     flex-basis: 100%;
     height: fit-content;
 }
 div.trait-switcher{
-    background-color: var(--purp4);
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
 }
-.admin-block#edit>form.breed>div.trait-switcher>.spacer{
+div.trait-switcher>div.spacer{
     background-color: var(--purp5);
 }
-.admin-block#edit>form.breed>div.trait-switcher>.trait-list{
+div.trait-picker{
+    background-color: var(--purp5);
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 40%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    border-radius: 20px;
+    align-self: center;
     padding: 10px;
+    margin: 20px
 }
-.admin-block#edit>form.breed>div.trait-switcher>.trait-list>ul{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-.trait-list>ul>li{
-    border-bottom: 1px solid white;
-    padding: 2px 10px 2px 10px;
-}
-.trait-list>ul>li>a:hover{
-    text-decoration: underline; ;
-}
-.admin-block#edit>form.breed>div.trait-switcher>.switch-buttons{
+.admin-box#edit>form.breed>div.trait-switcher>.switch-buttons{
     display: flex;
     flex-shrink: 2;
 }
-.admin-block#delete{
+.admin-box#delete{
     flex-direction: row;
     flex-wrap: wrap;
 }
-.admin-block#delete>h2{
+.admin-box#delete>h2{
     flex-basis: 100%;
 }
-
-div.trait-switcher>div>ul{
+div.trait-list{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 40%;
+    padding: 10px;
+    background-color: var(--purp4);
+    border-radius: 20px;
+}
+div.trait-list>h3{
+    color: white;
+    text-align: center;
+}
+div.trait-list>ul{
     background-color: var(--purp4);
     display: flex;
     flex-direction: column;
     margin-left: 0px;
     padding-left: 0px;
     list-style-type: none;
-}
-div.trait-switcher>div>ul>li{
+    justify-content: center;
+    align-items: center;
     width: 100%;
 }
-div.trait-switcher>div>ul>li>a{
+div.trait-list>ul>li{
+    text-align: center;
+     border-bottom: 1px solid white;
+     padding: 4px 10px 4px 10px;
+    width: 100%;
+    border-radius: 5px;
+}
+ div.trait-list>ul>li:hover{
+     background-image: linear-gradient(to left, var(--purp2), var(--purp5));
+     cursor: pointer;
+ }
+div.trait-list>ul>li.selected {
+    background-color: var(--purp2);
+}
+div.trait-list>ul>li{
     color: white;
     text-decoration: none;
-}
-.admin-block>a{
-    color: white;
-    text-decoration: none;
-}
-.selected {
-    background-color: var(--purp3);
 }
 

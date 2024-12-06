@@ -30,7 +30,9 @@ export default {
     },
     data() {
         return {
-            swipedBreed: {}
+            swipedBreed: {
+                userId: this.$store.state.user.id
+            }
 
         }
     },

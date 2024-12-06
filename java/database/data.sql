@@ -207,4 +207,11 @@ insert into users_trait_no(user_id, trait_id)
         (2,9),
         (2,10);
 
+insert into user_swipe_breeds(user_id, breed_id, img, is_yes)
+        values
+        (1,2,'12345',true),
+        (1,3,'2351235',false),
+        (1,6,'235235',true),
+        (2,10,'idk',false);
+
 COMMIT TRANSACTION;

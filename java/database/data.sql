@@ -203,7 +203,6 @@ insert into breed_trait (breed_id,trait_id)
 				(8,13),
 				(7,12),
 				(6,8),
-				(9,10),
                 (10,9),
                 (11,4),
                 (12,6),
@@ -224,38 +223,38 @@ insert into breed_trait (breed_id,trait_id)
 
 
 
-insert into users_trait_yes(user_id, trait_id)
-        values
-        (1,5),
-        (1,1),
-        (1,3),
-        (2,4),
-        (2,2);
-insert into users_trait_no(user_id, trait_id)
-        values
-        (1,6),
-        (1,7),
-        (1,8),
-        (2,9),
-        (2,10);
+-- insert into users_trait_yes(user_id, trait_id)
+--         values
+--         (1,5),
+--         (1,1),
+--         (1,3),
+--         (2,4),
+--         (2,2);
+-- insert into users_trait_no(user_id, trait_id)
+--         values
+--         (1,6),
+--         (1,7),
+--         (1,8),
+--         (2,9),
+--         (2,10);
 
-insert into user_swipe_breeds(user_id, breed_id, img, is_yes)
-        values
-        (1,5,'12345',true),
-        (1,6,'2351235',false),
-        (1,7,'235235',true),
-        (1,8,'idk',false),
-        (1,9,'087234',true),
-        (1,10,'qdfaef',false),
-        (1,11,'23rvaweg',true),
-        (1,12,'1234qwer',true),
-        (1,13,'sadfwefqwefw',true),
-        (1,14,'qef34tsfv',true),
-        (1,15,'sefasfwavvr',false),
-        (1,16,'false',false),
-        (1,17,'qwefcfqw4g',true),
-        (1,18,'dfqweqwetq23',true),
-        (1,19,'99fhqwef',true);
+-- insert into user_swipe_breeds(user_id, breed_id, img, is_yes)
+--         values
+--         (1,5,'12345',true),
+--         (1,6,'2351235',false),
+--         (1,7,'235235',true),
+--         (1,8,'idk',false),
+--         (1,9,'087234',true),
+--         (1,10,'qdfaef',false),
+--         (1,11,'23rvaweg',true),
+--         (1,12,'1234qwer',true),
+--         (1,13,'sadfwefqwefw',true),
+--         (1,14,'qef34tsfv',true),
+--         (1,15,'sefasfwavvr',false),
+--         (1,16,'false',false),
+--         (1,17,'qwefcfqw4g',true),
+--         (1,18,'dfqweqwetq23',true),
+--         (1,19,'99fhqwef',true);
 
 
 COMMIT TRANSACTION;

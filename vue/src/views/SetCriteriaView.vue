@@ -42,6 +42,7 @@
             {{ trait.traitName }}
           </li>
         </ul>
+          <div class="spacer"></div>
         <button class="btn btn-light" v-on:click.prevent="removeSelectedUnwantedTraits">« Remove</button>
       </div>
 

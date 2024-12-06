@@ -10,6 +10,7 @@ import AdminPageView from '../views/AdminPageView.vue';
 import SetCriteriaView from "@/views/SetCriteriaView.vue";
 import UserDashboardView from '../views/UserDashboardView.vue';
 import SwipingView from '../views/SwipingView.vue';
+import TestView from "@/views/TestSwiperView.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -80,6 +81,14 @@ const routes = [
     path: "/swiping",
     name: "swipingview",
     component: SwipingView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/test",
+    name: "Testview",
+    component: TestView,
     meta: {
       requiresAuth: true
     }

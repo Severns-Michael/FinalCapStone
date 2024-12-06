@@ -67,9 +67,8 @@ div{
 /*NAV*/
 #nav{
     display: flex;
-    height: 90%;
-    flex-direction: column;
-    flex-basis: 15%;
+    flex-direction: row;
+    flex-basis: 100%;
     align-items: center;
     border-right: 1px solid var(--purp3);
 }
@@ -79,8 +78,10 @@ div{
     width: 80%;
     padding: 10px;
     border-bottom: 1px solid var(--purp1);
+    border-left: 1px solid var(--purp3);
     color: var(--purp3);
     text-decoration: none;
+
 }
 #nav>a:hover{
     text-decoration: underline;
@@ -118,17 +119,21 @@ div.container{
     text-align: center;
 }
 
-.admin-block>form>div>div>h3{
+div.trait-list>h3{
     color: white;
     text-align: center;
 }
 .admin-block#add{
+    transition: 1.5s ease;
     width: fit-content;
     flex-direction: column;
     align-items: center;
     align-self: center;
     margin: 20px;
     padding: 10px;
+}
+.admin-block#add:hover{
+    transform: ;
 }
 .admin-block#edit{
     width: 85%;
@@ -139,7 +144,7 @@ div.container{
     flex-basis: 100%;
     height: fit-content;
 }
-.admin-block#edit>form.breed>div.trait-switcher{
+div.trait-switcher{
     background-color: var(--purp4);
     display: flex;
     flex-direction: row;
@@ -161,12 +166,14 @@ div.container{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 120%;
+    width: 100%;
 }
-.admin-block#edit>form.breed>div.trait-switcher>.trait-list>ul>li{
+.trait-list>ul>li{
     border-bottom: 1px solid white;
-    width: 80%;
     padding: 2px 10px 2px 10px;
+}
+.trait-list>ul>li>a:hover{
+    text-decoration: underline; ;
 }
 .admin-block#edit>form.breed>div.trait-switcher>.switch-buttons{
     display: flex;
@@ -182,12 +189,14 @@ div.container{
 
 div.trait-switcher>div>ul{
     background-color: var(--purp4);
-    max-width: 20vw;
     display: flex;
     flex-direction: column;
     margin-left: 0px;
     padding-left: 0px;
     list-style-type: none;
+}
+div.trait-switcher>div>ul>li{
+    width: 100%;
 }
 div.trait-switcher>div>ul>li>a{
     color: white;

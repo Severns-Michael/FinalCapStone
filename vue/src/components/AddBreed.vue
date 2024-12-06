@@ -3,7 +3,7 @@
         <form v-on:submit.prevent="addBreed">
             <label for="breedName">Breed Name: </label>
             <input id="breedName" type="text" v-model="this.newBreed.officialName"/>
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn btn-light">Submit</button>
         </form>
     </div>
 </template>

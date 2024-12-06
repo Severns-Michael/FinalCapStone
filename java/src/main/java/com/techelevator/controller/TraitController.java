@@ -1,4 +1,5 @@
 package com.techelevator.controller;
+
 import com.techelevator.dao.TraitDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
@@ -20,12 +21,11 @@ public class TraitController {
     private TraitDao traitDao;
     @Autowired
     private UserDao userDao;
-    private String BASE_URL = "/trait";
-
 
 
     /**
      * /breeds
+     *
      * @return a list of traits
      * @throws DaoException
      */
@@ -34,47 +34,90 @@ public class TraitController {
         return traitDao.listAllTraits();
     }
 
-    @GetMapping(path="/users")
-    public List<User> getAllUsers(){
+    /**
+     * Fetches all users.
+     *
+     * @return a list of users
+     */
+    @GetMapping(path = "/users")
+    public List<User> getAllUsers() {
         return userDao.getUsers();
     }
-    @GetMapping(path="/users/{userId}")
-    public User getUserById(@PathVariable int userId){
+
+    /**
+     * Retrieves a user by their ID.
+     *
+     * @param userId the id of the user to be retrieved
+     * @return the user with the specified ID
+     */
+    @GetMapping(path = "/users/{userId}")
+    public User getUserById(@PathVariable int userId) {
         return userDao.getUserById(userId);
     }
 
     /**
-     * path = /traits/traitId
+     * Retrieves a trait by its ID.
+     *
      * @param traitId the id of the trait to return
      * @return returns the trait with the specified id
+     * @throws DaoException if there is an error accessing data
      */
     @RequestMapping(path = "/traits/{traitId}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public Trait getTraitById(@PathVariable int traitId) throws DaoException{
+    public Trait getTraitById(@PathVariable int traitId) throws DaoException {
         return traitDao.getTraitById(traitId);
     }
 
-    @GetMapping(path="/traits/include")
+    /**
+     * Gets traits that are included for the current user.
+     *
+     * @param principal the security principal of the user
+     * @return a list of included traits
+     * @throws DaoException if there is an error accessing data
+     */
+    @GetMapping(path = "/traits/include")
     @ResponseStatus(HttpStatus.OK)
-    public List<Trait> getYesTraitsByUser(Principal principal) throws DaoException{
+    public List<Trait> getYesTraitsByUser(Principal principal) throws DaoException {
         return userDao.getYesTraits(userDao.getUserByUsername(principal.getName()).getId());
     }
 
-    @GetMapping(path="/traits/exclude")
+    /**
+     * Gets traits that are excluded for the current user.
+     *
+     * @param principal the security principal of the user
+     * @return a list of excluded traits
+     * @throws DaoException if there is an error accessing data
+     */
+    @GetMapping(path = "/traits/exclude")
     @ResponseStatus(HttpStatus.OK)
-    public List<Trait> getNoTraitsByUser(Principal principal) throws DaoException{
+    public List<Trait> getNoTraitsByUser(Principal principal) throws DaoException {
         return userDao.getNoTraits(userDao.getUserByUsername(principal.getName()).getId());
     }
 
-    @PutMapping(path="/traits/include")
+    /**
+     * Updates the traits that are marked as "Yes" for the current user.
+     *
+     * @param yesTraits list of traits to set as "Yes"
+     * @param principal the security principal of the user
+     * @return the updated list of "Yes" traits
+     */
+    @PutMapping(path = "/traits/include")
     @ResponseStatus(HttpStatus.OK)
-    public List<Trait> updateYesTraitsForUser(@RequestBody List<Trait> yesTraits, Principal principal){
+    public List<Trait> updateYesTraitsForUser(@RequestBody List<Trait> yesTraits, Principal principal) {
 //        System.out.println(YesTraits());
-        return userDao.setUserYesTraits(yesTraits,principal);
+        return userDao.setUserYesTraits(yesTraits, principal);
     }
-    @PutMapping(path="/traits/exclude")
+
+    /**
+     * Updates the traits that are marked as "No" for the current user.
+     *
+     * @param noTraits list of traits to set as "No"
+     * @param principal the security principal of the user
+     * @return the updated list of "No" traits
+     */
+    @PutMapping(path = "/traits/exclude")
     @ResponseStatus(HttpStatus.OK)
-    public List<Trait> updateNoTraitsForUser(@RequestBody List<Trait> noTraits, Principal principal){
+    public List<Trait> updateNoTraitsForUser(@RequestBody List<Trait> noTraits, Principal principal) {
         return userDao.setUserNoTraits(noTraits, principal);
     }
 }

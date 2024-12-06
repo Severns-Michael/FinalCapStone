@@ -8,7 +8,7 @@
                 </option>
             </select>
         </div>
-        <button v-on:click.prevent="deleteBreed">Delete Breed</button>
+        <button v-on:click.prevent="deleteBreed" class="btn btn-light">Delete Breed</button>
     </div>
 </template>
 

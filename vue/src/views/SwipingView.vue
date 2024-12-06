@@ -1,9 +1,9 @@
 <template>
-    <dog-card v-bind:swipedBreed=this.breed></dog-card>
+    <swipe-card v-bind:breed=this.breed></swipe-card>
 </template>
 
 <script>
-import DogCard from '../components/DogCard.vue';
+import SwipeCard from '../components/SwipeCard.vue';
 import BreedService from '../services/BreedService';
 
 export default {
@@ -14,12 +14,13 @@ export default {
         }
     },
     components: {
-        DogCard
+        SwipeCard
     },
     created() {
         BreedService.getRandomBreeds().then(response => {
             this.randomBreeds = response.data
-        })
+            this.getNextBreed();
+        });
     },
     methods: {
         getNextBreed() {

@@ -34,6 +34,9 @@ export default {
     },
     getSubBreedPic(breedName, subBreed) {
         return http.get(`/${breedName}/${subBreed}/images/random`)
-    }
+    },
+
+
+    
 }
 

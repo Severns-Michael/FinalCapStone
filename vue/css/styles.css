@@ -7,6 +7,7 @@
 }
 html, body {
     height: fit-content;
+    background-image:url("../src/assets/site-background.png");
 }
 div{
     font-family: "Parkinsans", sans-serif;
@@ -65,7 +66,7 @@ div{
     text-align: center;
 }
 /*NAV*/
-#nav{
+#nav{background-color: white;
     display: flex;
     flex-direction: row;
     flex-basis: 100%;

@@ -3,13 +3,14 @@
     <div class="swipe-yes">yes</div>
 
     <div class="card-to-swipe">
+      <swipe-card :breed="this.breed"/>
     </div>
 
     <div class="swipe-no">no</div>
   </div>
 </template>
 <script>
-import breedCard from "@/components/BreedCard.vue";
+import BSreedCard from "@/components/BreedCard.vue";
 import BreedService from "@/services/BreedService";
 export default {
   data(){
@@ -26,6 +27,7 @@ export default {
     });
   },
   components:{
+    SwipeCard
   },
   methods: {
     getNextBreed() {

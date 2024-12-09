@@ -2,11 +2,11 @@
   <div class="card-container">
     <div class="card-content">
       <div class="card-title">Size Range</div>
-      <!-- Display dynamic values -->
+      
       <div class="slider-values">
         From <span id="min-size">Small</span> to <span id="max-size">Large</span>
       </div>
-      <!-- Slider track and inputs -->
+      
       <div class="slider-container">
         <div class="slider-track"></div>
         <input
@@ -28,7 +28,7 @@
             value="3"
         />
       </div>
-      <!-- Labels for the slider -->
+      
       <div class="slider-labels">
         <span>Small</span>
         <span>Medium</span>
@@ -53,24 +53,24 @@ export default {
     const updateSlider = () => {
       const minValue = parseInt(minSlider.value, 10);
       const maxValue = parseInt(maxSlider.value, 10);
-      // Prevent overlap
+      
       if (minValue >= maxValue) {
         minSlider.value = maxValue - 1;
       } else if (maxValue <= minValue) {
         maxSlider.value = minValue + 1;
       }
-      // Update displayed values
+      
       minSize.textContent = sizeLabels[minSlider.value];
       maxSize.textContent = sizeLabels[maxSlider.value];
-      // Update track styling
+      
       const percentMin = ((minSlider.value - 1) / 2) * 100;
       const percentMax = ((maxSlider.value - 1) / 2) * 100;
-      track.style.background = `linear-gradient(to right, #3F4656 ${percentMin}%, #275EFE ${percentMin}%, #275EFE ${percentMax}%, #3F4656 ${percentMax}%)`;
+      track.style.background = `linear-gradient(to right, #8a2cac ${percentMin}%, #a04ebd ${percentMin}%, #a04ebd ${percentMax}%, #8a2cac ${percentMax}%)`;
     };
-    // Add event listeners
+    
     minSlider.addEventListener("input", updateSlider);
     maxSlider.addEventListener("input", updateSlider);
-    // Initialize slider
+   
     updateSlider();
   },
 };
@@ -78,28 +78,28 @@ export default {
 <style scoped>
 .card-container {
   cursor: default;
-  --color-primary: #275EFE;
-  --color-headline: #3F4656;
-  --color-text: #99A3BA;
+  --color-primary: #a04ebd;
+  --color-headline: #8a2cac;
+  --color-text: white;
   margin-bottom: 50px;
 }
 .card-content {
   width: 100%;
   max-width: 312px;
   padding: 36px 32px;
-  background: #fff;
+  background: var(--color-primary);
   border-radius: 10px;
 }
 .card-title {
   font-size: 32px;
   font-weight: 700;
-  color: var(--color-headline);
+  color: white;
   margin-bottom: 10px;
   text-align: center;
 }
 .slider-values {
   font-size: 18px;
-  color: var(--color-primary);
+  color: white;
   margin-bottom: 15px;
   text-align: center;
 }
@@ -134,7 +134,7 @@ export default {
   pointer-events: auto;
   width: 20px;
   height: 20px;
-  background: #fff;
+  background: white;
   border: 2px solid var(--color-primary);
   border-radius: 50%;
   cursor: pointer;
@@ -145,7 +145,7 @@ export default {
   pointer-events: auto;
   width: 20px;
   height: 20px;
-  background: #fff;
+  background: white;
   border-radius: 50%;
   cursor: pointer;
   border: 2px solid var(--color-primary);
@@ -154,6 +154,6 @@ export default {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  color: var(--color-text);
+  color: white;
 }
 </style>

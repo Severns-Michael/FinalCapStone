@@ -13,6 +13,7 @@ public interface DogDao {
     Dog createDog(Dog dog) throws DaoException;
 
     Dog updateDog(Dog dog) throws DaoException;
+    void deleteDog(int dogId) throws DaoException;
 
     Dog getRandomDog() throws DaoException;
 

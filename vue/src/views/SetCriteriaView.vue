@@ -11,28 +11,27 @@
           </li>
         </ul>
         <div class="spacer"></div>
+      </div>
+      <div class="spacer" id="buttonSpacer">
+        <button class="btn btn-light" v-on:click.prevent="addSelectedWantedTraits">« Add to Liked</button>
         <button class="btn btn-light" v-on:click.prevent="removeSelectedWantedTraits">Remove »</button>
       </div>
-      <div class="spacer"></div>
 
 
       <div class="trait-list">
         <h3>Puppy Possibilities</h3>
-        <ul>
+        <ul style="width: 15vw">
           <li v-for="trait in alphabetizedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
               v-bind:class="{selected: this.selectedTraits.includes(trait)}">
             {{ trait.traitName }}
           </li>
         </ul>
-        <span style="display: flex;justify-content: space-between;">
-        <button class="btn btn-light" v-on:click.prevent="addSelectedWantedTraits" style="width: 40%">« Add to Liked</button>
-        <button class="btn btn-light" v-on:click.prevent="addSelectedUnwantedTraits" style="width: 40%">Add to Disliked»</button>
-
-        </span>
-
       </div>
 
-      <div class="spacer"></div>
+      <div class="spacer" id="buttonSpacer">
+        <button class="btn btn-light" v-on:click.prevent="addSelectedUnwantedTraits">Add to Disliked»</button>
+        <button class="btn btn-light" v-on:click.prevent="removeSelectedUnwantedTraits">« Remove</button>
+      </div>
 
       <div class="trait-list">
         <h3>Not for me</h3>
@@ -43,7 +42,6 @@
           </li>
         </ul>
           <div class="spacer"></div>
-        <button class="btn btn-light" v-on:click.prevent="removeSelectedUnwantedTraits">« Remove</button>
       </div>
 
     </div>

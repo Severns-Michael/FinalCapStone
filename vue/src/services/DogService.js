@@ -24,6 +24,7 @@ export default {
         return axios.delete(`/dogs/${id}`)
     },
 
+
     // user accepted and rejected dog methods
 
     getSwipedBreeds() {

@@ -81,6 +81,18 @@ public class JDBCDogDao implements DogDao {
     }
 
     @Override
+    public void deleteDog(int dogId) throws DaoException {
+        String sql = "delete from dog where dog_id = ?";
+        try {
+            jdbcTemplate.update(sql, dogId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+    }
+
+    @Override
     public Dog getRandomDog() throws DaoException { //TODO wrap into user dog yes and no
         return null;
     }

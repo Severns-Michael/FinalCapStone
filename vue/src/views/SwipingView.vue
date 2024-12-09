@@ -1,16 +1,20 @@
 <template>
-  <div class="container">
-    <div class="swiper">
+  <div class="fh-box">
+  <breed-swiper/>
 
-      <div class="swipe swipe-yes"></div>
 
-      <div class="current-dog">
-        <swipe-card v-bind:breed=this.breed></swipe-card>
-      </div>
 
-      <div class="swipe swipe-no"></div>
+<!--    <div class="swiper">-->
 
-    </div>
+<!--      <div class="swipe swipe-yes"></div>-->
+
+<!--      <div class="current-dog">-->
+<!--        <swipe-card v-bind:breed=this.breed></swipe-card>-->
+<!--      </div>-->
+
+<!--      <div class="swipe swipe-no"></div>-->
+
+<!--    </div>-->
 
 
   </div>
@@ -19,6 +23,8 @@
 <script>
 import SwipeCard from '../components/SwipeCard.vue';
 import BreedService from '../services/BreedService';
+import BreedSwiper from "@/components/BreedSwiper.vue";
+
 
 export default {
   data() {
@@ -28,7 +34,9 @@ export default {
     }
   },
   components: {
-    SwipeCard
+    BreedSwiper
+
+    // SwipeCard
   },
   created() {
     BreedService.getRandomBreeds().then(response => {

@@ -57,6 +57,9 @@
       <div>
         <edit-dog/>
       </div>
+      <div>
+        <delete-dog/>
+      </div>
     </div>
 
 <!--  MANAGE USERS  -->
@@ -78,6 +81,7 @@ import EditBreed from '../components/EditBreed.vue';
 import DeleteBreed from '../components/DeleteBreed.vue';
 import addDog from "../components/addDog.vue";
 import EditDog from '../components/EditDog.vue';
+import DeleteDog from '../components/DeleteDog.vue';
 
 
 export default {
@@ -86,7 +90,8 @@ export default {
         EditBreed,
         DeleteBreed,
         addDog,
-        EditDog
+        EditDog,
+        DeleteDog,
     }
 }
 

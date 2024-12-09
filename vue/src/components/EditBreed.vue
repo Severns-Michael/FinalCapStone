@@ -14,7 +14,7 @@
       <div class="trait-list">
         <h3>Current Traits</h3>
         <ul>
-          <li v-for="trait in currentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
+          <li v-for="trait in alphabetizedCurrentTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
               v-bind:class="{selected: this.selectedTraits.includes(trait)}">
             {{ trait.traitName }}
           </li>
@@ -28,7 +28,7 @@
       <div class="trait-list">
         <h3>All Traits</h3>
         <ul>
-          <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
+          <li v-for="trait in alphabetizedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
               v-bind:class="{selected: this.selectedTraits.includes(trait)}">
             {{ trait.traitName }}
           </li>
@@ -56,19 +56,9 @@ export default {
             currentTraits: [],
             selectedTraits: [],
           selectedBreedName: '',
-          selectedBreed: {},
+          selectedBreed: this.$store.state.selectedBreed
         }
     },
-  // computed: {
-  //     selectedBreed(){
-  //     return this.breeds.find(breed=>{
-  //       if(this.selectedBreedName === breed.name){
-  //         this.currentTraits = breed.traits;
-  //         return breed;
-  //       }
-  //     })
-  //     }
-  // },
     created(){
         BreedService.getBreeds().then(response => {
             this.breeds = response.data;
@@ -76,6 +66,38 @@ export default {
         TraitService.getTraits().then(response => {
             this.traits = response.data;
         })
+    },
+    computed: {
+        alphabetizedTraits() {
+            const alphaTraits = this.traits;
+            alphaTraits.sort((a, b) => {
+              const nameA = a.traitName.toUpperCase(); 
+              const nameB = b.traitName.toUpperCase(); 
+              if (nameA < nameB) {
+                return -1;
+              }
+              if (nameA > nameB) {
+                return 1;
+              }
+              return 0;
+            });
+            return alphaTraits;
+        },
+        alphabetizedCurrentTraits() {
+            const alphaTraits = this.currentTraits;
+            alphaTraits.sort((a, b) => {
+              const nameA = a.traitName.toUpperCase(); 
+              const nameB = b.traitName.toUpperCase(); 
+              if (nameA < nameB) {
+                return -1;
+              }
+              if (nameA > nameB) {
+                return 1;
+              }
+              return 0;
+            });
+            return alphaTraits;
+        }
     },
     methods: {
         getBreeds() {
@@ -165,9 +187,7 @@ export default {
         flex-direction: column;
         flex-wrap: wrap;
         width: 70%;
-
     }
-
     label {
         margin: 10px;
     }
@@ -195,9 +215,6 @@ export default {
       margin-left: 40%;
 
     }
-
-
-
     .saveBtn {
         flex-basis: 100%;
         flex-grow: 1;

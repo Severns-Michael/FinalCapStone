@@ -89,7 +89,7 @@ div{
     text-decoration: underline;
 }
 .spacer{
-    min-width: 60px;
+    min-width: 15vw;
     flex-grow: 100;
 }
 #nav>#about{

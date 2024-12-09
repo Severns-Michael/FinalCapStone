@@ -233,14 +233,46 @@ public class JdbcUserDao implements UserDao {
         return swiped;
 
     }
-
+    
     @Override
     public List<Breed> getBreedUserHasntSwiped(int userId) throws DaoException {
         List<Breed> breeds = new ArrayList<>();
-        String sql = "select * from breed where breed_id not in (select breed_id from user_swipe_breeds where user_id=?)";
+        String sql = "SELECT positive_breed.breed_id, breed.breed_name, breed.sub_breed, breed.official_name " +
+                "FROM " +
+                "( " +
+                "    SELECT DISTINCT bt.breed_id " +
+                "    FROM breed_trait AS bt " +
+                "    INNER JOIN users_trait_yes AS user_yes ON bt.trait_id = user_yes.trait_id " +
+                "    LEFT OUTER JOIN ( " +
+                "        SELECT bt.trait_id, SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) AS trait_count_adjusted " +
+                "        FROM user_swipe_breeds " +
+                "        INNER JOIN public.breed_trait bt ON user_swipe_breeds.breed_id = bt.breed_id " +
+                "        where user_id=? " +
+                "        GROUP BY bt.trait_id " +
+                "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) > -5 " +
+                "    ) AS table_one ON bt.trait_id = table_one.trait_id " +
+                "        where user_yes.user_id=? " +
+                ") AS positive_breed " +
+                "LEFT JOIN " +
+                "( " +
+                "    SELECT bt.breed_id " +
+                "    FROM breed_trait AS bt " +
+                "    INNER JOIN users_trait_no AS user_no ON bt.trait_id = user_no.trait_id " +
+                "    LEFT OUTER JOIN ( " +
+                "        SELECT bt.trait_id, SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) AS trait_count_adjusted " +
+                "        FROM user_swipe_breeds " +
+                "        INNER JOIN public.breed_trait bt ON user_swipe_breeds.breed_id = bt.breed_id " +
+                "        where user_id=? " +
+                "        GROUP BY bt.trait_id " +
+                "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) <= -5 " +
+                "    ) AS table_one ON bt.trait_id = table_one.trait_id " +
+                ") AS negative_breed ON positive_breed.breed_id = negative_breed.breed_id " +
+                "INNER JOIN breed ON breed.breed_id = positive_breed.breed_id " +
+                "WHERE negative_breed.breed_id IS NULL ";
+        //String sql = "select * from breed where breed_id not in (select breed_id from user_swipe_breeds where user_id=?)";
 
         try {
-            SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
+            SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId,userId,userId);
             while (rs.next()) {
                 Breed breed = new Breed();
                 breed.setBreedId(rs.getInt("breed_id"));
@@ -249,8 +281,6 @@ public class JdbcUserDao implements UserDao {
                 breed.setOfficialName(rs.getString("official_name"));
                 breeds.add(breed);
             }
-
-
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }

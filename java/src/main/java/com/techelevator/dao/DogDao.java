@@ -13,4 +13,6 @@ public interface DogDao {
     Dog updateDog(Dog dog) throws DaoException;
 
     Dog getRandomDog() throws DaoException;
+
+    List<Dog> getPreviewDog() throws DaoException;
 }

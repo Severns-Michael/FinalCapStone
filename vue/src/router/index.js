@@ -11,6 +11,7 @@ import SetCriteriaView from "@/views/SetCriteriaView.vue";
 import UserDashboardView from '../views/UserDashboardView.vue';
 import SwipingView from '../views/SwipingView.vue';
 import TestView from "@/views/TestSwiperView.vue";
+import FlopsView from "../views/FlopsView.vue"
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -90,6 +91,14 @@ const routes = [
     name: "Testview",
     component: TestView,
     meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/flops",
+    name: "flopsview",
+    component:FlopsView,
+    meta:{
       requiresAuth: true
     }
   }

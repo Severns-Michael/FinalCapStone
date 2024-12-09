@@ -10,6 +10,8 @@ public interface DogDao {
 
     Dog getDogById(int id) throws DaoException;
 
+    Dog createDog(Dog dog) throws DaoException;
+
     Dog updateDog(Dog dog) throws DaoException;
 
     Dog getRandomDog() throws DaoException;

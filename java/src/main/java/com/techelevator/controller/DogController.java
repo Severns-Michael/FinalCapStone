@@ -47,6 +47,12 @@ public class DogController {
         return dogDao.getDogById(dogId);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/dogs", method = RequestMethod.POST)
+    public Dog createDog(Dog dog) throws DaoException {
+        return dogDao.createDog(dog);
+    }
+
     /**
      * Updates a dog.
      *

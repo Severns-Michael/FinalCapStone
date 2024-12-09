@@ -58,8 +58,8 @@
 <script>
 import Slider from "../components/Slider.vue"
 import AgeSlider from "../components/AgeSlider.vue";
-import TraitService from "@/services/TraitService";
-import UserPreferencesService from "@/services/UserPreferencesService";
+import TraitService from "../services/TraitService";
+import UserPreferencesService from "../services/UserPreferencesService";
 
 export default {
   components: {

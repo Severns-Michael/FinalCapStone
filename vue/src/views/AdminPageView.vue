@@ -76,7 +76,7 @@
 import AddBreed from '../components/AddBreed.vue';
 import EditBreed from '../components/EditBreed.vue';
 import DeleteBreed from '../components/DeleteBreed.vue';
-import addDog from "@/components/addDog.vue";
+import addDog from "../components/addDog.vue";
 import EditDog from '../components/EditDog.vue';
 
 

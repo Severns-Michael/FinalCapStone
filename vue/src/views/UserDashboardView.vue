@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import DogCard from '../components/DogCard.vue';
+import DogCard from '../components/BreedCard.vue';
 import DogService from '../services/DogService';
 
 export default {

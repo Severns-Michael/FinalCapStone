@@ -233,7 +233,7 @@ public class JdbcUserDao implements UserDao {
         return swiped;
 
     }
-    
+
     @Override
     public List<Breed> getBreedUserHasntSwiped(int userId) throws DaoException {
         List<Breed> breeds = new ArrayList<>();

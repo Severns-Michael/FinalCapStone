@@ -1,37 +1,54 @@
 <template>
-    <div class="container">
-        <div class="acceptedList">
-            <h2> Breeds I Love </h2>
-            <ul>
-                <li v-for="breed in this.yesBreeds" v-bind:key="breed.breedId">
-                    <dog-card v-bind:swipedBreed="breed"></dog-card>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="rejectedList">
-            <h2> Breeds That Aren't For Me </h2>
-            <ul>
-                <li v-for="breed in this.noBreeds" v-bind:key="breed.breedId">
-                    <dog-card v-bind:swipedBreed="breed"></dog-card>
-                </li>
-            </ul>
-        </div>
+  <div class="main-container">
+    <!-- The "doggies" section serving as a banner -->
+    <div class="Adoptable-Dogs">
+      <h2>Potential Matches!</h2>
+      <ul>
+        <li v-for="dogId in currentDogList" :key="dogId">
+          <dog-card-v2 :current-dog-list="dogId"></dog-card-v2>
+        </li>
+      </ul>
     </div>
+
+    <!-- The container for "Breeds I Love" and "Breeds That Aren't For Me" -->
+    <div class="container">
+      <div class="acceptedList">
+        <h2>Breeds I Love</h2>
+        <ul>
+          <li v-for="breed in yesBreeds" :key="breed.breedId">
+            <dog-card :swipedBreed="breed"></dog-card>
+          </li>
+        </ul>
+      </div>
+
+      <div class="rejectedList">
+        <h2>Breeds That Aren't For Me</h2>
+        <ul>
+          <li v-for="breed in noBreeds" :key="breed.breedId">
+            <dog-card :swipedBreed="breed"></dog-card>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import DogCard from '../components/DogCard.vue';
 import DogService from '../services/DogService';
+import DogCardV2 from "@/components/DogCardV2.vue";
+
 
 export default {
     components: {
-        DogCard
+        DogCard,
+      DogCardV2,
     },
     data() {
         return {
             yesBreeds: [],
-            noBreeds: []
+            noBreeds: [],
+            currentDogList: []
         }
     },
     created() {
@@ -44,7 +61,15 @@ export default {
                 }
             })
         });
+
+        DogService.getAllDogs().then(response => {
+          this.currentDogList = response.data;
+        })
+            .catch(error => {
+              console.log(error);
+            });
     }
+
 }
 </script>
 
@@ -57,38 +82,58 @@ export default {
     --purp4: #8a2cac !important;
     --purp5: #a04ebd !important;
 }
+.main-container {
+  display: flex;
+  flex-direction: column; /* Stacks sections vertically */
+  width: 100%;
+}
 
-ul {
-    list-style: none;
-    overflow-y: scroll;
-    height: 80vh;
+.Adoptable-Dogs {
+  display: flex;
+  flex-direction: column; /* Ensures title and list are in a column */
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.Adoptable-Dogs ul {
+  display: flex;
+  flex-direction: row; /* Ensures list items are horizontal */
+  justify-content: center;
+  overflow-x: auto; /* Adds horizontal scrolling if needed */
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
 }
 
-.rejectedList {
-    flex-basis: 50%;
-    margin-left: 50px;
+.acceptedList, .rejectedList {
+  flex: 1;
+  margin: 10px;
 }
 
-.acceptedList {
-    flex-basis: 50%;
-    margin-right: 50px;
+ul {
+  list-style: none;
+  padding: 0;
+}
 
+li {
+  margin-right: 10px; /* Adjust space between dog cards */
 }
 
 h2 {
-    text-decoration: underline;
-    font-weight: bold;
-    margin-bottom: 30px;
-    padding: 10px;
+  text-align: center;
+  text-decoration: underline;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 </style>

@@ -7,7 +7,6 @@ public class AdoptionAgency {
     private String agencyName;
     private String agencyCity;
     private String agencyState;
-    private String agencyLocation;
 
     // constructors
     public AdoptionAgency() {
@@ -18,7 +17,6 @@ public class AdoptionAgency {
         this.agencyName = agencyName;
         this.agencyCity = city;
         this.agencyState = state;
-        this.agencyLocation = this.agencyCity + ", " + this.agencyState;
     }
 
     // getters and setters
@@ -45,11 +43,5 @@ public class AdoptionAgency {
     }
     public void setAgencyState(String agencyState) {
         this.agencyState = agencyState;
-    }
-    public String getAgencyLocation() {
-        return agencyLocation;
-    }
-    public void setAgencyLocation() {
-        this.agencyLocation = this.agencyCity + ", " + this.agencyState;
     }
 }

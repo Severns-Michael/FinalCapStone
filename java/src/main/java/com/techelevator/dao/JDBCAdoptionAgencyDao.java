@@ -56,7 +56,6 @@ public class JDBCAdoptionAgencyDao implements AdoptionAgencyDao {
         newAA.setAgencyName(rs.getString("agency_name"));
         newAA.setAgencyCity(rs.getString("agency_city"));
         newAA.setAgencyState(rs.getString("agency_state"));
-        newAA.setAgencyLocation();
         return newAA;
     }
 }

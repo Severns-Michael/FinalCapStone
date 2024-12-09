@@ -179,14 +179,17 @@ values ('Hypoallergenic'),('Family Dog'),('Likes to Boogie'),('Vocal'),('Swimmer
 ('Working Dog'),('Cold Weather'),('Potential Health Issues'),('Pack Oriented'),('Good with Cats'),('Territorial'),('Drools'),
 ('Portable'),('Longhair');
 
-insert into dog (dog_name,breed_id, age, size)
+insert into adoption_agency (agency_name, agency_city, agency_state)
+values ('Adoption Circle','Columbus','Ohio'),('Just Choice','Columbus','Ohio');
+
+insert into dog (dog_name,breed_id, age, size, img, gender, agency_id)
 		values  
-		('Rover',9,6,1),
-		('Rocky',16,5,1),
-		('Thaddeus',5,2,2),
-		('Fido',12,7,2),
-		('Darius',29,8,2),
-		('Nova',11,9,3);
+		('Rover',9,6,1,null,0,1),
+		('Rocky',16,5,1,null,0,1),
+		('Thaddeus',5,2,2,null,0,1),
+		('Fido',12,7,2,null,0,1),
+		('Darius',29,8,2,null,0,1),
+		('Nova',11,9,3,null,0,1);
 		
 -- insert into breed_trait (breed_id,trait_id)
 -- 		values  (9,4),

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <label>Breed: </label>
+      <label>Dog: </label>
       <select v-model="this.selectedDog" v-on:click="getDogs()">
         <option v-for="dog in dogs" v-bind:key="dog.dogId">
           {{ dog.dogName }}

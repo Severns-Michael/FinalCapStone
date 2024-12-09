@@ -7,7 +7,13 @@
     </header>
 
     <!-- Swiper Section -->
-    <!-- Add swiper component here -->
+    <section class="swiper-section">
+      <div class="swiper-container">
+        <div class="swipe-box">
+          <p>Swipe Box Placeholder</p>
+        </div>
+      </div>
+    </section>
 
     <!-- Register Button -->
     <div class="register-button-container">

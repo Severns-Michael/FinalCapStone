@@ -100,6 +100,20 @@ div.container{
     display: flex;
 }
 /*THE ADMIN PAGE*/
+ul.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-basis: 100%;
+}
+div.tab-content{
+    flex-basis: 100%;
+}
+div.tab-pane.active{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .container#admin-page{
     flex-direction: column;
     flex-wrap: nowrap;
@@ -117,6 +131,11 @@ a.fh-link{
 }
 a.fh-link:hover{
     text-decoration: underline;
+}
+div.admin-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 /*THE BOXES ON ADMIN PAGE*/
 .admin-box {
@@ -273,4 +292,7 @@ div.spacer#buttonSpacer {
 div.spacer>button {
     width: 8vw;
     height: 7vh;
+}
+div.container{
+    padding: 20px;
 }

@@ -6,7 +6,7 @@
       </div>
     </header>
 
-    <!-- Swiper Section -->
+    <!-- Swiper Section Placeholder waiting for flops-->
     <section class="swiper-section">
       <div class="swiper-container">
         <div class="swipe-box">
@@ -15,9 +15,9 @@
       </div>
     </section>
 
-    <!-- Register Button -->
+    <!-- Register Button that is routed to 'register' -->
     <div class="register-button-container">
-      <button class="register-button">Register</button>
+      <button class="register-button" v-on:click="this.$router.push({name:'register'})">Register</button>
     </div>
 
     <!-- Tagline Section -->
@@ -27,7 +27,7 @@
       </div>
     </section>
 
-    <!-- Value Statement Section -->
+    <!-- Value Statement Section good to go. Can edit it if need be. -->
     <section class="value-statement">
       <div class="value-container">
         <h2>Our Mission</h2>
@@ -40,6 +40,7 @@
       </div>
     </section>
   </div>
+  
 </template>
 
 <script>
@@ -49,6 +50,7 @@ export default {
 </script>
 
 <style scoped>
+
 .home {
   display: flex;
   flex-direction: column;

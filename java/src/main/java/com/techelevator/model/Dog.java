@@ -8,19 +8,23 @@ public class Dog {
     private String img;
     private int age;
     private int size;
+    private int agencyId;
+    private int gender;
 
     // empty constructor
     public Dog() {
     }
 
     // constructor
-    public Dog(int dogId, String dogName, String breed, String img, int age, int size) {
+    public Dog(int dogId, String dogName, String breed, String img, int age, int size, int agencyId, int gender) {
         this.dogId = dogId;
         this.dogName = dogName;
         this.breedId = breedId;
         this.img = img;
         this.age = age;
         this.size = size;
+        this.agencyId = agencyId;
+        this.gender = gender;
     }
 
     //getter and setters
@@ -70,6 +74,22 @@ public class Dog {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public int getAgencyId() {
+        return agencyId;
+    }
+
+    public void setAgencyId(int agencyId) {
+        this.agencyId = agencyId;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 }
 

@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import DogCard from '../components/DogCard.vue';
+import DogCard from '../components/BreedCard.vue';
 import DogService from '../services/DogService';
 import DogCardV2 from "@/components/DogCardV2.vue";
 

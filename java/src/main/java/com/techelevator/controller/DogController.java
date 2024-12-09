@@ -47,6 +47,12 @@ public class DogController {
         return dogDao.getDogById(dogId);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/dogs", method = RequestMethod.POST)
+    public Dog createDog(Dog dog) throws DaoException {
+        return dogDao.createDog(dog);
+    }
+
     /**
      * Updates a dog.
      *
@@ -71,6 +77,19 @@ public class DogController {
     public Dog getRandomDog() throws DaoException {
         return dogDao.getRandomDog();
     }
+
+    /**
+     * Retrieves preview dogs list.
+     *
+     * @return a preview dog list
+     * @throws DaoException if there is an error accessing the data
+     */
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(path = "/dogs/preview")
+    public List<Dog> getPreviewDog() throws DaoException {
+        return dogDao.getPreviewDog();
+    }
+
 //    @ResponseStatus(HttpStatus.OK)
 //    @GetMapping(path = "/userdogsyes")
 //    public List<Dog> getDogsYes(Principal principal) throws DaoException {

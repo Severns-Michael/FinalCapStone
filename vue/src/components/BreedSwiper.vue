@@ -3,7 +3,6 @@
     <div class="swipe-yes">yes</div>
 
     <div class="card-to-swipe">
-      <breed-card :breed="this.breed"/>
     </div>
 
     <div class="swipe-no">no</div>
@@ -27,7 +26,6 @@ export default {
     });
   },
   components:{
-  breedCard
   },
   methods: {
     getNextBreed() {

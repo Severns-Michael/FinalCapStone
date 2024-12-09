@@ -1,6 +1,5 @@
 <template>
   <div class="fh-box">
-  <breed-swiper/>
 
 
 
@@ -34,7 +33,7 @@ export default {
     }
   },
   components: {
-    BreedSwiper
+    // BreedSwiper
 
     // SwipeCard
   },

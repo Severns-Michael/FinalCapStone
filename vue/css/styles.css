@@ -8,6 +8,7 @@
 html, body {
     height: fit-content;
     background-image:url("../src/assets/site-background.png");
+    font-family: "Parkinsans", sans-serif;
 }
 div{
     font-family: "Parkinsans", sans-serif;

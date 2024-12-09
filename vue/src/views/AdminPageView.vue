@@ -54,6 +54,9 @@
         <h2>Add a Dog</h2>
         <add-dog/>
       </div>
+      <div>
+        <edit-dog/>
+      </div>
     </div>
 
 <!--  MANAGE USERS  -->

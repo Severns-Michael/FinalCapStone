@@ -12,8 +12,14 @@
     </div>
     <div>
       <h6>Size: </h6>
-      <input id="small" type="radio" />
+      <input id="small" type="radio" v-on:click="selectRadio(1)" v-bind:class="{selected: isSmall}"/>
       <label for="small"> Small </label>
+
+      <input id="medium" type="radio" v-on:click="selectRadio(2)" v-bind:class="{selected: isMedium}"/>
+      <label for="medium"> Medium </label>
+
+      <input id="large" type="radio" v-on:click="selectRadio(3)" v-bind:class="{selected: isLarge}"/>
+      <label for="large"> Large </label>
     </div>
   </form>
 </template>
@@ -24,7 +30,10 @@ export default {
   data() {
     return {
       dogs: [],
-      selectedDog: {}
+      selectedDog: {},
+      isSmall: false,
+      isMedium: false,
+      isLarge: false
     }
   },
   created() {
@@ -35,12 +44,29 @@ export default {
     })
   },
   methods: {
-
+    selectRadio(value) {
+      this.selectedDog.size = value;
+      if (value === 1) {
+        this.isSmall = true;
+      } 
+      if (value === 2) {
+        this.isMedium = true;
+      } 
+      if (value === 3) {
+        this.isLarge = true;
+      } 
+    }
   }
 }
 
 </script>
 
 <style scoped>
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 </style>

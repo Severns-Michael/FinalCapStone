@@ -40,6 +40,11 @@
     <add-dog/>
   </div>
 
+  <div class="fh-box admin-box" id="add">
+    <h2>Edit a Dog</h2>
+    <edit-dog/>
+  </div>
+
   <div class="container" id="user-page"></div>
   <div class="container" id="disabled-page"></div>
 
@@ -53,6 +58,7 @@ import AddBreed from '../components/AddBreed.vue';
 import EditBreed from '../components/EditBreed.vue';
 import DeleteBreed from '../components/DeleteBreed.vue';
 import addDog from "@/components/addDog.vue";
+import EditDog from '../components/EditDog.vue';
 
 
 export default {
@@ -61,6 +67,7 @@ export default {
         EditBreed,
         DeleteBreed,
         addDog,
+        EditDog
     }
 }
 

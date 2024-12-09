@@ -1,23 +1,27 @@
 <template>
   <div class="home">
     <header class="header">
-      <h1>Welcome to FoundHound</h1>
+      <div class="header-container">
+        <h1>Welcome to FoundHound</h1>
+      </div>
     </header>
 
     <!-- Swiper Section -->
     <!-- Add swiper component here -->
 
-
+    <!-- Register Button -->
     <div class="register-button-container">
       <button class="register-button">Register</button>
     </div>
 
-    
+    <!-- Tagline Section -->
     <section class="tagline">
-      <p>FoundHound: Connecting You to the Perfect Breed and a Forever Friend</p>
+      <div class="tagline-container">
+        <p>FoundHound: Connecting You to the Perfect Breed and a Forever Friend</p>
+      </div>
     </section>
 
-    
+    <!-- Value Statement Section -->
     <section class="value-statement">
       <div class="value-container">
         <h2>Our Mission</h2>
@@ -50,16 +54,31 @@ export default {
   text-align: center;
   margin-top: 20px;
 }
-.header h1 {
+.header-container {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  border: 1px solid var(--purp5);
+  background-color: var(--purp3);
+  color: white;
+}
+.header-container h1 {
   font-size: 2.5em;
   color: white;
+  text-align: center;
 }
 .tagline {
   margin: 30px 0;
   text-align: center;
-  font-size: 1.5em;
+}
+.tagline-container {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  border: 1px solid var(--purp5);
+  background-color: var(--purp3);
   color: white;
-  font-weight: bold;
+  font-style: italic;
 }
 .value-statement {
   margin-top: auto;
@@ -70,17 +89,26 @@ export default {
   width: 80%;
 }
 .value-container {
-  font-size: 1.2em;
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   border: 1px solid var(--purp5);
 }
-.value-container h2 {
-  font-size: 3em;
-  font-weight: bold;
+.register-button-container {
+  margin: 20px;
+  text-align: center;
+}
+.register-button {
+  padding: 10px 20px;
+  font-size: 1em;
   color: white;
-  text-align: left;
-  margin-bottom: 20px;
+  background-color: var(--purp3);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.register-button:hover {
+  background-color: var(--purp5);
 }
 </style>

@@ -179,45 +179,48 @@ values ('Hypoallergenic'),('Family Dog'),('Likes to Boogie'),('Vocal'),('Swimmer
 ('Working Dog'),('Cold Weather'),('Potential Health Issues'),('Pack Oriented'),('Good with Cats'),('Territorial'),('Drools'),
 ('Portable'),('Longhair');
 
-insert into dog (dog_name,breed_id, age, size)
+insert into adoption_agency (agency_name, agency_city, agency_state)
+values ('Adoption Circle','Columbus','Ohio'),('Just Choice','Columbus','Ohio');
+
+insert into dog (dog_name,breed_id, age, size, img, gender, agency_id)
 		values  
-		('Rover',9,6,1),
-		('Rocky',16,5,1),
-		('Thaddeus',5,2,2),
-		('Fido',12,7,2),
-		('Darius',29,8,2),
-		('Nova',11,9,3);
+		('Rover',9,6,1,null,0,1),
+		('Rocky',16,5,1,null,0,1),
+		('Thaddeus',5,2,2,null,0,1),
+		('Fido',12,7,2,null,0,1),
+		('Darius',29,8,2,null,0,1),
+		('Nova',11,9,3,null,0,1);
 		
-insert into breed_trait (breed_id,trait_id)
-		values  (9,4),
-				(10,5),
-				(11,1),
-				(12,2),
-				(13,3),
-				(14,4),
-				(15,1),
-				(16,2),
-				(17,6),
-				(18,3),
-				(19,5),
-				(8,13),
-				(7,12),
-				(6,8),
-                (10,9),
-                (11,4),
-                (12,6),
-                (13,1),
-                (14,7),
-                (15,12),
-                (16,16),
-                (17,17),
-                (18,18),
-                (19,3),
-                (8,12),
-                (7,13),
-                (6,3),
-                (5,3),
-				(5,1);
+-- insert into breed_trait (breed_id,trait_id)
+-- 		values  (9,4),
+-- 				(10,5),
+-- 				(11,1),
+-- 				(12,2),
+-- 				(13,3),
+-- 				(14,4),
+-- 				(15,1),
+-- 				(16,2),
+-- 				(17,6),
+-- 				(18,3),
+-- 				(19,5),
+-- 				(8,13),
+-- 				(7,12),
+-- 				(6,8),
+--                 (10,9),
+--                 (11,4),
+--                 (12,6),
+--                 (13,1),
+--                 (14,7),
+--                 (15,12),
+--                 (16,16),
+--                 (17,17),
+--                 (18,18),
+--                 (19,3),
+--                 (8,12),
+--                 (7,13),
+--                 (6,3),
+--                 (5,3),
+-- 				(5,1);
 
 
 

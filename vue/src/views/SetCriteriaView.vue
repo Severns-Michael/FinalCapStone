@@ -5,7 +5,7 @@
       <div class="trait-list">
         <h3>My Dream Dog</h3>
         <ul>
-          <li v-for="trait in wantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
+          <li v-for="trait in alphabetizedWantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
               v-bind:class="{selected: this.selectedTraits.includes(trait)}">
             {{ trait.traitName }}
           </li>
@@ -19,7 +19,7 @@
       <div class="trait-list">
         <h3>Puppy Possibilities</h3>
         <ul>
-          <li v-for="trait in traits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
+          <li v-for="trait in alphabetizedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
               v-bind:class="{selected: this.selectedTraits.includes(trait)}">
             {{ trait.traitName }}
           </li>
@@ -37,7 +37,7 @@
       <div class="trait-list">
         <h3>Not for me</h3>
         <ul>
-          <li v-for="trait in unwantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
+          <li v-for="trait in alphabetizedUnwantedTraits" v-bind:key="trait.traitId" v-on:click="addToSelected(trait)"
               v-bind:class="{selected: this.selectedTraits.includes(trait)}">
             {{ trait.traitName }}
           </li>
@@ -71,21 +71,61 @@ export default {
       selectedTraits: [],
       wantedTraits: [],
       unwantedTraits: [],
+      filteredTraits: []
     }
   },
   computed: {
-
-  },
+        alphabetizedTraits() {
+            const alphaTraits = this.traits;
+            alphaTraits.sort((a, b) => {
+              const nameA = a.traitName.toUpperCase(); 
+              const nameB = b.traitName.toUpperCase(); 
+              if (nameA < nameB) {
+                return -1;
+              }
+              if (nameA > nameB) {
+                return 1;
+              }
+              return 0;
+            });
+            return alphaTraits;
+        },
+        alphabetizedWantedTraits() {
+            const alphaTraits = this.wantedTraits;
+            alphaTraits.sort((a, b) => {
+              const nameA = a.traitName.toUpperCase(); 
+              const nameB = b.traitName.toUpperCase(); 
+              if (nameA < nameB) {
+                return -1;
+              }
+              if (nameA > nameB) {
+                return 1;
+              }
+              return 0;
+            });
+            return alphaTraits;
+        },
+        alphabetizedUnwantedTraits() {
+            const alphaTraits = this.unwantedTraits;
+            alphaTraits.sort((a, b) => {
+              const nameA = a.traitName.toUpperCase(); 
+              const nameB = b.traitName.toUpperCase(); 
+              if (nameA < nameB) {
+                return -1;
+              }
+              if (nameA > nameB) {
+                return 1;
+              }
+              return 0;
+            });
+            return alphaTraits;
+        }
+    },
   created() {
     TraitService.getTraits().then(response => {
       this.traits = response.data;
-    })
-    UserPreferencesService.getYesTraits().then(response => {
-      this.wantedTraits = response.data;
-    }),
-    UserPreferencesService.getNoTraits().then(response => {
-      this.unwantedTraits = response.data;
-    })
+      this.getYesTraits();
+    });
   },
   methods:{
     removeSelectedWantedTraits() {
@@ -143,6 +183,25 @@ export default {
     updateUserPreferences() {
       UserPreferencesService.updateYesTraits(this.wantedTraits);
       UserPreferencesService.updateNoTraits(this.unwantedTraits);
+    },
+    getYesTraits() {
+      UserPreferencesService.getYesTraits().then(response => {
+        this.wantedTraits = response.data;
+        this.getNoTraits();
+      })
+    },
+    getNoTraits() {
+      UserPreferencesService.getNoTraits().then(response => {
+        this.unwantedTraits = response.data;
+        this.traits.forEach(allTrait => {
+          const isTraitPresent = this.unwantedTraits.some(unwantTrait => unwantTrait.traitId === allTrait.traitId) || this.wantedTraits.some(wantTrait => wantTrait.traitId === allTrait.traitId);
+          if (!isTraitPresent) {
+            this.filteredTraits.push(allTrait);
+          }
+        });
+        this.traits = this.filteredTraits;
+        this.filteredTraits = [];
+      })
     },
     isSelected() {
       if (this.selectedTraits.includes(this.trait)) {

@@ -8,6 +8,7 @@
 html, body {
     height: fit-content;
     background-image:url("../src/assets/site-background.png");
+    font-family: "Parkinsans", sans-serif;
 }
 div{
     font-family: "Parkinsans", sans-serif;
@@ -88,7 +89,7 @@ div{
     text-decoration: underline;
 }
 .spacer{
-    min-width: 60px;
+    min-width: 15vw;
     flex-grow: 100;
 }
 #nav>#about{

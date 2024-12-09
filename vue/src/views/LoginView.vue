@@ -1,5 +1,6 @@
 <template>
-  <div id="login">
+
+  <div class="fh-box" id="login">
     <form v-on:submit.prevent="login">
       <h1 >Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
@@ -16,9 +17,9 @@
         <label for="password">Password</label>
         <input type="password" id="password" v-model="user.password" required />
       </div>
-      <button type="submit">Sign in</button>
-      <p>
-      <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+      <button class="btn btn-light" type="submit">Sign in</button>
+      <p></p>
+      <router-link class="fh-link" v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link>
     </form>
   </div>
 </template>

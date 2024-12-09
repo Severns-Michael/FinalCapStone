@@ -75,7 +75,7 @@ div{
     border-right: 1px solid var(--purp3);
 }
 #nav>a{
-    height: auto;
+    height: 100%;
     text-align: center;
     width: 80%;
     padding: 10px;
@@ -97,13 +97,26 @@ div{
 }
 /*THE MAIN APP*/
 div.container{
-    flex-basis: 85%;
     display: flex;
 }
 /*THE ADMIN PAGE*/
 .container#admin-page{
     flex-direction: column;
     flex-wrap: nowrap;
+}
+div.fh-box{
+    background-image: linear-gradient(to left, var(--purp4), var(--purp5));
+    border: var(--purp1) solid 1px;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+}
+a.fh-link{
+    color: white;
+    text-decoration: none;
+}
+a.fh-link:hover{
+    text-decoration: underline;
 }
 /*THE BOXES ON ADMIN PAGE*/
 .admin-box {
@@ -179,6 +192,7 @@ div.trait-list{
     padding: 10px;
     background-color: var(--purp4);
     border-radius: 20px;
+    border: 1px solid var(--purp1);
 }
 div.trait-list>h3{
     color: white;

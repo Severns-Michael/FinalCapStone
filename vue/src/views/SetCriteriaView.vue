@@ -16,7 +16,7 @@
         <button class="btn purple-btn" v-on:click.prevent="addSelectedWantedTraits">« Add to Liked</button>
         <button class="btn purple-btn" v-on:click.prevent="removeSelectedWantedTraits">Remove »</button>
         <div class="slidersSize">
-      <age-slider class="purple-slider"></age-slider>
+      <age-slider></age-slider>
     </div>
       </div>
 
@@ -32,10 +32,9 @@
       </div>
 
       <div class="spacer" id="buttonSpacer">
-        <button class="btn purple-btn" v-on:click.prevent="addSelectedUnwantedTraits">Add to Disliked»</button>
-        <button class="btn purple-btn" v-on:click.prevent="removeSelectedUnwantedTraits">« Remove</button>
+        <button class="btn purple-btn" v-on:click.prevent="addSelectedUnwantedTraits" style="font-size: 0.9em;">Add to Disliked»</button>        <button class="btn purple-btn" v-on:click.prevent="removeSelectedUnwantedTraits">« Remove</button>
         <div class="slidersLifespan">
-      <slider sliderType="Dog Size" class="purple-slider"></slider>
+      <slider sliderType="Dog Size"></slider>
     </div>
     
       </div>

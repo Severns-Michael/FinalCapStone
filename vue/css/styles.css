@@ -249,7 +249,7 @@ div.swipe{
     width: 150px;
 }
 div.card{
-    border-radius: 20px;
+    padding-bottom: 10px;
 }
 
 div.current-dog:hover{

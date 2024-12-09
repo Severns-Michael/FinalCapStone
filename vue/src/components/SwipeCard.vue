@@ -60,7 +60,9 @@ export default {
         this.swipedBreed.yes = value;
         DogService.addToSwipedBreeds(this.swipedBreed).then(response => {
           if (response.status === 201) {
-            this.swipedBreed = {};
+            this.swipedBreed = {
+                userId: this.$store.state.user.id
+            };
           }
         });
         SwipingView.methods.getNextBreed();

@@ -19,6 +19,7 @@ div{
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
+    justify-content: center;
 /*BANNER*/
 }
 #banner{
@@ -73,6 +74,7 @@ div{
     flex-basis: 100%;
     align-items: center;
     border-right: 1px solid var(--purp3);
+    margin-bottom: 10px;
 }
 #nav>a{
     height: 100%;
@@ -119,11 +121,22 @@ div.tab-pane.active{
     flex-wrap: nowrap;
 }
 div.fh-box{
+    display: flex;
     background-image: linear-gradient(to left, var(--purp4), var(--purp5));
     border: var(--purp1) solid 1px;
     border-radius: 10px;
     padding: 20px;
     color: white;
+}
+div.fh-row{
+    flex-direction: row;
+}
+div.fh-col{
+    flex-direction: column;
+}
+#breed-swiper{
+    justify-content: space-around;
+    flex-basis: 90%;
 }
 a.fh-link{
     color: white;
@@ -259,6 +272,7 @@ div.swipe{
     border: 1px solid var(--purp3);
     border-radius: 20px;
     width: 150px;
+    padding: 10px;
 }
 div.card{
     padding-bottom: 10px;
@@ -279,9 +293,6 @@ div.swipe-btns{
     flex-direction: row;
     justify-content: space-between;
     margin: 30px;
-}
-div.swiper>div.current-dog{
-
 }
 div.spacer#buttonSpacer {
     display: flex;

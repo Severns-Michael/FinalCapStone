@@ -5,6 +5,7 @@ import java.util.*;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.*;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -126,6 +127,63 @@ public class JdbcUserDao implements UserDao {
         }
         return newUser;
     }
+
+    @Override
+    public User createAdmin(RegisterUserDto user) {
+        User newUser = null;
+        String insertUserSql = "INSERT INTO users (username, password_hash, role) values (LOWER(TRIM(?)), ?, ROLE_ADMIN) RETURNING user_id";
+        String password_hash = new BCryptPasswordEncoder().encode(user.getPassword());
+        try {
+            int newUserId = jdbcTemplate.queryForObject(insertUserSql, int.class, user.getUsername(), password_hash);
+            newUser = getUserById(newUserId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return newUser;
+    }
+
+    @Override
+    public void promoteUser(User user) {
+        String promoteSql="update users set role='ROLE_ADMIN' where user_id=?";
+        try {
+            jdbcTemplate.update(promoteSql, user.getId());
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+    }
+
+    @Override
+    public void demoteUser(User user) {
+        String demoteSql="update users set role='ROLE_USER' where user_id=?";
+        try {
+            jdbcTemplate.update(demoteSql,user.getId());
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        int userId=user.getId();
+        String delSql="delete from users_trait_no WHERE user_id=?; " +
+                "delete from users_trait_yes where user_id=?; " +
+                "delete from user_swipe_breeds where user_id=?; " +
+                "delete from users where user_id=?;";
+        try {
+            jdbcTemplate.update(delSql,userId,userId,userId,userId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+    }
+
 
     @Override
     public List<Trait> getYesTraits(int userId) {

@@ -4,7 +4,6 @@ import com.techelevator.exception.DaoException;
 import com.techelevator.model.RegisterUserDto;
 import com.techelevator.model.Trait;
 import com.techelevator.model.User;
-import com.techelevator.model.Dog;
 import com.techelevator.model.Breed;
 import com.techelevator.model.Swiped;
 
@@ -20,6 +19,10 @@ public interface UserDao {
     User getUserByUsername(String username);
 
     User createUser(RegisterUserDto user);
+    User createAdmin(RegisterUserDto user);
+    void promoteUser(User user);
+    void demoteUser(User user);
+    void deleteUser(User user);
 
     List<Trait> getYesTraits(int userId);
 

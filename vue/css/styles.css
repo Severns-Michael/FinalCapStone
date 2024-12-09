@@ -237,10 +237,10 @@ div.card{
     border-radius: 20px;
 }
 
-div.zcurrent-dog:hover{
+div.current-dog:hover{
     cursor: grab;
 }
-div.zcurrent-dog:active{
+div.current-dog:active{
     transition: ease 0.4s;
     user-select: none;
     cursor: grabbing;

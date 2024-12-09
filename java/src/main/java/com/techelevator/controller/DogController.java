@@ -49,7 +49,7 @@ public class DogController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/dogs", method = RequestMethod.POST)
-    public Dog createDog(Dog dog) throws DaoException {
+    public Dog createDog(@RequestBody Dog dog) throws DaoException {
         return dogDao.createDog(dog);
     }
 
@@ -64,6 +64,12 @@ public class DogController {
     @PutMapping(path = "/dogs")
     public Dog updateDog(@RequestBody Dog dog) throws DaoException {
         return dogDao.updateDog(dog);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/dogs/{dogId}", method = RequestMethod.DELETE)
+    public void deleteDog(@PathVariable int dogId) throws DaoException {
+        dogDao.deleteDog(dogId);
     }
 
     /**

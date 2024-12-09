@@ -17,6 +17,12 @@ export default {
     getRandomDog() {
         return axios.get("/dogs/random")
     },
+    createDog(dog){
+        return axios.post("/dogs", dog)
+    },
+    deleteDog(id) {
+        return axios.delete(`/dogs/${id}`)
+    },
 
     // user accepted and rejected dog methods
 

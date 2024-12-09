@@ -1,83 +1,94 @@
 <template>
-    <div class="container">
+  <div class="container">
 
-      <div class="card">
-        <img v-bind:src="this.currentSwipedBreed.img" class="card-img-top"/>
-        <div class="card-body">
-          <h2 class="card-title">{{ this.currentDogBreed.officialName }}</h2>
-        </div>
-        <ul class="card-text">
-            <li v-for="trait in this.currentDogBreed.traits" v-bind:key="trait.traitId"> {{ trait.traitName }} </li>
-        </ul>
-        <div class="swipe-btns">
-        <!-- <a href="" v-text="`I love ${this.currentDogBreed.officialName}!`" class="btn btn-primary"></a>
-        <a href="" v-text="'Not for me!'" class="btn btn-danger"></a> -->
-        </div>
+    <div class="card">
+      <img v-bind:src="this.swipedBreed.img" class="card-img-top"/>
+
+      <div class="card-body">
+        <h2 class="card-title">{{ this.breed.officialName }}</h2>
+      </div>
+
+      <ul class="card-text">
+        <li v-for="trait in this.breed.traits" v-bind:key="trait.traitId"> {{ trait.traitName }}</li>
+      </ul>
+
+      <div class="card-swipe">
+        <a href="" v-text="`I love ${this.breed.officialName}s!`" class="btn btn-primary"
+           v-on:click="this.addToSwipedBreeds(true)"></a>
+        <a href="" v-text="'Not for me!'" class="btn btn-danger" v-on:click="this.addToSwipedBreeds(false)"></a>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
 import DogService from '../services/DogService';
-import BreedService from '../services/BreedService';
+import SwipingView from '../views/SwipingView.vue';
 
 export default {
-    props: {
-        swipedBreed: {}
-    },
-    data() {
-        return {
-            currentSwipedBreed: this.swipedBreed,
-            currentDogBreed: {},
-        }
-    },
-    beforeMount() {
-        this.getDogBreed();
-    },
-    methods: {
-        getDogBreed() {
-            BreedService.getBreedById(this.currentSwipedBreed.breedId).then(response => {
-                this.currentDogBreed = response.data;
-                this.getDogPic();
-            });
-        },
-        getDogPic() {
-            if (this.currentSwipedBreed.img === null) {
-                if (!this.currentDogBreed.subBreed === null) {
-                    DogService.getSubBreedPic(this.currentDogBreed.breedName, this.currentDogBreed.subBreed).then(response => {
-                        this.currentSwipedBreed.img = response.data.message
-                    });
-                } else {
-                    DogService.getBreedPic(this.currentDogBreed.breedName).then(response => {
-                        this.currentSwipedBreed.img = response.data.message
-                    });
-                }
-            }
-        }
+  props: {
+    breed: {
+      type: Object,
+      required: true
     }
+  },
+  data() {
+    return {
+      swipedBreed: {
+        userId: this.$store.state.user.id
+      }
+
+    }
+  },
+  beforeMount() {
+    this.initializeSwipedBreed();
+  },
+  methods: {
+    getDogPic() {
+      if (!this.breed.subBreed === null) {
+        DogService.getSubBreedPic(this.breed.breedName, this.breed.subBreed).then(response => {
+          this.swipedBreed.img = response.data.message
+        });
+      } else {
+        DogService.getBreedPic(this.breed.breedName).then(response => {
+          this.swipedBreed.img = response.data.message
+        });
+      }
+    },
+    addToSwipedBreeds(value) {
+      this.swipedBreed.yes = value;
+      DogService.addToSwipedBreeds(this.swipedBreed).then(response => {
+        if (response.status === 201) {
+          this.swipedBreed = {
+            userId: this.$store.state.user.id
+          };
+        }
+      });
+      SwipingView.methods.getNextBreed();
+    },
+    initializeSwipedBreed() {
+      if (this.breed && this.breed.breedId) {
+        this.swipedBreed.breedId = this.breed.breedId;
+        this.getDogPic();
+      } else {
+        console.warn('Breed data is not ready yet');
+      }
+    }
+
+  },
+  watch: {
+    breed: {
+      handler(newVal) {
+        if (newVal && newVal.breedId) {
+          this.initializeSwipedBreed();
+        }
+      },
+      immediate: true
+    }
+  }
 }
 </script>
 
 <style scoped>
-:root {
-  --purp1: #4B0365 !important;
-  --purp2: #600581 !important;
-  --purp3: #7c08a6 !important;
-  --purp4: #8a2cac !important;
-  --purp5: #a04ebd !important;
-}
 
-    .card{
-      border: var(--purp3) solid 2px;
-      max-height: 50vh;
-      max-width: 35vh;
-    }
-    .card-img-top{
-      max-height: 30vh;
-    }
-    user-dashboard{
-      display: flex;
-      flex-direction: column;
-
-    }
 </style>

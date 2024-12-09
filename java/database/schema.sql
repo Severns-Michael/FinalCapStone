@@ -40,6 +40,8 @@ create table dog(
 	dog_id serial,
 	dog_name varchar,
 	breed_id serial,
+	agency_id serial,
+	gender int,
 	age int,
 	size int,
 	img varchar,
@@ -75,6 +77,15 @@ create table dog(
 		constraint pk_usd primary key(swiped_transaction_id),
 		constraint fk_usd_user foreign key (user_id) references users(user_id),
 		constraint fk_usd_breed foreign key (breed_id) references breed(breed_id)
+	);
+	create table adoption_agency(
+	    agency_id serial,
+	    agency_name varchar,
+	    agency_city varchar,
+	    agency_state varchar,
+	    agency_location varchar,
+
+	    constraint pk_aa primary key(agency_id)
 	);
 	
 

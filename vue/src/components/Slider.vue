@@ -8,31 +8,36 @@
       <div class="slider-container">
         <div class="slider-track"></div>
         <input
-            type="range"
-            id="slider-min"
-            class="input-range"
-            min="0"
-            max="25"
-            step="1"
-            value="1"
+          type="range"
+          id="slider-min"
+          class="input-range"
+          min="0"
+          max="25"
+          step="1"
+          value="0"
         />
         <input
-            type="range"
-            id="slider-max"
-            class="input-range"
-            min="0"
-            max="25"
-            step="1"
-            value="25"
+          type="range"
+          id="slider-max"
+          class="input-range"
+          min="0"
+          max="25"
+          step="1"
+          value="25"
         />
       </div>
       <div class="slider-labels">
         <span>0</span>
+        <span>5</span>
+        <span>10</span>
+        <span>15</span>
+        <span>20</span>
         <span>25</span>
       </div>
     </div>
   </div>
 </template>
+
 <script>
 export default {
   mounted() {
@@ -44,25 +49,25 @@ export default {
     const updateSlider = () => {
       const minValue = parseInt(minSlider.value, 10);
       const maxValue = parseInt(maxSlider.value, 10);
-      // Prevent overlap
+      
       if (minValue >= maxValue) {
         minSlider.value = maxValue;
       } else if (maxValue <= minValue) {
         maxSlider.value = minValue ;
       }
-      // Update displayed values
+      
       minAge.textContent = minSlider.value;
       maxAge.textContent = maxSlider.value;
-      // Calculate percentages for the track
+      
       const percentMin = ((minSlider.value ) / 25) * 100;
       const percentMax = ((maxSlider.value ) / 25) * 100;
-      // Update track background with a gradient
-      track.style.background = `linear-gradient(to right, #3F4656 ${percentMin}%, #275EFE ${percentMin}%, #275EFE ${percentMax}%, #3F4656 ${percentMax}%)`;
+      
+      track.style.background = `linear-gradient(to right, #8a2cac ${percentMin}%, #a04ebd ${percentMin}%, #a04ebd ${percentMax}%, #8a2cac ${percentMax}%)`;
     };
-    // Add event listeners
+  
     minSlider.addEventListener("input", updateSlider);
     maxSlider.addEventListener("input", updateSlider);
-    // Initialize slider
+    
     updateSlider();
   },
 };
@@ -70,29 +75,29 @@ export default {
 <style scoped>
 .card-container {
   cursor: default;
-  --color-primary: #275EFE;
-  --color-headline: #3F4656;
-  --color-text: #99A3BA;
+  --color-primary: #a04ebd;
+  --color-headline: #8a2cac;
+  --color-text: #d5c6e0;
   margin-bottom: 50px;
 }
 .card-content {
   width: 100%;
   max-width: 312px;
   padding: 36px 32px;
-  background: #fff;
+  background: var(--color-primary);
   border-radius: 10px;
 }
 .card-title {
   font-size: 32px;
   font-weight: 700;
-  color: var(--color-headline);
+  color: white;
   margin-bottom: 10px;
   text-align: center;
 }
 .values {
   margin-bottom: 20px;
   font-size: 18px;
-  color: var(--color-primary);
+  color: white;
   text-align: center;
 }
 .slider-container {
@@ -126,7 +131,7 @@ export default {
   pointer-events: auto;
   width: 20px;
   height: 20px;
-  background: #fff;
+  background: white;
   border: 2px solid var(--color-primary);
   border-radius: 50%;
   cursor: pointer;
@@ -137,7 +142,7 @@ export default {
   pointer-events: auto;
   width: 20px;
   height: 20px;
-  background: #fff;
+  background: white;
   border-radius: 50%;
   cursor: pointer;
   border: 2px solid var(--color-primary);
@@ -146,6 +151,6 @@ export default {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  color: var(--color-text);
+  color: white;
 }
 </style>

@@ -13,8 +13,11 @@
         <div class="spacer"></div>
       </div>
       <div class="spacer" id="buttonSpacer">
-        <button class="btn btn-light" v-on:click.prevent="addSelectedWantedTraits">« Add to Liked</button>
-        <button class="btn btn-light" v-on:click.prevent="removeSelectedWantedTraits">Remove »</button>
+        <button class="btn purple-btn" v-on:click.prevent="addSelectedWantedTraits">« Add to Liked</button>
+        <button class="btn purple-btn" v-on:click.prevent="removeSelectedWantedTraits">Remove »</button>
+        <div class="slidersSize">
+      <age-slider class="purple-slider"></age-slider>
+    </div>
       </div>
 
 
@@ -29,8 +32,12 @@
       </div>
 
       <div class="spacer" id="buttonSpacer">
-        <button class="btn btn-light" v-on:click.prevent="addSelectedUnwantedTraits">Add to Disliked»</button>
-        <button class="btn btn-light" v-on:click.prevent="removeSelectedUnwantedTraits">« Remove</button>
+        <button class="btn purple-btn" v-on:click.prevent="addSelectedUnwantedTraits">Add to Disliked»</button>
+        <button class="btn purple-btn" v-on:click.prevent="removeSelectedUnwantedTraits">« Remove</button>
+        <div class="slidersLifespan">
+      <slider sliderType="Dog Size" class="purple-slider"></slider>
+    </div>
+    
       </div>
 
       <div class="trait-list">
@@ -45,10 +52,7 @@
       </div>
 
     </div>
-    <div class="sliders">
-      <slider sliderType="Dog Size"></slider>
-      <age-slider></age-slider>
-    </div>
+  
   </div>
 </template>
 
@@ -218,13 +222,45 @@ export default {
     display: flex;
     flex-direction: column;
   }
+
   .traitSwitcher {
     margin: 70px;
   }
+
   .sliders {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
   }
 
+  .purple-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: var(--purp1);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .purple-btn:hover {
+    background-color: var(--purp5);
+    color: white;
+  }
+
+  .purple-slider {
+    padding: 10px;
+    font-size: 1em;
+    color: white;
+    background-color: var(--purp1);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+
+  .purple-slider:hover {
+    background-color: var(--purp5);
+  }
 </style>

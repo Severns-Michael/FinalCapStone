@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import DogService from "@/services/DogService";
-import BreedService from "@/services/BreedService";
+import DogService from "../services/DogService";
+import BreedService from "../services/BreedService";
 
 export default {
   props: {

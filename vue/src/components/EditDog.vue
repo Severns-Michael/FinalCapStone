@@ -17,7 +17,7 @@
     </div>
 
     <div>
-      <label>Adoption Agency : </label>
+      <label> Agency : </label>
       <select v-model="this.selectedDog.agencyId" @change="getSelectedDog">
         <option v-for="agency in agenciesList" :key="agency.agencyId" :value="agency.agencyId">
           {{ agency.agencyName }}
@@ -127,10 +127,60 @@ export default {
 </script>
 
 <style scoped>
+
 form#edit-dog {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--purp5);
+  border: 1px solid var(--purp1);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+form#edit-dog label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: white;
+}
+form#edit-dog input,
+form#edit-dog select {
+  width: 60%; 
+  padding: 8px 10px;
+  margin-bottom: 15px;
+  border: 1px solid var(--purp3);
+  border-radius: 5px;
+  background-color: white;
+  color: var(--purp1);
+  font-size: 1em;
+  box-sizing: border-box;
+}
+form#edit-dog input[type="radio"] {
+  width: auto; 
+  margin-right: 5px;
+}
+form#edit-dog h6 {
+  margin-top: 15px;
+  font-size: 1.1em;
+  color: white;
+}
+form#edit-dog button.purple-btn {
+  align-self: center; 
+  width: auto; 
+  margin-top: 15px;
+}
+form#edit-dog div {
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+  justify-content: space-between; 
+  width: 100%; 
+  margin-bottom: 15px;
 }
 label {
   margin: 5px;
@@ -138,5 +188,24 @@ label {
 input {
   margin: 5px;
 }
+.purple-btn:hover {
+    background-color: var(--purp5);
+    color: white;
+  } 
+  .purple-btn {
+  padding: 8px 16px; 
+  font-size: 0.9em; 
+  color: white;
+  background-color: var(--purp1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; 
+  max-width: 200px; 
+  text-align: center;
+  box-sizing: border-box; 
+}
+
 
 </style>

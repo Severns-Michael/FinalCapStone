@@ -49,19 +49,35 @@
 
 
 <!--  MANAGE DOGS  -->
-    <div class="tab-pane fade" id="pills-dogs" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-      <div class="fh-box admin-box" id="add">
-        <h2>Add a Dog</h2>
-        <add-dog/>
+<div
+  class="tab-pane fade"
+  id="pills-dogs"
+  role="tabpanel"
+  aria-labelledby="pills-profile-tab"
+  tabindex="0"
+>
+  <div class="fh-box admin-box">
+    <div class="dog-management-container">
+      <!-- Add a Dog -->
+      <div class="dog-management-section">
+        <h3>Add a Dog</h3>
+        <add-dog />
       </div>
-      <div class="fh-box admin-box" id="edit">
-        <h2></h2>
-        <edit-dog/>
+
+      <!-- Edit a Dog -->
+      <div class="dog-management-section">
+        <h3>Edit a Dog</h3>
+        <edit-dog />
       </div>
-      <div class="fh-box admin-box" id="delete">
-        <delete-dog/>
+
+      <!-- Delete a Dog -->
+      <div class="dog-management-section">
+        <h3>Delete a Dog</h3>
+        <delete-dog />
       </div>
     </div>
+  </div>
+</div>
 
 <!--  MANAGE USERS  -->
     <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
@@ -107,5 +123,66 @@ export default {
         justify-content: space-evenly;
         margin-top: 40px;
     }
+    .form-container {
+  display: flex;
+  justify-content: space-between; 
+  align-items: flex-start; 
+  gap: 20px; 
+  width: 100%;
+  margin-top: 20px;
+}
+
+
+.form-column {
+  flex: 1;
+}
+
+.middle-column {
+  flex: 1.5; 
+}
+
+
+.admin-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.admin-box {
+  min-height: 300px; 
+}
+
+.fh-box.admin-box {
+  background-color: var(--purp5); 
+  border: 1px solid var(--purp3);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+
+.dog-management-container {
+  display: flex;
+  flex-direction: row; 
+  align-items: flex-start; 
+  gap: 40px; 
+}
+
+
+.dog-management-section {
+  flex: 1;
+  text-align: center;
+}
+
+/* Section headers */
+.dog-management-section h3 {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: white;
+}
+    
 
 </style>

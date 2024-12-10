@@ -11,8 +11,8 @@
 <script>
 import SwipeCard from '../components/SwipeCard.vue';
 import BreedService from '../services/BreedService';
-import TestSwipeCard from "@/components/TestSwipeCard.vue";
-import BreedSwiper from "@/components/BreedSwiper.vue";
+import TestSwipeCard from "../components/TestSwipeCard.vue";
+import BreedSwiper from "../components/BreedSwiper.vue";
 // import BreedSwiper from "@/components/BreedSwiper.vue";
 
 

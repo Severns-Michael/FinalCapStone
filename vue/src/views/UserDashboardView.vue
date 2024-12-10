@@ -16,7 +16,6 @@
         <h2>Breeds I Love</h2>
         <ul>
           <li v-for="breed in yesBreeds" :key="breed.breedId">
-            <dog-card :swipedBreed="breed"></dog-card>
           </li>
         </ul>
       </div>
@@ -25,7 +24,6 @@
         <h2>Breeds That Aren't For Me</h2>
         <ul>
           <li v-for="breed in noBreeds" :key="breed.breedId">
-            <dog-card :swipedBreed="breed"></dog-card>
           </li>
         </ul>
       </div>
@@ -34,15 +32,13 @@
 </template>
 
 <script>
-import DogCard from '../components/BreedCard.vue';
 import DogService from '../services/DogService';
 import DogCardV2 from "@/components/DogCardV2.vue";
 
 
 export default {
     components: {
-        DogCard,
-      DogCardV2,
+      DogCardV2
     },
     data() {
         return {

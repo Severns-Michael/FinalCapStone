@@ -16,14 +16,14 @@
 <!--    </li>-->
 <!--  </ul>-->
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active link-light" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-breeds" type="button" role="tab" aria-controls="pills-breeds" aria-selected="true">Manage Breeds</button>
+    <li class="nav-item btn btn-light" role="presentation">
+      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-breeds" type="button" role="tab" aria-controls="pills-breeds" aria-selected="true">Manage Breeds</button>
     </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link link-light" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-dogs" type="button" role="tab" aria-controls="pills-dogs" aria-selected="false">Manage Dogs</button>
+    <li class="nav-item btn btn-light" role="presentation">
+      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-dogs" type="button" role="tab" aria-controls="pills-dogs" aria-selected="false">Manage Dogs</button>
     </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link link-light" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-users" type="button" role="tab" aria-controls="pills-users" aria-selected="false">Manage Users</button>
+    <li class="nav-item btn btn-light" role="presentation">
+      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-users" type="button" role="tab" aria-controls="pills-users" aria-selected="false">Manage Users</button>
     </li>
 
   </ul>

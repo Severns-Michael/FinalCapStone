@@ -5,24 +5,28 @@
     --purp4: #8a2cac !important;
     --purp5: #a04ebd !important;
 }
+
 html, body {
     height: fit-content;
-    background-image:url("../src/assets/site-background.png");
+    background-image: url("../src/assets/site-background.png");
     font-family: "Parkinsans", sans-serif;
 }
-div{
+
+div {
     font-family: "Parkinsans", sans-serif;
 }
-#capstone-app{
+
+#capstone-app {
     height: 100vh;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: center;
-/*BANNER*/
+    /*BANNER*/
 }
-#banner{
+
+#banner {
     display: flex;
     flex-basis: 100%;
     height: 10vh;
@@ -30,27 +34,32 @@ div{
     justify-content: space-between;
     background-color: var(--purp3);
 }
-#banner>.logo>img{
+
+#banner > .logo > img {
     align-self: center;
     max-height: 10vh;
 }
-#banner>.title{
+
+#banner > .title {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-#banner>.title>h1{
-    font-size:60px;
+
+#banner > .title > h1 {
+    font-size: 60px;
     color: white;
 }
-#banner>.log{
+
+#banner > .log {
     background-color: var(--purp2);
     display: flex;
     flex-direction: column;
     justify-content: center;
     border-left: 1px solid white;
 }
-#banner>.log>a{
+
+#banner > .log > a {
     font-size: 1.2em;
     text-align: center;
     align-self: center;
@@ -58,17 +67,21 @@ div{
     color: white;
     padding: 0px 20px 0px 20px;
 }
-#banner>.log>a:hover{
+
+#banner > .log > a:hover {
     text-decoration: underline;
     color: var(--purp5);
 }
-#banner>.title{
+
+#banner > .title {
     color: white;
     flex-grow: 10;
     text-align: center;
 }
+
 /*NAV*/
-#nav{background-color: white;
+#nav {
+    background-color: white;
     display: flex;
     flex-direction: row;
     flex-basis: 100%;
@@ -76,7 +89,8 @@ div{
     border-right: 1px solid var(--purp3);
     margin-bottom: 10px;
 }
-#nav>a{
+
+#nav > a {
     height: 100%;
     text-align: center;
     width: 80%;
@@ -87,40 +101,49 @@ div{
     text-decoration: none;
 
 }
-#nav>a:hover{
+
+#nav > a:hover {
     text-decoration: underline;
 }
-.spacer{
+
+.spacer {
     min-width: 15vw;
     flex-grow: 100;
 }
-#nav>#about{
- border-top: 1px solid var(--purp3);
+
+#nav > #about {
+    border-top: 1px solid var(--purp3);
 }
+
 /*THE MAIN APP*/
-div.container{
+div.container {
     display: flex;
 }
+
 /*THE ADMIN PAGE*/
-ul.nav{
+ul.nav {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-basis: 100%;
 }
-div.tab-content{
+
+div.tab-content {
     flex-basis: 100%;
 }
-div.tab-pane.active{
+
+div.tab-pane.active {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.container#admin-page{
+
+.container#admin-page {
     flex-direction: column;
     flex-wrap: nowrap;
 }
-div.fh-box{
+
+div.fh-box {
     display: flex;
     background-image: linear-gradient(to left, var(--purp4), var(--purp5));
     border: var(--purp1) solid 1px;
@@ -128,28 +151,35 @@ div.fh-box{
     padding: 20px;
     color: white;
 }
-div.fh-row{
+
+div.fh-row {
     flex-direction: row;
 }
-div.fh-col{
+
+div.fh-col {
     flex-direction: column;
 }
-#breed-swiper{
+
+#breed-swiper {
     justify-content: space-around;
     flex-basis: 90%;
 }
-a.fh-link{
+
+a.fh-link {
     color: white;
     text-decoration: none;
 }
-a.fh-link:hover{
+
+a.fh-link:hover {
     text-decoration: underline;
 }
-div.admin-nav{
+
+div.admin-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
 /*THE BOXES ON ADMIN PAGE*/
 .admin-box {
     flex-basis: 85%;
@@ -162,12 +192,13 @@ div.admin-nav{
     padding: 10px;
     margin: 20px
 }
-.admin-box>h2{
+
+.admin-box > h2 {
     color: white;
     text-align: center;
 }
 
-.admin-box#add{
+.admin-box#add {
     transition: 1.5s ease;
     width: fit-content;
     flex-direction: column;
@@ -176,25 +207,30 @@ div.admin-nav{
     margin: 20px;
     padding: 10px;
 }
-.admin-box#edit{
+
+.admin-box#edit {
     width: 85%;
     flex-direction: row;
     flex-wrap: wrap;
 }
-.admin-box#edit>h2{
+
+.admin-box#edit > h2 {
     flex-basis: 100%;
     height: fit-content;
 }
-div.trait-switcher{
+
+div.trait-switcher {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
 }
-div.trait-switcher>div.spacer{
+
+div.trait-switcher > div.spacer {
     background-color: var(--purp5);
 }
-div.trait-picker{
+
+div.trait-picker {
     background-color: var(--purp5);
     display: flex;
     flex-direction: row;
@@ -205,18 +241,22 @@ div.trait-picker{
     padding: 10px;
     margin: 20px
 }
-.admin-box#edit>form.breed>div.trait-switcher>.switch-buttons{
+
+.admin-box#edit > form.breed > div.trait-switcher > .switch-buttons {
     display: flex;
     flex-shrink: 2;
 }
-.admin-box#delete{
+
+.admin-box#delete {
     flex-direction: row;
     flex-wrap: wrap;
 }
-.admin-box#delete>h2{
+
+.admin-box#delete > h2 {
     flex-basis: 100%;
 }
-div.trait-list{
+
+div.trait-list {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -226,11 +266,13 @@ div.trait-list{
     border-radius: 20px;
     border: 1px solid var(--purp1);
 }
-div.trait-list>h3{
+
+div.trait-list > h3 {
     color: white;
     text-align: center;
 }
-div.trait-list>ul{
+
+div.trait-list > ul {
     background-color: var(--purp4);
     display: flex;
     flex-direction: column;
@@ -241,69 +283,100 @@ div.trait-list>ul{
     align-items: center;
     width: 100%;
 }
-div.trait-list>ul>li{
+
+div.trait-list > ul > li {
     text-align: center;
-     border-bottom: 1px solid white;
-     padding: 4px 10px 4px 10px;
+    border-bottom: 1px solid white;
+    padding: 4px 10px 4px 10px;
     width: 100%;
     border-radius: 5px;
 }
- div.trait-list>ul>li:hover{
-     background-image: linear-gradient(to left, var(--purp2), var(--purp5));
-     cursor: pointer;
- }
-div.trait-list>ul>li.selected {
+
+div.trait-list > ul > li:hover {
+    background-image: linear-gradient(to left, var(--purp2), var(--purp5));
+    cursor: pointer;
+}
+
+div.trait-list > ul > li.selected {
     background-color: var(--purp2);
 }
-div.trait-list>ul>li{
+
+div.trait-list > ul > li {
     color: white;
     text-decoration: none;
 }
-div.swiper{
+
+div.swiper {
     border-radius: 20px;
     padding: 20px;
-    margin:20px;
+    margin: 20px;
     display: flex;
     flex-direction: row;
-    background-color:rgba(124,8,166,0.2);
+    background-color: rgba(124, 8, 166, 0.2);
     max-width: 85%;
 }
-div.swipe{
+
+div.swipe {
     border: 1px solid var(--purp3);
     border-radius: 20px;
     width: 150px;
     padding: 10px;
 }
-div.card{
+
+div.card {
     padding-bottom: 10px;
 }
 
-div.current-dog:hover{
-    cursor: grab;
+div.swipe {
+    flex-grow: 1;
+    margin:10px
 }
-div.current-dog:active{
-    transition: ease 0.4s;
-    user-select: none;
-    cursor: grabbing;
-    transform: rotate(7deg) translate(-200px,0px);
+div.swipe-dog{
+    flex-grow: 3;
 }
 
-div.swipe-btns{
+div.drag-card {
+    transition: transform 0.2s ease;
+}
+
+div.drag-card:hover {
+    transform: scale(1.05);
+    cursor: grab;
+}
+
+div.drag-card:active {
+    user-select: none;
+    cursor: grabbing;
+    transform: scale(1.05) perspective(250px) rotateX(5deg);
+
+}
+
+div.current-dog:hover {
+}
+
+div.current-dog:active {
+    transition: ease 0.4s;
+}
+
+div.swipe-btns {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 30px;
 }
+
 div.spacer#buttonSpacer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 }
-div.spacer>button {
+
+div.spacer > button {
     width: 8vw;
     height: 7vh;
 }
-div.container{
+
+div.container {
     padding: 20px;
 }

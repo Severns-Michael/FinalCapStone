@@ -9,8 +9,8 @@
     <!-- Swiper Section Placeholder waiting for flops-->
     <section class="swiper-section">
       <div class="swiper-container">
-        <div class="swipe-box">
-          <p>Swipe Box Placeholder</p>
+        <div class="fh-box">
+
         </div>
       </div>
     </section>
@@ -45,6 +45,11 @@
 
 <script>
 export default {
+  data(){
+
+  },
+  components:{
+  },
   name: "HomePage",
 };
 </script>
@@ -118,5 +123,8 @@ export default {
 }
 .register-button:hover {
   background-color: var(--purp5);
+}
+.swiper-section{
+  width: 100%;
 }
 </style>

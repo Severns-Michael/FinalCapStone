@@ -95,9 +95,7 @@ export default {
     });
   },
   computed: {
-    selectedDogSize() {
-      
-    }
+    
   },
   methods: {
     getSelectedDog() {

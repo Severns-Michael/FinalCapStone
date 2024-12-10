@@ -23,6 +23,12 @@ export default {
     deleteDog(id) {
         return axios.delete(`/dogs/${id}`)
     },
+    getAllAgencies() {
+        return axios.get("/agencies")
+    },
+    getAgencyById(id) {
+        return axios.get(`/agencies/${id}`)
+    },
 
 
     // user accepted and rejected dog methods
@@ -42,6 +48,7 @@ export default {
     getSubBreedPic(breedName, subBreed) {
         return http.get(`/${breedName}/${subBreed}/images/random`)
     },
+
 
 
     

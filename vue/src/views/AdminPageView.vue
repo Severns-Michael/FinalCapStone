@@ -54,10 +54,11 @@
         <h2>Add a Dog</h2>
         <add-dog/>
       </div>
-      <div>
+      <div class="fh-box admin-box" id="edit">
+        <h2></h2>
         <edit-dog/>
       </div>
-      <div>
+      <div class="fh-box admin-box" id="delete">
         <delete-dog/>
       </div>
     </div>

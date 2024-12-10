@@ -4,10 +4,8 @@ import com.techelevator.dao.AdoptionAgencyDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.AdoptionAgency;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.DatagramPacket;
 import java.util.ArrayList;
@@ -26,8 +24,9 @@ public class AdoptionAgencyController {
         return aaDao.getAgencies();
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/agencies/{agencyId}", method = RequestMethod.GET)
-    public AdoptionAgency getAgencyById(int agencyId) throws DaoException {
+    public AdoptionAgency getAgencyById(@PathVariable int agencyId) throws DaoException {
         return aaDao.getAgencyById(agencyId);
     }
 

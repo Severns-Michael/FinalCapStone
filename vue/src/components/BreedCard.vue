@@ -11,33 +11,29 @@
       <ul class="card-text">
         <li v-for="trait in this.breed.traits" v-bind:key="trait.traitId"> {{ trait.traitName }}</li>
       </ul>
-
-      <div class="card-swipe">
-        <a href="" v-text="`I love ${this.breed.officialName}s!`" class="btn btn-primary"
-           v-on:click="this.addToSwipedBreeds(true)"></a>
-        <a href="" v-text="'Not for me!'" class="btn btn-danger" v-on:click="this.addToSwipedBreeds(false)"></a>
-      </div>
+      
     </div>
   </div>
 </template>
 
 <script>
+import BreedService from '../services/BreedService';
 import DogService from '../services/DogService';
-import SwipingView from '../views/SwipingView.vue';
+
 
 export default {
   props: {
-    breed: {
+    swipedBreed: {
       type: Object,
       required: true
     }
   },
   data() {
     return {
-      swipedBreed: {
-        userId: this.$store.state.user.id
-      }
-
+      currSwipedBreed: {
+        userId: this.$store.state.user.id,
+      },
+      breed: {}
     }
   },
   beforeMount() {
@@ -47,28 +43,25 @@ export default {
     getDogPic() {
       if (!this.breed.subBreed === null) {
         DogService.getSubBreedPic(this.breed.breedName, this.breed.subBreed).then(response => {
-          this.swipedBreed.img = response.data.message
+          this.currSwipedBreed.img = response.data.message
         });
       } else {
         DogService.getBreedPic(this.breed.breedName).then(response => {
-          this.swipedBreed.img = response.data.message
+          this.currSwipedBreed.img = response.data.message
         });
       }
     },
-    addToSwipedBreeds(value) {
-      this.swipedBreed.yes = value;
-      DogService.addToSwipedBreeds(this.swipedBreed).then(response => {
-        if (response.status === 201) {
-          this.swipedBreed = {};
-        }
-      });
-      SwipingView.methods.getNextBreed();
-    },
     initializeSwipedBreed() {
-      if (this.breed && this.breed.breedId) {
+      if (this.swipedBreed && this.swipedBreed.breedId) {
         console.log('this is running');
-        this.swipedBreed.breedId = this.breed.breedId;
-        this.getDogPic();
+        this.currSwipedBreed.breedId = this.swipedBreed.breedId;
+        this.currSwipedBreed.img = this.swipedBreed.img;
+        BreedService.getBreedById(this.swipedBreed.breedId).then(response => {
+          this.breed = response.data
+        });
+        if (this.currSwipedBreed.img === null) {
+          this.getDogPic();
+        }
       } else {
         console.warn('Breed data is not ready yet');
       }

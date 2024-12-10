@@ -16,6 +16,7 @@
         <h2>Breeds I Love</h2>
         <ul>
           <li v-for="breed in yesBreeds" :key="breed.breedId">
+            <breed-card :swipedBreed="breed"></breed-card>
           </li>
         </ul>
       </div>
@@ -24,6 +25,7 @@
         <h2>Breeds That Aren't For Me</h2>
         <ul>
           <li v-for="breed in noBreeds" :key="breed.breedId">
+            <breed-card :swipedBreed="breed"></breed-card>
           </li>
         </ul>
       </div>
@@ -32,13 +34,15 @@
 </template>
 
 <script>
+import BreedCard from '../components/BreedCard.vue';
 import DogService from '../services/DogService';
-import DogCardV2 from "@/components/DogCardV2.vue";
+import DogCardV2 from "../components/DogCardV2.vue";
 
 
 export default {
     components: {
-      DogCardV2
+      DogCardV2,
+      BreedCard
     },
     data() {
         return {
@@ -82,6 +86,7 @@ export default {
   display: flex;
   flex-direction: column; /* Stacks sections vertically */
   width: 100%;
+  align-items: center;
 }
 
 .Adoptable-Dogs {
@@ -90,7 +95,9 @@ export default {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  width: 100%;
+  width: 90%;
+  background-color: var(--purp4);
+  border-radius: 20px;
 }
 
 .Adoptable-Dogs ul {
@@ -98,9 +105,11 @@ export default {
   flex-direction: row; /* Ensures list items are horizontal */
   justify-content: center;
   overflow-x: auto; /* Adds horizontal scrolling if needed */
+  flex-basis: 95%;
   width: 100%;
   padding: 0;
   margin: 0;
+  margin-bottom: 5vh;
 }
 
 .container {
@@ -114,6 +123,8 @@ export default {
 .acceptedList, .rejectedList {
   flex: 1;
   margin: 10px;
+  background-color: var(--purp4);
+  border-radius: 20px;
 }
 
 ul {
@@ -129,7 +140,9 @@ h2 {
   text-align: center;
   text-decoration: underline;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  color: aliceblue;
 }
 
 </style>

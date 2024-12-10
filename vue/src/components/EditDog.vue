@@ -6,6 +6,7 @@
         <option v-for="dog in dogs" v-bind:key="dog.dogId">{{ dog.dogName }}</option>
       </select>
     </div>
+    
     <div>
       <label for="Breed">Breed: </label>
       <select v-model="this.selectedDog.breedId" @change="getSelectedDog">
@@ -14,6 +15,7 @@
         </option>
       </select>
     </div>
+
     <div>
       <label>Agency: </label>
       <select v-model="this.selectedDog.agencyId" @change="getSelectedDog">
@@ -23,11 +25,17 @@
       </select>
     </div>
 
-
     <div>
         <label for="age">Age: </label>
         <input id="age" type="number" v-model="selectedDog.age" />
     </div>
+
+    <div>
+      <label for="image-url">Image Url: </label>
+      <input id="image-url" type="text" v-model="selectedDog.img" />
+
+    </div>
+
     <div>
       <h6>Size: </h6>
       <input id="small" type="radio" value="small" v-model="selectedDog.size" />
@@ -39,11 +47,7 @@
       <input id="large" type="radio" value="large" v-model="selectedDog.size" />
       <label for="large"> Large </label>
     </div>
-    <div>
-      <label for="image-url">Image Url: </label>
-      <input id="image-url" type="text" v-model="selectedDog.img" />
 
-    </div>
     <div>
       <h6>Gender: </h6>
       <input id="Male" type="radio" value="Male" v-model="selectedDog.gender" />

@@ -25,7 +25,7 @@ export default {
   },
   components: {
     BreedSwiper,
-    SwipeCard
+    // SwipeCard
     // TestSwipeCard
     // BreedSwiper
     // BreedCard

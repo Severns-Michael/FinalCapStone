@@ -1,14 +1,14 @@
 <template>
-  <form class="breed">
+  <form class="admin-box" id="edit-dog">
     <div class="breed-selector">
-      <label>Dog: </label>
+      <label>Dog : </label>
       <select v-model="selectedDog.dogName" @change="getSelectedDog">
         <option v-for="dog in dogs" v-bind:key="dog.dogId">{{ dog.dogName }}</option>
       </select>
     </div>
-    
+
     <div>
-      <label for="Breed">Breed: </label>
+      <label for="Breed">Breed : </label>
       <select v-model="this.selectedDog.breedId" @change="getSelectedDog">
         <option v-for="breed in breeds" v-bind:key="breed.breedId" v-bind="this.selectedDog">
           {{ breed.officialName }}
@@ -17,7 +17,7 @@
     </div>
 
     <div>
-      <label>Agency: </label>
+      <label>Adoption Agency : </label>
       <select v-model="this.selectedDog.agencyId" @change="getSelectedDog">
         <option v-for="agency in agenciesList" :key="agency.agencyId" :value="agency.agencyId">
           {{ agency.agencyName }}
@@ -26,18 +26,18 @@
     </div>
 
     <div>
-        <label for="age">Age: </label>
+        <label for="age">Age : </label>
         <input id="age" type="number" v-model="selectedDog.age" />
     </div>
 
     <div>
-      <label for="image-url">Image Url: </label>
+      <label for="image-url">Image Url : </label>
       <input id="image-url" type="text" v-model="selectedDog.img" />
 
     </div>
 
     <div>
-      <h6>Size: </h6>
+      <h6>Size : </h6>
       <input id="small" type="radio" value="small" v-model="selectedDog.size" />
       <label for="small"> Small </label>
 
@@ -58,7 +58,7 @@
     </div>
 
     <div>
-      <button type="submit" class="btn btn-light">Submit</button>
+      <button type="submit" class="btn purple-btn">Submit</button>
     </div>
   </form>
 </template>
@@ -127,9 +127,16 @@ export default {
 </script>
 
 <style scoped>
-form {
+form#edit-dog {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+label {
+  margin: 5px;
+}
+input {
+  margin: 5px;
+}
+
 </style>

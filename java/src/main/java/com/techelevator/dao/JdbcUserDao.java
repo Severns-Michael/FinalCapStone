@@ -269,7 +269,7 @@ public class JdbcUserDao implements UserDao {
                 swipe.setUserId(results.getInt("user_id"));
                 swipe.setBreedId(results.getInt("breed_id"));
                 swipe.setImg(results.getString("img"));
-                swipe.setYes(results.getBoolean("is_yes"));
+                swipe.setSwipeYes(results.getBoolean("is_yes"));
                 swiped.add(swipe);
             }
         } catch (CannotGetJdbcConnectionException e) {
@@ -284,7 +284,7 @@ public class JdbcUserDao implements UserDao {
     public Swiped addSwiped(Swiped swiped) throws DaoException {
         String sql = "insert into user_swipe_breeds (user_id, breed_id, img, is_yes) values (?,?,?,?)";
         try {
-            jdbcTemplate.update(sql, swiped.getUserId(), swiped.getBreedId(), swiped.getImg(), swiped.isYes());
+            jdbcTemplate.update(sql, swiped.getUserId(), swiped.getBreedId(), swiped.getImg(), swiped.getSwipeYes());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }

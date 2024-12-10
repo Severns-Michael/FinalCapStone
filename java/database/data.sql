@@ -411,6 +411,18 @@ values
 (60, 6),
 (60, 18);
 
+insert into adoption_agency (agency_name, agency_city, agency_state)
+values
+('Columbus Dog Rescue', 'Columbus', 'OH'),
+('Forever Friends Canine Adoption', 'Columbus', 'OH'),
+('Paw Haven Adoption Center', 'Columbus', 'OH'),
+('Buckeye Dog Shelter', 'Columbus', 'OH'),
+('Happy Tails Rescue', 'Columbus', 'OH'),
+('Safe Paws Adoption Agency', 'Columbus', 'OH'),
+('Loyal Companions Rescue', 'Columbus', 'OH'),
+('New Leash on Life Shelter', 'Columbus', 'OH'),
+('Golden Hearts Canine Haven', 'Columbus', 'OH'),
+('Dream Dogs Adoption Center', 'Columbus', 'OH');
 
 
 

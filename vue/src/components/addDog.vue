@@ -1,7 +1,7 @@
 
 <template>
   <div class="form">
-    <form v-on:submit.prevent="addDog">
+    <form v-on:submit.prevent="addDog()">
       <label for="breedName">Dog Name: </label>
       <input id="breedName" type="text" v-model="this.newDog.dogName"/>
       <button type="submit" class="btn btn-light">Submit</button>
@@ -11,7 +11,7 @@
 
 
 <script>
-import dogService from "@/services/DogService";
+import dogService from "../services/DogService";
 export default {
   data() {
     return {

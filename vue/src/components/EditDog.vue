@@ -58,7 +58,7 @@
     </div>
 
     <div>
-      <button type="submit" class="btn btn-light">Submit</button>
+      <button type="submit" class="btn purple-btn">Submit</button>
     </div>
   </form>
 </template>
@@ -132,5 +132,24 @@ form {
   flex-direction: column;
   align-items: center;
 }
+.purple-btn:hover {
+    background-color: var(--purp5);
+    color: white;
+  } 
+  .purple-btn {
+  padding: 8px 16px; 
+  font-size: 0.9em; 
+  color: white;
+  background-color: var(--purp1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; 
+  max-width: 200px; 
+  text-align: center;
+  box-sizing: border-box; 
+}
+
 
 </style>

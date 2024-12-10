@@ -40,7 +40,7 @@ public class JDBCAdoptionAgencyDao implements AdoptionAgencyDao {
         AdoptionAgency agency = new AdoptionAgency();
         String sql = "select * from adoption_agency where agency_id = ?";
         try {
-            SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
+            SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, agencyId);
             if (rs.next()) {
                 mapRowToAA(rs);
             }

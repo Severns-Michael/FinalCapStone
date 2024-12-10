@@ -10,7 +10,7 @@
         <li> Age: {{this.currentDog.age}} years old</li>
         <li> Size: {{this.getDogSize()}}</li>
         <li> Gender: {{this.getDogGender()}}</li>
-        <li> Agency: {{this.getDogAgencyName()}}</li>
+        <li> Agency: {{this.currentAgency.agencyName}} </li>
 <!--        <li v-for="trait in this.currentDog.breed.traits" v-bind:key="trait.traitId">Traits: {{trait.trait.id}}</li>-->
       </ul>
     </div>
@@ -29,12 +29,20 @@ export default {
   data() {
     return {
       currentDog: this.currentDogList,
-
-
+      agencies: [],
+      currentAgency: {}
     }
   },
   created() {
     this.getDogBreed();
+    DogService.getAllAgencies().then(response => {
+        this.agencies = response.data;
+        this.agencies.find(agency => {
+          if (agency.agencyId === this.currentDog.agencyId) {
+            this.currentAgency = agency
+          }
+        });
+    });
   },
   methods: {
 
@@ -62,12 +70,6 @@ export default {
       if (this.currentDog.gender === 1) {
         return 'Female'
       }
-    },
-    getDogAgencyName() {
-      DogService.getAgencyById(this.currentDog.agencyId).then(response => {
-        let agency = response.data;
-        return agency.agencyName
-      });
     }
   }
 

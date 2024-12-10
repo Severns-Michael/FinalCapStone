@@ -221,12 +221,12 @@ values ('Adoption Circle','Columbus','Ohio'),('Just Choice','Columbus','Ohio');
 
 insert into dog (dog_name,breed_id, age, size, img, gender, agency_id)
 		values  
-		('Rover',9,6,1,null,0,1),
-		('Rocky',16,5,1,null,0,1),
-		('Thaddeus',5,2,2,null,0,1),
-		('Fido',12,7,2,null,0,1),
-		('Darius',29,8,2,null,0,1),
-		('Nova',11,9,3,null,0,1);
+		('Rover',9,6,1,'https://images.dog.ceo/breeds/borzoi/n02090622_6894.jpg',0,1),
+		('Rocky',16,5,1,'https://images.dog.ceo/breeds/chow/n02112137_16354.jpg',0,1),
+		('Thaddeus',5,2,2,'https://images.dog.ceo/breeds/appenzeller/n02107908_691.jpg',0,1),
+		('Fido',12,7,2,'https://images.dog.ceo/breeds/brabancon/n02112706_1065.jpg',0,1),
+		('Darius',29,8,2,'https://images.dog.ceo/breeds/groenendael/n02105056_2685.jpg',0,1),
+		('Nova',11,9,3,'https://images.dog.ceo/breeds/boxer/n02108089_78.jpg',0,1);
 		
 insert into breed_trait (breed_id,trait_id)
 values

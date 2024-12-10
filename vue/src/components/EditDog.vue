@@ -6,7 +6,7 @@
         <option v-for="dog in dogs" v-bind:key="dog.dogId">{{ dog.dogName }}</option>
       </select>
     </div>
-    
+
     <div>
       <label for="Breed">Breed: </label>
       <select v-model="this.selectedDog.breedId" @change="getSelectedDog">

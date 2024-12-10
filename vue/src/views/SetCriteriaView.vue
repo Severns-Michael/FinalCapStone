@@ -233,15 +233,19 @@ export default {
   }
 
   .purple-btn {
-    padding: 10px 20px;
-    font-size: 1em;
-    color: white;
-    background-color: var(--purp1);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+  padding: 8px 16px; 
+  font-size: 0.9em; 
+  color: white;
+  background-color: var(--purp1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; 
+  max-width: 200px; 
+  text-align: center;
+  box-sizing: border-box; 
+}
 
   .purple-btn:hover {
     background-color: var(--purp5);
@@ -262,4 +266,16 @@ export default {
   .purple-slider:hover {
     background-color: var(--purp5);
   }
+  #buttonSpacer {
+    flex-direction: row; 
+    justify-content: space-between; 
+    gap: 5px;
+  }
+  
+
+  .purple-btn {
+    padding: 6px 14px; 
+    font-size: 0.8em; 
+  }
+  
 </style>

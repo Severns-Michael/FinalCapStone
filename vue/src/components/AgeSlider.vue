@@ -77,18 +77,21 @@ export default {
 </script>
 <style scoped>
 .card-container {
-  cursor: default;
-  --color-primary: #a04ebd;
-  --color-headline: #8a2cac;
-  --color-text: white;
-  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column; 
+  width: 100%; 
+  max-width: 312px; 
+  margin: auto; 
+  padding: 10px; 
+  box-sizing: border-box; 
 }
 .card-content {
   width: 100%;
-  max-width: 312px;
-  padding: 36px 32px;
+  padding: 36px 16px;
+  max-width: 100%; 
   background: var(--color-primary);
   border-radius: 10px;
+  box-sizing: border-box;
 }
 .card-title {
   font-size: 32px;
@@ -111,11 +114,12 @@ export default {
 }
 .slider-track {
   position: absolute;
-  height: 6px;
   width: 100%;
+  height: 6px;
   border-radius: 5px;
   background: var(--color-headline);
   z-index: 1;
+  overflow: hidden; 
 }
 .input-range {
   position: absolute;

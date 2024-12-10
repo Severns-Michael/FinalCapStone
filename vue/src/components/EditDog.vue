@@ -1,15 +1,15 @@
 <template>
-  <form class="admin-box" id="edit-dog">
+  <form class="admin-box" id="edit-dog" v-on:submit.prevent="this.updateDog()">
     <div class="breed-selector">
       <label>Dog : </label>
-      <select v-model="selectedDog.dogName" @change="getSelectedDog">
+      <select v-model="this.selectedDog.dogName" @change="this.getSelectedDog()">
         <option v-for="dog in dogs" v-bind:key="dog.dogId">{{ dog.dogName }}</option>
       </select>
     </div>
-    
+
     <div>
       <label for="Breed">Breed : </label>
-      <select v-model="this.selectedDog.breedId" @change="getSelectedDog">
+      <select v-model="this.selectedDogBreed.officialName">
         <option v-for="breed in breeds" v-bind:key="breed.breedId" v-bind="this.selectedDog">
           {{ breed.officialName }}
         </option>
@@ -38,13 +38,13 @@
 
     <div>
       <h6>Size : </h6>
-      <input id="small" type="radio" value="small" v-model="selectedDog.size" />
+      <input id="small" type="radio" value="1" v-model="selectedDog.size" />
       <label for="small"> Small </label>
 
-      <input id="medium" type="radio" value="medium" v-model="selectedDog.size" />
+      <input id="medium" type="radio" value="2" v-model="selectedDog.size" />
       <label for="medium"> Medium </label>
 
-      <input id="large" type="radio" value="large" v-model="selectedDog.size" />
+      <input id="large" type="radio" value="3" v-model="selectedDog.size" />
       <label for="large"> Large </label>
     </div>
 
@@ -70,11 +70,11 @@ export default {
   data() {
     return {
       dogs: [],
-      selectedDog: {
-        size: ""
-      },
+      selectedDog: {},
+      selectedDogBreed: {},
       agency: {},
       agenciesList: [],
+      selectedSize: 0
     };
   },
   created() {
@@ -93,12 +93,19 @@ export default {
         this.breeds = response.data;
       }
     });
-
-
+  },
+  computed: {
+    
   },
   methods: {
     getSelectedDog() {
       // Logic to handle selected dog change, if needed
+      this.selectedDog = this.dogs.find(dog => {
+        if (this.selectedDog.dogName === dog.dogName) {
+          return dog;
+        }
+      });
+      this.getBreedById();
     },
     getAllAgencies(){
       DogService.getAllAgencies().then(response => {
@@ -117,8 +124,13 @@ export default {
     getBreedById() {
       BreedService.getBreedById(this.selectedDog.breedId).then(response => {
         if (response.status === 200) {
-          this.breed = response.data;
+          this.selectedDogBreed = response.data;
         }
+      });
+    },
+    updateDog() {
+      DogService.updateDog(this.selectedDog).then(response => {
+        this.selectedDog = {}
       });
     }
 

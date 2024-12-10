@@ -1,19 +1,8 @@
 <template>
-  <div class="fh-box">
-<!--    <breed-swiper/>-->
+  <div class="fh-box fh-row" id="breed-swiper">
 
 
-    <div class="swiper">
-
-      <div class="swipe swipe-yes">yes</div>
-
-      <div class="current-dog">
-        <swipe-card v-bind:breed=this.breed></swipe-card>
-      </div>
-
-      <div class="swipe swipe-no">no</div>
-
-    </div>
+    <breed-swiper/>
 
 
   </div>
@@ -23,7 +12,7 @@
 import SwipeCard from '../components/SwipeCard.vue';
 import BreedService from '../services/BreedService';
 import TestSwipeCard from "@/components/TestSwipeCard.vue";
-// import BreedCard from "@/components/BreedCard.vue";
+import BreedSwiper from "@/components/BreedSwiper.vue";
 // import BreedSwiper from "@/components/BreedSwiper.vue";
 
 
@@ -35,6 +24,7 @@ export default {
     }
   },
   components: {
+    BreedSwiper,
     SwipeCard
     // TestSwipeCard
     // BreedSwiper

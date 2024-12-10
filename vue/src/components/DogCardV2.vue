@@ -6,12 +6,11 @@
         <h2 class="card-title">{{ this.currentDog.dogName }}</h2>
       </div>
       <ul class="card-text">
-        <li> Breed: {{this.currentDog.breed?.breedName}}</li>
-        <li>breedId: {{this.currentDog.breedId}}</li>
-        <li> Age: {{this.currentDog.age}}</li>
-        <li> Size: {{this.currentDog.size}}</li>
-        <li> Gender: {{this.currentDog.gender}}</li>
-        <li> Agency: {{this.currentDog.agencyId}}</li>
+        <li> Breed: {{this.currentDog.breed?.officialName}}</li>
+        <li> Age: {{this.currentDog.age}} years old</li>
+        <li> Size: {{this.getDogSize()}}</li>
+        <li> Gender: {{this.getDogGender()}}</li>
+        <li> Agency: {{this.getDogAgencyName()}}</li>
 <!--        <li v-for="trait in this.currentDog.breed.traits" v-bind:key="trait.traitId">Traits: {{trait.trait.id}}</li>-->
       </ul>
     </div>
@@ -45,8 +44,31 @@ export default {
       }
      )
     },
-
-
+    getDogSize() {
+      if (this.currentDog.size === 1) {
+        return 'Small'
+      }
+      if (this.currentDog.size === 2) {
+        return 'Medium'
+      }
+      if (this.currentDog.size === 3) {
+        return 'Large'
+      }
+    },
+    getDogGender() {
+      if (this.currentDog.gender === 0) {
+        return 'Male'
+      }
+      if (this.currentDog.gender === 1) {
+        return 'Female'
+      }
+    },
+    getDogAgencyName() {
+      DogService.getAgencyById(this.currentDog.agencyId).then(response => {
+        let agency = response.data;
+        return agency.agencyName
+      });
+    }
   }
 
 }

@@ -66,6 +66,7 @@ export default {
     },
     initializeSwipedBreed() {
       if (this.breed && this.breed.breedId) {
+        console.log('this is running');
         this.swipedBreed.breedId = this.breed.breedId;
         this.getDogPic();
       } else {

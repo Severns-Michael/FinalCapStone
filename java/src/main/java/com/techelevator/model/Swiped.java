@@ -4,13 +4,13 @@ public class Swiped {
     private int userId;
     private int breedId;
     private String img;
-    private boolean isYes;
+    private boolean swipeYes;
 
-    public Swiped(int userId, int breedId, String img, boolean isYes) {
+    public Swiped(int userId, int breedId, String img, boolean swipeYes) {
         this.userId = userId;
         this.breedId = breedId;
         this.img = img;
-        this.isYes = isYes;
+        this.swipeYes = swipeYes;
     }
 
     public Swiped() {
@@ -41,11 +41,18 @@ public class Swiped {
         this.img = img;
     }
 
-    public boolean isYes() {
-        return isYes;
-    }
+//    public boolean isYes() {
+//        return isYes;
+//    }
+//
+//    public void setYes(boolean yes) {
+//        isYes = yes;
+//    }
 
-    public void setYes(boolean yes) {
-        isYes = yes;
+    public boolean getSwipeYes(){
+        return swipeYes;
+    }
+    public void setSwipeYes(boolean val){
+        swipeYes =val;
     }
 }

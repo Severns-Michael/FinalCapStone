@@ -6,7 +6,7 @@
         <option v-for="dog in dogs" v-bind:key="dog.dogId">{{ dog.dogName }}</option>
       </select>
     </div>
-    
+
     <div>
       <label for="Breed">Breed : </label>
       <select v-model="this.selectedDogBreed.officialName">
@@ -58,7 +58,7 @@
     </div>
 
     <div>
-      <button type="submit" class="btn btn-light">Submit</button>
+      <button type="submit" class="btn purple-btn">Submit</button>
     </div>
   </form>
 </template>

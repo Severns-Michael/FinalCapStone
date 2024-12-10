@@ -12,6 +12,7 @@ import UserDashboardView from '../views/UserDashboardView.vue';
 import SwipingView from '../views/SwipingView.vue';
 import TestView from "@/views/TestSwiperView.vue";
 import FlopsView from "../views/FlopsView.vue"
+import CleanView from "@/views/CleanView.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -101,7 +102,15 @@ const routes = [
     meta:{
       requiresAuth: true
     }
-  }
+  },
+  {
+    path: "/clean",
+    name: "cleanview",
+    component: CleanView,
+    meta: {
+      requiresAuth: true
+    }
+  },
 ];
 
 // Create the router

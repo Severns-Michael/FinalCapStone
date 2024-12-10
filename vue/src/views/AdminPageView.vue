@@ -81,7 +81,10 @@
 
 <!--  MANAGE USERS  -->
     <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
-
+      <div class="fh-box admin-box" id="add">
+        <h2>Edit a User</h2>
+        <edit-user/>
+      </div>
     </div>
 
   </div>
@@ -99,7 +102,7 @@ import DeleteBreed from '../components/DeleteBreed.vue';
 import addDog from "../components/addDog.vue";
 import EditDog from '../components/EditDog.vue';
 import DeleteDog from '../components/DeleteDog.vue';
-
+import EditUser from '../components/EditUser.vue';
 
 export default {
     components: {
@@ -109,6 +112,7 @@ export default {
         addDog,
         EditDog,
         DeleteDog,
+      EditUser,
     }
 }
 

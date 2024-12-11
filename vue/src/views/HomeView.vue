@@ -23,7 +23,7 @@
     <!-- Tagline Section -->
     <section class="tagline">
       <div class="tagline-container">
-        <p>FoundHound: Connecting You to the Perfect Breed and a Forever Friend</p>
+        <p>FoundHound: Connecting You to the Perfect Breed and a Furever Friend</p>
       </div>
     </section>
 

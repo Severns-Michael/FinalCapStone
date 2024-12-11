@@ -1,6 +1,6 @@
 <template>
-  <div class="admin-box">
-    <h2>Delete Dog</h2>
+  <div id="delete-dog" class="admin-box">
+    
     <div>
       <label>Dog: </label>
       <select v-model="selectedDog" @click="getDogs">
@@ -54,31 +54,31 @@ export default {
 <style scoped>
 /* Card Styling */
 .admin-box {
-  background-color: var(--purp4); /* Matches parent background */
-  border: none; /* Removes any border */
-  border-radius: 0; /* Removes rounded edges */
-  box-shadow: none; /* Removes shadow effect */
-  padding: 20px; /* Retain padding for proper spacing */
+  background-color: transparent; 
+  border: none;
+  border-radius: 0; 
+  box-shadow: none; 
+  padding: 20px; 
   text-align: center;
   color: white;
 }
 
-/* Title Styling */
+
 .admin-box h2 {
   font-size: 1.5em;
   margin-bottom: 20px;
 }
 
-/* Label Styling */
+
 .admin-box label {
   margin-right: 10px;
   font-weight: bold;
   color: white;
 }
 
-/* Dropdown Styling */
+
 .admin-box select {
-  width: 90%; /* Takes most of the card width */
+  width: 90%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid var(--purp3);
@@ -88,19 +88,20 @@ export default {
 
 /* Button Styling */
 .btn.purple-btn {
-  padding: 8px 16px; /* Adjust padding for smaller size */
-  font-size: 1em; /* Keep font size consistent */
+  padding: 8px 16px; 
+  font-size: 1em;
   color: white;
   background-color: var(--purp1);
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  text-align: center; /* Centers the text inside the button */
-  display: inline-block; /* Prevents it from stretching like a block element */
+  text-align: center;
+  display: inline-block; 
 }
 
 .btn.purple-btn:hover {
-  background-color: var(--purp5); /* Lightens on hover */
+  background-color: var(--purp5);
 }
+
 </style>

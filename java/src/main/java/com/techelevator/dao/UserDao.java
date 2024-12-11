@@ -38,14 +38,4 @@ public interface UserDao {
 
     List<Breed> getBreedUserHasntSwiped(int userId) throws DaoException;
 
-
-
-
-
-
-//    List<Dog> getSwipedYesDogs(int userId);
-//    List<Dog> setSwipedYesDogs(List<Dog> favoriteDogs, Principal principal) throws DaoException;
-//
-//    List<Dog> getSwipedNoDogs(int userId);
-//    List<Dog> setSwipedNoDogs(List<Dog> favoriteDogs, Principal principal) throws DaoException;
 }

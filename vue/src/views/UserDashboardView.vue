@@ -103,7 +103,6 @@ export default {
 .Adoptable-Dogs ul {
   display: flex;
   flex-direction: row; /* Ensures list items are horizontal */
-  justify-content: center;
   overflow-x: auto; /* Adds horizontal scrolling if needed */
   flex-basis: 95%;
   width: 100%;
@@ -125,6 +124,8 @@ export default {
   margin: 10px;
   background-color: var(--purp4);
   border-radius: 20px;
+  width: 50%;
+  
 }
 
 ul {
@@ -143,6 +144,18 @@ h2 {
   margin-bottom: 10px;
   margin-top: 20px;
   color: aliceblue;
+}
+
+.acceptedList > ul, .rejectedList > ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.acceptedList > li, .rejectedList > li {
+    flex-basis: 45%;
 }
 
 </style>

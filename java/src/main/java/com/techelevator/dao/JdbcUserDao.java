@@ -26,15 +26,6 @@ public class JdbcUserDao implements UserDao {
     @Override
     public User getUserById(int userId) {
         User user = new User();
-//        String sql = "SELECT user_id, username, password_hash, role FROM users WHERE user_id = ?";
-//        try {
-//            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-//            if (results.next()) {
-//                user = mapRowToUser(results);
-//            }
-//        } catch (CannotGetJdbcConnectionException e) {
-//            throw new DaoException("Unable to connect to server or database", e);
-//        }
         String sql = "SELECT user_id, username, password_hash, role FROM users where user_id=?";
         String yesSql="select distinct users.user_id, users_trait_yes.trait_id as yes_trait_id, trait.trait_name as yes_trait_name  from users  full join users_trait_yes ON users_trait_yes.user_id = users.user_id full join trait ON trait.trait_id = users_trait_yes.trait_id  where users.user_id=?";
         String noSql="select distinct users.user_id, users_trait_no.trait_id as no_trait_id, trait.trait_name as no_trait_name  from users  full join users_trait_no ON users_trait_no.user_id = users.user_id full join trait ON trait.trait_id = users_trait_no.trait_id  where users.user_id=?";
@@ -277,7 +268,6 @@ public class JdbcUserDao implements UserDao {
         }
         return swiped;
 
-
     }
 
     @Override
@@ -327,7 +317,7 @@ public class JdbcUserDao implements UserDao {
                 ") AS negative_breed ON positive_breed.breed_id = negative_breed.breed_id " +
                 "INNER JOIN breed ON breed.breed_id = positive_breed.breed_id " +
                 "WHERE negative_breed.breed_id IS NULL ";
-        //String sql = "select * from breed where breed_id not in (select breed_id from user_swipe_breeds where user_id=?)";
+
 
         try {
             SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId,userId,userId);
@@ -346,7 +336,6 @@ public class JdbcUserDao implements UserDao {
         return breeds;
     }
 
-
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));
@@ -356,72 +345,5 @@ public class JdbcUserDao implements UserDao {
         user.setActivated(true);
         return user;
     }
-
-
-//    @Override
-//    public List<Dog> getSwipedYesDogs( int id) {
-//        List<Dog> swipedYesDogs = new ArrayList<>();
-//        String sql = "select users.user_id, users.username, d.dog_id,dog_name,breed_id,age, size, img from users " +
-//                "inner join public.users_dog_yes udy on users.user_id = udy.user_id " +
-//                "inner join public.dog d on d.dog_id = udy.dog_id " +
-//                "where udy.user_id = ?";
-//        try {
-//            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
-//            while (results.next()) {
-//                Dog dog = new Dog();
-//                dog.setDogId(results.getInt("dog_id"));
-//                dog.setDogName(results.getString("dog_name"));
-//                dog.setBreedId(results.getInt("breed_id"));
-//                dog.setImg(results.getString("img"));
-//                dog.setAge(results.getInt("age"));
-//                dog.setSize(results.getInt("size"));
-//                swipedYesDogs.add(dog);
-//
-//
-//            }
-//
-//        } catch (CannotGetJdbcConnectionException e) {
-//            throw new DaoException("Unable to connect to server or database", e);
-//        }
-//        return swipedYesDogs;
-//    }
-//
-//    @Override
-//    public List<Dog> getSwipedNoDogs(int userId) {
-//        List<Dog> swipedNoDogs = new ArrayList<>();
-//        String sql = "select users.user_id, users.username, d.dog_id,dog_name,breed_id,age, size, img from users " +
-//                "inner join public.users_dog_no udn on users.user_id = udn.user_id " +
-//                "inner join public.dog d on d.dog_id = udn.dog_id " +
-//                "where udn.user_id = ?";
-//        try {
-//            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
-//            while (results.next()) {
-//                Dog dog = new Dog();
-//                dog.setDogId(results.getInt("dog_id"));
-//                dog.setDogName(results.getString("dog_name"));
-//                dog.setBreedId(results.getInt("breed_id"));
-//                dog.setImg(results.getString("img"));
-//                dog.setAge(results.getInt("age"));
-//                dog.setSize(results.getInt("size"));
-//                swipedNoDogs.add(dog);
-//
-//
-//            }
-//
-//        } catch (CannotGetJdbcConnectionException e) {
-//            throw new DaoException("Unable to connect to server or database", e);
-//        }
-//        return swipedNoDogs;
-//    }
-//    @Override
-//    public List<Dog> setSwipedYesDogs(List<Dog> favoriteDogs, Principal principal) throws DaoException {
-//        return List.of();
-//    }
-//
-//    @Override
-//    public List<Dog> setSwipedNoDogs(List<Dog> favoriteDogs, Principal principal) throws DaoException {
-//        return List.of();
-//    }
-
 
 }

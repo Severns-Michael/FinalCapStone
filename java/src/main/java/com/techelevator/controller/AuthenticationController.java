@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -22,9 +23,11 @@ import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @CrossOrigin
+@PreAuthorize("isAuthenticated()")
 public class AuthenticationController {
 
     private final TokenProvider tokenProvider;
@@ -36,7 +39,7 @@ public class AuthenticationController {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDao = userDao;
     }
-
+    @PreAuthorize("permitAll")
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody LoginDto loginDto) {
 
@@ -59,6 +62,7 @@ public class AuthenticationController {
         return new ResponseEntity<>(new LoginResponseDto(jwt, user), httpHeaders, HttpStatus.OK);
     }
 
+    @PreAuthorize("permitAll")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public void register(@Valid @RequestBody RegisterUserDto newUser) {
@@ -74,6 +78,7 @@ public class AuthenticationController {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(path="/promote")
     public void promoteUser(@RequestBody User user, Principal p){
@@ -88,6 +93,8 @@ public class AuthenticationController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
         }
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(path="/demote")
     public void demoteUser(@RequestBody User user, Principal p){
@@ -106,6 +113,7 @@ public class AuthenticationController {
 
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping(path="/users")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteUser(@RequestBody User user, Principal p){
@@ -122,6 +130,30 @@ public class AuthenticationController {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN,"Cannot delete current user");
         }
     }
+
+    /**
+     * Fetches all users.
+     *
+     * @return a list of users
+     */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping(path = "/users")
+    public List<User> getAllUsers() {
+        return userDao.getUsers();
+    }
+
+    /**
+     * Retrieves a user by their ID.
+     *
+     * @param userId the id of the user to be retrieved
+     * @return the user with the specified ID
+     */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping(path = "/users/{userId}")
+    public User getUserById(@PathVariable int userId) {
+        return userDao.getUserById(userId);
+    }
+
 
 }
 

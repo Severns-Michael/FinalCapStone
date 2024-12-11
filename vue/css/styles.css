@@ -336,28 +336,48 @@ div.swipe {
     margin:10px
 }
 div.swipe-dog{
+    min-width: 600px;
+    height: 1000px;
     flex-basis: 50%;
 }
 
 div.drag-card {
+    position: absolute;
     height: auto;
     min-width: 400px;
     max-width: 600px;
     transition: transform 0.2s ease;
 }
-div.drag-card>img.card-img-top{
+div.drag-card>img {
     max-width: 600px;
     height: auto;
 }
 
 div.drag-card:hover {
-    transform: scale(1.05);
     cursor: grab;
 }
 
 div.drag-card:active {
     user-select: none;
     cursor: grabbing;
+
+}
+.thinking-yes{
+    transform: rotate(4deg) translate(0px, 0px) skew(0deg, 0deg);
+    -webkit-box-shadow:0px 0px 65px 51px rgba(46,255,137,0.85) ;
+    -moz-box-shadow: 0px 0px 65px 51px rgba(46,255,137,0.85);
+    box-shadow: 0px 0px 65px 51px rgba(46,255,137,0.85);
+}
+.thinking-yes:hover{
+
+}
+.thinking-no{
+    transform: rotate(-4deg) translate(0px, 0px) skew(0deg, 0deg);
+    -webkit-box-shadow:0px 0px 65px 51px rgba(255,46,116,0.85);
+    -moz-box-shadow: 0px 0px 65px 51px rgba(255,46,116,0.85);
+    box-shadow: 0px 0px 65px 51px rgba(255,46,116,0.85);
+}
+.thinking-no:hover{
 
 }
 
@@ -390,3 +410,4 @@ div.spacer > button {
 div.container {
     padding: 20px;
 }
+

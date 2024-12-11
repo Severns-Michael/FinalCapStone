@@ -114,7 +114,6 @@ img {
 .polaroid-caption h2 {
   margin: 0 0 10px;
   font-size: 1.2em;
-  
 }
 
 .polaroid-caption ul {

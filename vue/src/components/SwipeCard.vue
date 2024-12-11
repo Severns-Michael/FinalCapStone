@@ -1,13 +1,13 @@
 <template>
 
 
-  <div class="card drag-card" draggable="true" id="drag-card" ondragstart="pickupHandler(event)"
-       ondragover="hoverHandler(event)" ondrop="dropHandler(event)">
+
+  <div class="card drag-card" draggable="false" id="drag-card" o>
     <img draggable="false" class="card-img-top" :src="this.swipedBreed.img"/>
     <div class="card-body">
-      <h2 v-text="this.breed.officialName"></h2>
+      <h2 v-text="this.currentBreed.officialName"></h2>
       <ul>
-        <li v-for="trait in this.breed.traits" v-text="trait.traitName"></li>
+        <li v-for="trait in this.currentBreed.traits" v-bind:key="trait.traitId" v-text="trait.traitName"></li>
       </ul>
     </div>
   </div>

@@ -1,23 +1,26 @@
-<!--<template>-->
-<!--  <form class="users-form">-->
-<!--    <div class="form-group">-->
-<!--      <label for="username">Username:</label>-->
-<!--      <select v-model:="selectedUser.username" @change="getSelectedUser">-->
-<!--        <option v-for="user in users" v-bind:key="user.userId">{{user.username}}</option>-->
-<!--      </select>-->
-<!--        <label for="role">Role:</label>-->
-<!--      <select  v-model="selectedUser.name" @change="getSelectedUser">-->
-<!--        <option v-for="user in users" v-bind:key="user.userId">{{user.name}}</option>-->
-<!--      </select>-->
-<!--      <button type="submit">Submit</button>-->
-
-<!--    </div>-->
-<!--  </form>-->
-
 <template>
-  <div>
-    hello
-  </div>
+  <form class="users-form">
+    <div class="form-group">
+      <!-- Username Dropdown -->
+      <label for="username">Username:</label>
+      <select v-model="selectedUser.username" @change="getSelectedUser('username')">
+        <option v-for="user in users" :key="'username-' + user.userId">
+          {{ user.username }}
+        </option>
+      </select>
+
+      <!-- Role Dropdown -->
+      <label for="role">Role:</label>
+      <select v-model="selectedUser.name" @change="getSelectedUser('role')">
+        <option v-for="user in users" :key="'role-' + user.userId">
+          {{ user.name }}
+        </option>
+      </select>
+
+      <!-- Submit Button -->
+      <button type="submit">Submit</button>
+    </div>
+  </form>
 </template>
 
 <script>

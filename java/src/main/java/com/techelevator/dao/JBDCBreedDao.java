@@ -2,6 +2,8 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Breed;
+import com.techelevator.model.Dog;
+import com.techelevator.model.PreviewBreed;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -112,6 +114,24 @@ public class JBDCBreedDao implements BreedDao {
         }
         return getBreedById(breed.getBreedId());
 //        return breed;
+    }
+
+    @Override
+    public List<PreviewBreed> getPreviewBreeds() throws DaoException {
+        List<PreviewBreed> previewBreedList = new ArrayList<>();
+        String sql = "select * from preview_breeds";
+        try {
+            SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
+            while (rs.next()) {
+                PreviewBreed pb = new PreviewBreed();
+                pb.setPreviewBreedId(rs.getInt("preview_breed_id"));
+                pb.setBreedId(rs.getInt("breed_id"));
+                previewBreedList.add(pb);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return previewBreedList;
     }
 
 

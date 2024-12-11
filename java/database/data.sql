@@ -424,6 +424,7 @@ values
 ('Golden Hearts Canine Haven', 'Columbus', 'OH'),
 ('Dream Dogs Adoption Center', 'Columbus', 'OH');
 
+insert into preview_breeds (breed_id) values (1), (2), (3), (4), (5), (6), (7), (8), (9), (10);
 
 
 

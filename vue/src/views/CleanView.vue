@@ -1,7 +1,7 @@
 <template>
   <div class="fh-box fh-row">
 
-    <div class="swipe" ondragover="hoverHandler(event)" @drop="swipeYes($event,this.currentBreed)" id="no-div">
+    <div class="swipe" id="no-div">
       no div
     </div>
 

@@ -115,12 +115,9 @@ document.addEventListener('mouseup', (ev) => {
     if(currentCursor.posX>nobox.right){
         theCard.dom.classList.remove('thinking-no');
 
-        resetCardPos()
     }
     if(currentCursor.posX<yesbox.left){
         theCard.dom.classList.remove('thinking-yes');
-        scriptYes()
-        resetCardPos()
     }
 
     theCard={

@@ -2,7 +2,7 @@
 
 
 
-  <div class="card drag-card" draggable="false" id="drag-card" o>
+  <div class="card drag-card" draggable="false" id="drag-card" >
     <img draggable="false" class="card-img-top" :src="this.swipedBreed.img"/>
     <div class="card-body">
       <h2 v-text="this.currentBreed.officialName"></h2>

@@ -42,7 +42,7 @@ export default {
         userId: this.$store.state.user.id
       },
       currentBreed: {
-        imgpath: '',
+        img: '',
       },
       randomBreedList: [],
     }
@@ -52,13 +52,13 @@ export default {
       if (!this.currentBreed.subBreed) {
         DogService.getBreedPic(this.currentBreed.breedName).then(
             response => {
-              this.currentBreed.imgpath = response.data.message;
+              this.currentBreed.img = response.data.message;
             }
         );
       } else if(this.currentBreed.subBreed) {
         DogService.getSubBreedPic(this.currentBreed.breedName, this.currentBreed.subBreed).then(
             response => {
-              this.currentBreed.imgpath = response.data.message;
+              this.currentBreed.img = response.data.message;
             }
         )
       }

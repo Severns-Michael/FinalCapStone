@@ -27,7 +27,7 @@
 
     <div>
         <label for="age">Age : </label>
-        <input id="age" type="number" v-model="selectedDog.age" />
+        <input id="age" type="number" v-model="selectedDog.age" min = "0"/>
     </div>
 
     <div>
@@ -37,7 +37,7 @@
     </div>
 
     <div>
-      <h6>Size : </h6>
+      <h6>Size: </h6>
       <input id="small" type="radio" value="1" v-model="selectedDog.size" />
       <label for="small"> Small </label>
 
@@ -206,6 +206,7 @@ form#edit-dog select {
 form#edit-dog input[type="radio"] {
   width: auto; 
   margin-right: 5px;
+  height: auto;
 }
 form#edit-dog h6 {
   margin-top: 15px;
@@ -250,5 +251,10 @@ input {
   box-sizing: border-box; 
 }
 
-
+input[type="radio"] {
+  width: 40px;
+  height: 40px;
+  margin-center: 20px;
+  accent-color: mediumslateblue; /* Change radio button color */
+}
 </style>

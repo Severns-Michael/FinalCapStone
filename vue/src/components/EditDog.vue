@@ -2,7 +2,7 @@
   <form class="admin-box" id="edit-dog" v-on:submit.prevent="this.updateDog()">
     <div class="breed-selector">
       <label>Dog : </label>
-      <select v-model="this.selectedDog.dogName" @change="this.getSelectedDog()">
+      <select v-model="this.selectedDog.dogName" @change="this.getSelectedDog()" v-on:click="this.getAllDogs();">
         <option v-for="dog in dogs" v-bind:key="dog.dogId">{{ dog.dogName }}</option>
       </select>
     </div>
@@ -78,11 +78,7 @@ export default {
     };
   },
   created() {
-    DogService.getAllDogs().then(response => {
-      if (response.status === 200) {
-        this.dogs = response.data;
-      }
-    });
+    this.getAllDogs();
     DogService.getAllAgencies().then(response => {
       if (response.status === 200) {
         this.agenciesList = response.data;
@@ -105,7 +101,6 @@ export default {
         }
       });
       this.getBreedById();
-      this.getAllDogs();
     },
     getAllAgencies(){
       DogService.getAllAgencies().then(response => {
@@ -132,6 +127,13 @@ export default {
       DogService.updateDog(this.selectedDog).then(response => {
         this.selectedDog = {
           dogName: ''
+        }
+      });
+    },
+    getAllDogs() {
+      DogService.getAllDogs().then(response => {
+        if (response.status === 200) {
+          this.dogs = response.data;
         }
       });
     }

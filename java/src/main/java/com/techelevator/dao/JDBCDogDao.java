@@ -70,9 +70,9 @@ public class JDBCDogDao implements DogDao {
 
     @Override
     public Dog updateDog(Dog dog) throws DaoException {
-        String sql = "update dog set dog_name = ?, breed_id = ?, img = ?, age = ?, size = ?, agency_id = ?, gender = ?";
+        String sql = "update dog set breed_id = ?, img = ?, age = ?, size = ?, agency_id = ?, gender = ? where dog_id = ?";
         try {
-            jdbcTemplate.update(sql, dog.getDogName(), dog.getBreedId(), dog.getImg(), dog.getAge(), dog.getSize(), dog.getAgencyId(), dog.getGender());
+            jdbcTemplate.update(sql, dog.getBreedId(), dog.getImg(), dog.getAge(), dog.getSize(), dog.getAgencyId(), dog.getGender(), dog.getDogId());
             dog = getDogById(dog.getDogId());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);

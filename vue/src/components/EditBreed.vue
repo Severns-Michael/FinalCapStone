@@ -21,7 +21,7 @@
         </ul>
 
         <div class="spacer"></div>
-        <button class="btn btn-light" v-on:click.prevent="removeSelectedTraits">Remove =»</button>
+        <button class="btn purple-btn" v-on:click.prevent="removeSelectedTraits">Remove &rarr;</button>
       </div>
 
 
@@ -34,7 +34,7 @@
           </li>
         </ul>
         <div class="spacer"></div>
-        <button class="btn btn-light" v-on:click.prevent="addSelectedTraits">«= Add</button>
+        <button class="btn purple-btn" v-on:click.prevent="addSelectedTraits">&larr; Add</button>
 
       </div>
 
@@ -139,6 +139,7 @@ export default {
             this.selectedTraits = [];
         },
         addSelectedTraits() {
+          if (this.selectedBreed === {}) {
             this.traits = this.traits.filter(trait => {
                 if (!this.selectedTraits.includes(trait)) {
                     return trait;
@@ -148,6 +149,7 @@ export default {
             });
             this.updateBreed();
             this.selectedTraits = [];
+          }
         },
         addToSelected(trait) {
             if (!this.selectedTraits.includes(trait)) {
@@ -220,5 +222,23 @@ export default {
         flex-grow: 1;
         text-align: center; 
     }
+    .purple-btn {
+    padding: 8px 16px; 
+    font-size: 1em; 
+    color: white;
+    background-color: var(--purp1);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto;  
+    text-align: center;
+    box-sizing: border-box; 
+}
+.purple-btn:hover {
+    background-color: var(--purp4);
+    color: white;
+}
+    
 
 </style>

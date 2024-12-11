@@ -17,5 +17,8 @@ export default {
     },
     getRandomBreeds() {
         return axios.get('/breeds/random')
+    },
+    getPreviewBreeds() {
+        return axios.get('/breeds/preview')
     }
 }

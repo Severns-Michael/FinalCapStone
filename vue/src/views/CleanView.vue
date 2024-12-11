@@ -1,12 +1,12 @@
-<!--<template>-->
-
-<!--</template>-->
+<template>
+<demo-card/>
+</template>
 <script>
-// <!--import-->
-//
-// <!--export default {-->
-// <!--  components: {-->
-//
-// <!--  }-->
-// <!--}-->
-// <!--</script>-->
+import DemoCard from '@/components/DemoCard.vue'
+
+export default {
+  components: {
+    DemoCard,
+  }
+}
+</script>

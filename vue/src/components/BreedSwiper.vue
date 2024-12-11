@@ -118,7 +118,13 @@ document.addEventListener('mousemove', (ev) => {
     theCard.dom.style.left = ( distance.deltaX) + 'px';
     theCard.dom.style.top = ( distance.deltaY) + 'px';
     if (currentCursor.posX > yesbox.left && clicking) {
+      console.log('================check this====================')
+      console.log(currentCursor.posX);
+      console.log('is greater than')
+      console.log(yesbox.left)
+      console.log('correct?')
       theCard.dom.classList.add('thinking-yes');
+
 
     }
     if (currentCursor.posX < yesbox.left && clicking) {

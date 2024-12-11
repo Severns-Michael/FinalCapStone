@@ -84,18 +84,6 @@ public class DogController {
         return dogDao.getRandomDog();
     }
 
-    /**
-     * Retrieves preview dogs list.
-     *
-     * @return a preview dog list
-     * @throws DaoException if there is an error accessing the data
-     */
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping(path = "/dogs/preview")
-    public List<Dog> getPreviewDog() throws DaoException {
-        return dogDao.getPreviewDog();
-    }
-
 //    @ResponseStatus(HttpStatus.OK)
 //    @GetMapping(path = "/userdogsyes")
 //    public List<Dog> getDogsYes(Principal principal) throws DaoException {

@@ -153,6 +153,7 @@ div.fh-box {
 }
 
 div.fh-row {
+    display: flex;
     flex-direction: row;
 }
 
@@ -317,26 +318,35 @@ div.swiper {
 }
 
 div.swipe {
+    display: flex;
+    flex-direction: row;
     border: 1px solid var(--purp3);
     border-radius: 20px;
     width: 150px;
     padding: 10px;
+    justify-content: space-around;
 }
 
 div.card {
-    padding-bottom: 10px;
 }
 
 div.swipe {
-    flex-grow: 1;
+    flex-basis: 25%;
     margin:10px
 }
 div.swipe-dog{
-    flex-grow: 3;
+    flex-basis: 50%;
 }
 
 div.drag-card {
+    height: auto;
+    min-width: 400px;
+    max-width: 600px;
     transition: transform 0.2s ease;
+}
+div.drag-card>img.card-img-top{
+    max-width: 600px;
+    height: auto;
 }
 
 div.drag-card:hover {
@@ -347,7 +357,6 @@ div.drag-card:hover {
 div.drag-card:active {
     user-select: none;
     cursor: grabbing;
-    transform: scale(1.05) perspective(250px) rotateX(5deg);
 
 }
 

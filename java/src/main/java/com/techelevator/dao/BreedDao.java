@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Breed;
+import com.techelevator.model.PreviewBreed;
 import com.techelevator.model.Trait;
 
 import java.util.List;
@@ -18,5 +19,6 @@ public interface BreedDao {
 
     Breed updateTraitForBreed(Breed breed) throws DaoException;
 
+    List<PreviewBreed> getPreviewBreeds() throws DaoException;
 
 }

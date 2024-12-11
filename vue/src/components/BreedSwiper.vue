@@ -1,9 +1,10 @@
 <template>
-  <div class="swipe" ondragover="hoverHandler(event)" @drop="swipeYes($event,this.currentBreed)" id="yes-div">yes div
+  <div class="swipe" ondragover="hoverHandler(event)" @drop="swipeYes($event,this.currentBreed)" id="yes-div">
+   yes div
   </div>
 
   <div class="swipe swipe-dog" id="dog-div">
-    dog div
+
     <!--    <div class="card drag-card" draggable="true" id="drag-card" ondragstart="pickupHandler(event)"-->
     <!--         ondragover="hoverHandler(event)" ondrop="dropHandler(event)">-->
     <!--      <img draggable="false" class="card-img-top" :src="this.currentBreed.imgpath"/>-->
@@ -41,7 +42,7 @@ export default {
         userId: this.$store.state.user.id
       },
       currentBreed: {
-        imgpath: '',
+        img: '',
       },
       randomBreedList: [],
     }
@@ -51,13 +52,13 @@ export default {
       if (!this.currentBreed.subBreed) {
         DogService.getBreedPic(this.currentBreed.breedName).then(
             response => {
-              this.currentBreed.imgpath = response.data.message;
+              this.currentBreed.img = response.data.message;
             }
         );
       } else if(this.currentBreed.subBreed) {
         DogService.getSubBreedPic(this.currentBreed.breedName, this.currentBreed.subBreed).then(
             response => {
-              this.currentBreed.imgpath = response.data.message;
+              this.currentBreed.img = response.data.message;
             }
         )
       }

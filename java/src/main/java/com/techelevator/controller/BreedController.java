@@ -4,6 +4,7 @@ import com.techelevator.dao.BreedDao;
 import com.techelevator.dao.TraitDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Breed;
+import com.techelevator.model.PreviewBreed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -138,6 +139,12 @@ public class BreedController {
     @GetMapping(path = "/breeds/random")
     public List<Breed> getRandomBreeds(Principal principal) throws DaoException {
         return userDao.getBreedUserHasntSwiped(userDao.getUserByUsername(principal.getName()).getId());
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(path = "/breeds/preview")
+    public List<PreviewBreed> getPreviewBreeds() {
+        return breedDao.getPreviewBreeds();
     }
 }
 

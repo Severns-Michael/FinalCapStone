@@ -5,7 +5,7 @@
       <img v-bind:src="this.currentDog.img" alt="Dog photo" />
     </div>
 
-  
+
     <div class="polaroid-caption">
       <h2>{{ this.currentDog.dogName }}</h2>
       <ul>

@@ -97,22 +97,6 @@ public class JDBCDogDao implements DogDao {
         return null;
     }
 
-    @Override
-    public List<Dog> getPreviewDog() throws DaoException {
-        List<Dog> previewDogList = new ArrayList<>();
-        String sql = "select * from preview_dog";
-        try {
-            SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
-            while (rs.next()) {
-                previewDogList.add(mapRowToDog(rs));
-            }
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
-        }
-
-        return previewDogList;
-    }
-
     public Dog mapRowToDog(SqlRowSet rs) {
         Dog dog = new Dog();
         dog.setDogId(rs.getInt("dog_id"));

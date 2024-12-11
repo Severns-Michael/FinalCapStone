@@ -2,7 +2,7 @@
   <div class="home">
     <header class="header">
       <div class="header-container">
-        <h1>Welcome to FoundHound</h1>
+        <h1>Find the BEST breed for YOU!</h1>
       </div>
     </header>
 
@@ -23,7 +23,7 @@
     <!-- Tagline Section -->
     <section class="tagline">
       <div class="tagline-container">
-        <p>FoundHound: Connecting You to the Perfect Breed and a Furever Friend</p>
+        <p>Connecting You to the Perfect Breed and a Furever Friend</p>
       </div>
     </section>
 
@@ -83,6 +83,7 @@ export default {
 .tagline {
   margin: 30px 0;
   text-align: center;
+  font-size: 2em;
 }
 .tagline-container {
   padding: 15px;

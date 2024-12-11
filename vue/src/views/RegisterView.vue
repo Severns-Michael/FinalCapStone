@@ -17,8 +17,8 @@
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
-      <button type="submit">Create Account</button>
-      <p><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
+      <button type="submit" class="btn purple-btn">Create Account</button>
+      <p><router-link v-bind:to="{ name: 'login' }" class="login-link">Already have an account? Log in.</router-link></p>
     </form>
   </div>
 </template>
@@ -78,5 +78,62 @@ export default {
 }
 label {
   margin-right: 0.5rem;
+}
+.purple-btn {
+  padding: 10px 30px;
+  font-size: 1em;
+  color: white;
+  background-color: var(--purp1); 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.purple-btn:hover {
+  background-color: var(--purp5);
+  transform: scale(1.05); 
+}
+.login-link {
+  font-size: 1.1em;
+  font-weight: bold; 
+  color: var(--purp3); 
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.login-link:hover {
+  color: var(--purp1); 
+  text-decoration: underline; 
+}
+.form-input-group {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start; 
+  margin-bottom: 1rem; 
+  width: 100%; 
+  max-width: 300px; 
+  margin: 0 auto;
+}
+
+label {
+  font-size: 1em;
+  margin-bottom: 5px; 
+}
+
+input {
+  width: 100%; 
+  padding: 10px; 
+  border: 1px solid var(--purp3); 
+  border-radius: 5px; 
+  box-sizing: border-box; 
+  font-size: 1em;
+}
+button.purple-btn {
+  margin-top: 10px; 
+}
+.login-link {
+  margin-top: 6px; 
+  display: inline-block; 
 }
 </style>

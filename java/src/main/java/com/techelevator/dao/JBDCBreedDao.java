@@ -30,7 +30,7 @@ public class JBDCBreedDao implements BreedDao {
         List<Breed> breedList = new ArrayList<>();
         String sql = "SELECT b.breed_id, b.breed_name, b.sub_breed, b.official_name " +
                 "from breed b " +
-                "order by official_name ASC"; //need to edit
+                "order by official_name ASC";
         try {
             SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
             while (rs.next()) {
@@ -50,12 +50,11 @@ public class JBDCBreedDao implements BreedDao {
                 "from breed b " +
                 "full join breed_trait bt ON bt.breed_id = b.breed_id " +
                 "full join trait t ON t.trait_id = bt.trait_id " +
-                "WHERE b.breed_id=?"; // need to edit
+                "WHERE b.breed_id=?";
         try {
             SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, id);
             if (rs.next()) {
                 breed = mapRowToSingleBreed(rs);
-//                breed = mapRowToBreed(rs);
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -66,7 +65,7 @@ public class JBDCBreedDao implements BreedDao {
     @Override
     public Breed createBreed(Breed breed) throws DaoException {
         int breedId;
-        String sql = "INSERT INTO breed (breed_name,sub_breed,official_name) VALUES (?,?,?) RETURNING breed_id"; // check
+        String sql = "INSERT INTO breed (breed_name,sub_breed,official_name) VALUES (?,?,?) RETURNING breed_id";
         try {
             breedId = jdbcTemplate.queryForObject(sql, int.class, breed.getBreedName(), breed.getSubBreed(), breed.getOfficialName());
             breed = getBreedById(breedId);
@@ -91,8 +90,6 @@ public class JBDCBreedDao implements BreedDao {
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
         }
-
-
     }
 
     @Override
@@ -134,8 +131,6 @@ public class JBDCBreedDao implements BreedDao {
         return previewBreedList;
     }
 
-
-    // MApRow
     public Breed mapRowToSingleBreed(SqlRowSet rs) {
         Breed breed = new Breed();
         List<Trait> traitList = new ArrayList<>();
@@ -162,16 +157,4 @@ public class JBDCBreedDao implements BreedDao {
         breed.setOfficialName(rs.getString("official_name"));
         return breed;
     }
-//    public Breed mapRowToBreedWithTraitList(SqlRowSet ra) throws SQLException {
-//        Breed breed = new Breed();
-//        List<Trait> traitList = new ArrayList<>();
-//        breed.setBreedId(ra.getInt("breed_id"));
-//        breed.setBreedName(ra.getString("breed_name"));
-//        breed.setSubBreed(ra.getString("sub_breed"));
-//        breed.setOfficialName(ra.getString("official_name"));
-//        while (ra.next()) {
-//            traitList.add(JDBCTraitDao.getTraitById(ra.getInt("trait_id")));
-//        }
-//
-//    }
 }

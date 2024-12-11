@@ -47,6 +47,7 @@ public class BreedController {
      * @return the breed with the specified id
      * @throws ResponseStatusException if the breed is not found
      */
+
     @RequestMapping(path = "/breeds/{breedId}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Breed getBreedById(@PathVariable int breedId) {
@@ -61,7 +62,6 @@ public class BreedController {
         return returnedBreed;
 
     }
-
 
     /**
      * Adds a new breed to the database.

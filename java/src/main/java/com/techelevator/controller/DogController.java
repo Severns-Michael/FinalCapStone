@@ -84,17 +84,5 @@ public class DogController {
         return dogDao.getRandomDog();
     }
 
-//    @ResponseStatus(HttpStatus.OK)
-//    @GetMapping(path = "/userdogsyes")
-//    public List<Dog> getDogsYes(Principal principal) throws DaoException {
-//        return userDao.getSwipedYesDogs(userDao.getUserByUsername(principal.getName()).getId());
-//    }
-//    @ResponseStatus(HttpStatus.OK)
-//    @GetMapping(path = "/userdogsno")
-//    public List<Dog> getDogsNo(Principal principal) throws DaoException {
-//        return userDao.getSwipedNoDogs(userDao.getUserByUsername(principal.getName()).getId());
-//    }
-//
-
 
 }

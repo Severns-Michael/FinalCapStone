@@ -1,9 +1,10 @@
 <template>
-  <div class="swipe" ondragover="hoverHandler(event)" @drop="swipeYes($event,this.currentBreed)" id="yes-div">yes div
+  <div class="swipe" ondragover="hoverHandler(event)" @drop="swipeYes($event,this.currentBreed)" id="yes-div">
+   yes div
   </div>
 
   <div class="swipe swipe-dog" id="dog-div">
-    dog div
+
     <!--    <div class="card drag-card" draggable="true" id="drag-card" ondragstart="pickupHandler(event)"-->
     <!--         ondragover="hoverHandler(event)" ondrop="dropHandler(event)">-->
     <!--      <img draggable="false" class="card-img-top" :src="this.currentBreed.imgpath"/>-->

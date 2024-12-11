@@ -3,7 +3,7 @@
     <div class="card-content">
       <div class="card-title">Life Span</div>
       <div class="values">
-        From <span id="min-age">0</span> year(s) to <span id="max-age">25</span> year(s)
+        From <span id="min-age">0</span> years to <span id="max-age">25</span> years
       </div>
       <div class="slider-container-age">
         <div class="slider-track-age"></div>

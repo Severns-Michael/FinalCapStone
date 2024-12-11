@@ -1,12 +1,12 @@
-<!-- <template>
-
-</template> -->
+<template>
+<demo-card/>
+</template>
 <script>
-// import
+import DemoCard from '@/components/DemoCard.vue'
 
-// export default {
-//   components: {
-
-//   }
-// }
+export default {
+  components: {
+    DemoCard,
+  }
+}
 </script>

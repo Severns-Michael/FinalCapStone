@@ -30,6 +30,6 @@ function resetCardPos(){
     console.log("resetCardPos");
 }
 
-function {
+function testFunction(){
 
 }

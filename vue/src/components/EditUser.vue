@@ -13,7 +13,7 @@
       <label for="role">Role:</label>
       <select v-model="selectedUser.name" @change="getSelectedUser('role')">
         <option v-for="user in users" :key="'role-' + user.userId">
-          {{ user.name }}
+          {{ user.role }}
         </option>
       </select>
 

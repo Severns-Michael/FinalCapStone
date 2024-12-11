@@ -16,7 +16,7 @@
     <!--      </div>-->
     <!--    </div>-->
     <swipe-card :swipedBreed="this.swipedBreed" :currentBreed="this.currentBreed">
-      <div class="loading"></div>
+      <!-- <div class="loading"></div> -->
     </swipe-card>
   </div>
   <div class="swipe" id="yes-div">
@@ -133,7 +133,7 @@ export default {
 
 <style>
 
-.container {
+/* .container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,6 +151,6 @@ export default {
   to {
     transform: rotate(360deg)
   }
-}
+} */
 
 </style>

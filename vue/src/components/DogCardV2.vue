@@ -1,21 +1,22 @@
 <template>
-  <div class="container">
-    <div class="card">
-      <img v-bind:src="this.currentDog.img" class="card-img-top"/>
-      <div class="card-body">
-        <h2 class="card-title">{{ this.currentDog.dogName }}</h2>
-      </div>
-      <ul class="card-text">
-        <li> Breed: {{this.currentDog.breed?.officialName}}</li>
-        <li> Age: {{this.currentDog.age}} years old</li>
-        <li> Size: {{this.getDogSize()}}</li>
-        <li> Gender: {{this.getDogGender()}}</li>
-        <li> Agency: {{this.currentAgency.agencyName}} </li>
-<!--        <li v-for="trait in this.currentDog.breed.traits" v-bind:key="trait.traitId">Traits: {{trait.trait.id}}</li>-->
+  <div class="polaroid-card">
+    
+    <div class="polaroid-image-container">
+      <img v-bind:src="this.currentDog.img" alt="Dog photo" />
+    </div>
+
+  
+    <div class="polaroid-caption">
+      <h2>{{ this.currentDog.dogName }}</h2>
+      <ul>
+        <li>Breed: {{ this.currentDog.breed?.officialName }}</li>
+        <li>Age: {{ this.currentDog.age }} years old</li>
+        <li>Size: {{ this.getDogSize() }}</li>
+        <li>Gender: {{ this.getDogGender() }}</li>
+        <li>Agency: {{ this.currentAgency.agencyName }}</li>
       </ul>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -78,5 +79,44 @@ export default {
 </script>
 
 <style scoped>
+.polaroid-card {
+  width: 200px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  margin: 15px;
+}
 
+.polaroid-image-container {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.polaroid-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaroid-caption {
+  margin-top: 10px;
+}
+
+.polaroid-caption h2 {
+  margin: 0 0 10px;
+  font-size: 1.2em;
+}
+
+.polaroid-caption ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9em;
+  color: #333;
+}
 </style>

@@ -15,7 +15,9 @@
     <!--        </ul>-->
     <!--      </div>-->
     <!--    </div>-->
-    <swipe-card :swipedBreed="this.swipedBreed" :currentBreed="this.currentBreed"/>
+    <swipe-card :swipedBreed="this.swipedBreed" :currentBreed="this.currentBreed">
+      <div class="loading"></div>
+    </swipe-card>
   </div>
   <div class="swipe" id="yes-div">
     yes div
@@ -130,5 +132,25 @@ export default {
 </script>
 
 <style>
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading {
+  height: 120px;
+  width: 120px;
+  border: 5px solid;
+  border-color: white transparent white transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg)
+  }
+}
 
 </style>

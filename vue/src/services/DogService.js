@@ -11,8 +11,8 @@ export default {
     getDogById(id) {
         return axios.get(`/dogs/${id}`)
     },
-    updateDog() {
-        return axios.put("/dogs")
+    updateDog(dog) {
+        return axios.put("/dogs", dog)
     },
     getRandomDog() {
         return axios.get("/dogs/random")

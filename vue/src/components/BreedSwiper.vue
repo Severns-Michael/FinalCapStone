@@ -15,7 +15,7 @@
     <!--        </ul>-->
     <!--      </div>-->
     <!--    </div>-->
-    <swipe-card :breed="this.currentBreed"/>
+    <swipe-card :swipedBreed="this.swipedBreed" :currentBreed="this.currentBreed"/>
   </div>
   <div class="swipe" id="yes-div">
     yes div
@@ -41,9 +41,7 @@ export default {
       swipedBreed: {
         userId: this.$store.state.user.id
       },
-      currentBreed: {
-        img: '',
-      },
+      currentBreed: {},
       randomBreedList: [],
     }
   },
@@ -52,13 +50,13 @@ export default {
       if (!this.currentBreed.subBreed) {
         DogService.getBreedPic(this.currentBreed.breedName).then(
             response => {
-              this.currentBreed.img = response.data.message;
+              this.swipedBreed.img = response.data.message;
             }
         );
       } else if(this.currentBreed.subBreed) {
         DogService.getSubBreedPic(this.currentBreed.breedName, this.currentBreed.subBreed).then(
             response => {
-              this.currentBreed.img = response.data.message;
+              this.swipedBreed.img = response.data.message;
             }
         )
       }
@@ -69,6 +67,7 @@ export default {
         BreedService.getBreedById(this.randomBreedList.pop().breedId).then(
             response => {
               this.currentBreed = response.data
+              this.swipedBreed.breedId = this.currentBreed.breedId;
               this.setCurrentBreedImage();
             }
         );
@@ -78,6 +77,7 @@ export default {
       BreedService.getBreedById(this.randomBreedList.pop().breedId).then(
           response => {
             this.currentBreed = response.data
+            this.swipedBreed.breedId = this.currentBreed.breedId;
             this.setCurrentBreedImage();
           }
       );

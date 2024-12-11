@@ -1,8 +1,9 @@
 <template>
 
 
-  <div class="card drag-card" draggable="false" id="drag-card">
-    <img draggable="false" class="card-img-top" :src="this.breed.img"/>
+  <div class="card drag-card" draggable="true" id="drag-card" ondragstart="pickupHandler(event)"
+       ondragover="hoverHandler(event)" ondrop="dropHandler(event)">
+    <img draggable="false" class="card-img-top" :src="this.swipedBreed.img"/>
     <div class="card-body">
       <h2 v-text="this.breed.officialName"></h2>
       <ul>
@@ -16,12 +17,14 @@
 </template>
 
 <script>
-import DogService from '../services/DogService';
-import SwipingView from '../views/SwipingView.vue';
 
 export default {
   props: {
-    breed: {
+    swipedBreed: {
+      type: Object,
+      required: true
+    },
+    currentBreed: {
       type: Object,
       required: true
     }

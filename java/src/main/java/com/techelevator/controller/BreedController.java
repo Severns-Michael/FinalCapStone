@@ -7,6 +7,7 @@ import com.techelevator.model.Breed;
 import com.techelevator.model.PreviewBreed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import com.techelevator.model.Swiped;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin
-//@@PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
 public class BreedController {
     @Autowired
     private BreedDao breedDao;
@@ -35,6 +36,7 @@ public class BreedController {
      * @return a list of all breeds
      * @throws DaoException if there is an error accessing the data
      */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @RequestMapping(path = "/breeds", method = RequestMethod.GET)
     public List<Breed> getALLBreeds() throws DaoException {
         return breedDao.listAllBreeds();
@@ -47,6 +49,8 @@ public class BreedController {
      * @return the breed with the specified id
      * @throws ResponseStatusException if the breed is not found
      */
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @RequestMapping(path = "/breeds/{breedId}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Breed getBreedById(@PathVariable int breedId) {
@@ -62,7 +66,6 @@ public class BreedController {
 
     }
 
-
     /**
      * Adds a new breed to the database.
      *
@@ -70,6 +73,8 @@ public class BreedController {
      * @return the created breed
      * @throws DaoException if there is an error during the creation process
      */
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/breeds", method = RequestMethod.POST)
     public Breed addBreed(@RequestBody Breed breed) throws DaoException {
@@ -83,6 +88,8 @@ public class BreedController {
      * @return the updated breed
      * @throws DaoException if there is an error during the update process
      */
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/breeds", method = RequestMethod.PUT)
     public Breed updateBreedTraits(@RequestBody Breed breed) throws DaoException {
@@ -96,6 +103,8 @@ public class BreedController {
      * @param breedId the id of the breed to delete
      * @throws DaoException if there is an error during the deletion process
      */
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/breeds/{breedId}", method = RequestMethod.DELETE)
     public void deleteBreed(@PathVariable int breedId) throws DaoException {
@@ -109,6 +118,8 @@ public class BreedController {
      * @return a list of swiped breeds
      * @throws DaoException if there is an error accessing the data
      */
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/swiped")
     public List<Swiped> getSwipedBreeds(Principal principal) throws DaoException {
@@ -122,6 +133,8 @@ public class BreedController {
      * @return the added swiped breed
      * @throws DaoException if there is an error during the creation process
      */
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "/swiped")
     public Swiped addSwipedBreed(@RequestBody Swiped swiped) throws DaoException {
@@ -135,12 +148,14 @@ public class BreedController {
      * @return a list of random breeds
      * @throws DaoException if there is an error accessing the data
      */
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/breeds/random")
     public List<Breed> getRandomBreeds(Principal principal) throws DaoException {
         return userDao.getBreedUserHasntSwiped(userDao.getUserByUsername(principal.getName()).getId());
     }
-
+    @PreAuthorize("permitAll")
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/breeds/preview")
     public List<PreviewBreed> getPreviewBreeds() {

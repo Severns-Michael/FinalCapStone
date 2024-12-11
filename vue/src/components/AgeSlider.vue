@@ -1,17 +1,17 @@
 <template>
   <div class="card-container">
     <div class="card-content">
-      <div class="card-title">Size Range</div>
-      
+      <div class="card-title-size">Size Range</div>
+
       <div class="slider-values">
         From <span id="min-size">Small</span> to <span id="max-size">Large</span>
       </div>
-      
+
       <div class="slider-container">
         <div class="slider-track"></div>
         <input
             type="range"
-            id="slider-min"
+            id="slider-min-size"
             class="input-range"
             min="1"
             max="3"
@@ -20,7 +20,7 @@
         />
         <input
             type="range"
-            id="slider-max"
+            id="slider-max-size"
             class="input-range"
             min="1"
             max="3"
@@ -28,7 +28,7 @@
             value="3"
         />
       </div>
-      
+
       <div class="slider-labels">
         <span>Small</span>
         <span>Medium</span>
@@ -40,8 +40,8 @@
 <script>
 export default {
   mounted() {
-    const minSlider = document.getElementById("slider-min");
-    const maxSlider = document.getElementById("slider-max");
+    const minSlider = document.getElementById("slider-min-size");
+    const maxSlider = document.getElementById("slider-max-size");
     const minSize = document.getElementById("min-size");
     const maxSize = document.getElementById("max-size");
     const track = document.querySelector(".slider-track");
@@ -53,24 +53,24 @@ export default {
     const updateSlider = () => {
       const minValue = parseInt(minSlider.value, 10);
       const maxValue = parseInt(maxSlider.value, 10);
-      
+
       if (minValue >= maxValue) {
-        minSlider.value = maxValue - 1;
+        minSlider.value = maxValue;
       } else if (maxValue <= minValue) {
-        maxSlider.value = minValue + 1;
+        maxSlider.value = minValue;
       }
-      
+
       minSize.textContent = sizeLabels[minSlider.value];
       maxSize.textContent = sizeLabels[maxSlider.value];
-      
-      const percentMin = ((minSlider.value - 1) / 2) * 100;
-      const percentMax = ((maxSlider.value - 1) / 2) * 100;
+
+      const percentMin = ((minValue - minSlider.min) / (minSlider.max - minSlider.min)) * 100;
+      const percentMax = ((maxValue - maxSlider.min) / (maxSlider.max - maxSlider.min)) * 100;
       track.style.background = `linear-gradient(to right, #8a2cac ${percentMin}%, #a04ebd ${percentMin}%, #a04ebd ${percentMax}%, #8a2cac ${percentMax}%)`;
     };
-    
+
     minSlider.addEventListener("input", updateSlider);
     maxSlider.addEventListener("input", updateSlider);
-   
+
     updateSlider();
   },
 };
@@ -78,22 +78,22 @@ export default {
 <style scoped>
 .card-container {
   display: flex;
-  flex-direction: column; 
-  width: 100%; 
-  max-width: 312px; 
-  margin: auto; 
-  padding: 10px; 
-  box-sizing: border-box; 
+  flex-direction: column;
+  width: 100%;
+  max-width: 312px;
+  margin: auto;
+  padding: 10px;
+  box-sizing: border-box;
 }
 .card-content {
   width: 100%;
   padding: 36px 16px;
-  max-width: 100%; 
+  max-width: 100%;
   background: var(--color-primary);
   border-radius: 10px;
   box-sizing: border-box;
 }
-.card-title {
+.card-title-size {
   font-size: 32px;
   font-weight: 700;
   color: white;
@@ -112,14 +112,14 @@ export default {
   height: 6px;
   margin: 20px 0;
 }
-.slider-track {
+.slider-track-size {
   position: absolute;
   width: 100%;
   height: 6px;
   border-radius: 5px;
   background: var(--color-headline);
-  z-index: 1;
-  overflow: hidden; 
+  z-index: 2;
+  overflow: hidden;
 }
 .input-range {
   position: absolute;

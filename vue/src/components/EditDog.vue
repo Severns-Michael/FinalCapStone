@@ -106,6 +106,7 @@ export default {
         }
       });
       this.getBreedById();
+      this.getAllDogs();
     },
     getAllAgencies(){
       DogService.getAllAgencies().then(response => {

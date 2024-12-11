@@ -86,10 +86,10 @@ create table dog(
 		constraint fk_usd_breed foreign key (breed_id) references breed(breed_id)
 	);
 	Create table preview_breeds(
-	    preview_dog_id serial,
+	    preview_breed_id serial,
 	    breed_id int,
 
-	    constraint pk_preview_dog_id primary key(preview_dog_id),
+	    constraint pk_preview_breed_id primary key(preview_breed_id),
 	    constraint fk_breed_id foreign key (breed_id) references breed(breed_id)
 	);
 	

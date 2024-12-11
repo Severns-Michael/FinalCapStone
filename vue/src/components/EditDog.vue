@@ -17,7 +17,7 @@
     </div>
 
     <div>
-      <label>Adoption Agency : </label>
+      <label>Agency : </label>
       <select v-model="this.selectedDog.agencyId">
         <option v-for="agency in agenciesList" :key="agency.agencyId" :value="agency.agencyId">
           {{ agency.agencyName }}

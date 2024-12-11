@@ -92,7 +92,7 @@ h1 {
 
 .form-input-group {
   display: flex;
-  flex-direction: column; /* Stack label and input vertically */
+  flex-direction: column;
   align-items: flex-start;
   margin-bottom: 1rem;
   width: 100%;
@@ -103,13 +103,13 @@ h1 {
 label {
   font-size: 1em;
   margin-bottom: 5px;
-  color: white; /* Ensure labels are white for contrast */
+  color: white; 
 }
 
 input {
   width: 100%;
   padding: 10px;
-  border: 1px solid var(--purp3); /* Match your theme */
+  border: 1px solid var(--purp3);
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 1em;
@@ -117,7 +117,7 @@ input {
 
 button.purple-btn {
   padding: 10px 30px;
-  font-size: 1.2em; /* Slightly larger button */
+  font-size: 1.2em; 
   color: white;
   background-color: var(--purp1);
   border: none;

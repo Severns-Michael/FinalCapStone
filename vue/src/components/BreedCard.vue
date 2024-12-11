@@ -2,15 +2,15 @@
   <div class="container">
 
     <div class="card">
-      <img v-bind:src="this.swipedBreed.img" class="card-img-top"/>
-
-      <div class="card-body">
-        <h2 class="card-title">{{ this.breed.officialName }}</h2>
+      <div class="polaroid-image-container">
+        <img v-bind:src="this.swipedBreed.img" class="card-img-top"/>
       </div>
-
-      <ul class="card-text">
-        <li v-for="trait in this.breed.traits" v-bind:key="trait.traitId"> {{ trait.traitName }}</li>
-      </ul>
+      <div class="polaroid-caption">
+        <h2 class="card-title">{{ this.breed.officialName }}</h2>
+        <ul class="card-text">
+          <li v-for="trait in this.breed.traits" v-bind:key="trait.traitId"> {{ trait.traitName }}</li>
+        </ul>
+      </div>
       
     </div>
   </div>
@@ -89,6 +89,40 @@ img {
 
 .container {
   max-width: 300px;
+}
+
+.polaroid-image-container {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+
+}
+
+.polaroid-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaroid-caption {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.polaroid-caption h2 {
+  margin: 0 0 10px;
+  font-size: 1.2em;
+  
+}
+
+.polaroid-caption ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9em;
+  color: #333;
 }
 
 </style>

@@ -3,14 +3,14 @@
     <div class="card-content">
       <div class="card-title">Life Span</div>
       <div class="values">
-        From <span id="min-age">0</span> year(s) to <span id="max-age">25</span> year(s)
+        From <span id="min-age">0</span> years to <span id="max-age">25</span> years
       </div>
-      <div class="slider-container">
-        <div class="slider-track"></div>
+      <div class="slider-container-age">
+        <div class="slider-track-age"></div>
         <input
           type="range"
-          id="slider-min"
-          class="input-range"
+          id="slider-min-age"
+          class="input-range-age"
           min="0"
           max="25"
           step="1"
@@ -18,15 +18,15 @@
         />
         <input
           type="range"
-          id="slider-max"
-          class="input-range"
+          id="slider-max-age"
+          class="input-range-age"
           min="0"
           max="25"
           step="1"
           value="25"
         />
       </div>
-      <div class="slider-labels">
+      <div class="slider-labels-age">
         <span>0</span>
         <span>5</span>
         <span>10</span>
@@ -41,8 +41,8 @@
 <script>
 export default {
   mounted() {
-    const minSlider = document.getElementById("slider-min");
-    const maxSlider = document.getElementById("slider-max");
+    const minSlider = document.getElementById("slider-min-age");
+    const maxSlider = document.getElementById("slider-max-age");
     const minAge = document.getElementById("min-age");
     const maxAge = document.getElementById("max-age");
     const track = document.querySelector(".slider-track");
@@ -103,13 +103,13 @@ export default {
   color: white;
   text-align: center;
 }
-.slider-container {
+.slider-container-age {
   position: relative;
   width: 100%;
   height: 6px;
   margin: 20px 0;
 }
-.slider-track {
+.slider-track-age {
   position: absolute;
   width: 100%;
   height: 6px;
@@ -118,7 +118,7 @@ export default {
   z-index: 1;
   overflow: hidden; 
 }
-.input-range {
+.input-range-age {
   position: absolute;
   width: 100%;
   height: 6px;
@@ -130,7 +130,7 @@ export default {
   z-index: 2;
   pointer-events: none;
 }
-.input-range::-webkit-slider-thumb {
+.input-range-age::-webkit-slider-thumb {
   position: relative;
   pointer-events: auto;
   width: 20px;
@@ -141,7 +141,7 @@ export default {
   cursor: pointer;
   appearance: none;
 }
-.input-range::-moz-range-thumb {
+.input-range-age::-moz-range-thumb {
   position: relative;
   pointer-events: auto;
   width: 20px;
@@ -151,7 +151,7 @@ export default {
   cursor: pointer;
   border: 2px solid var(--color-primary);
 }
-.slider-labels {
+.slider-labels-age {
   display: flex;
   justify-content: space-between;
   font-size: 14px;

@@ -17,10 +17,10 @@ export default {
     return {
       newDog: {
         dogName: '',
-        breedId: '',
+        breedId: 1,
         age: '',
         gender: '',
-        agencyId: '',
+        agencyId: 1,
         img: ''
       }
     }
@@ -31,10 +31,10 @@ export default {
         if (response.status === 201) {
           this.newDog = {
             dogName: '',
-            breedId: '',
+            breedId: 1,
             age: '',
             gender: '',
-            agencyId: '',
+            agencyId: 1,
             img: ''
           };
         }

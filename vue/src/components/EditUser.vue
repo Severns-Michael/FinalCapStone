@@ -13,7 +13,7 @@
       <label for="role">Role:</label>
       <select v-model="selectedUser.name" @change="getSelectedUser('role')">
         <option v-for="user in users" :key="'role-' + user.userId">
-          {{ user.role }}
+          {{ user.authorities[0].name }}
         </option>
       </select>
 
@@ -29,11 +29,33 @@ import UserService from "../services/UserService";
 export default {
   data() {
     return {
-      users: [],
+      users: [
+        {
+          id: 2,
+          username: "admin",
+          authorities: [
+            {
+              name: "ROLE_ADMIN",
+            },
+          ],
+          yesTraits: [
+            {
+              traitId: 0,
+              traitName: null,
+            },
+          ],
+          noTraits: [
+            {
+              traitId: 0,
+              traitName: null,
+            },
+          ],
+        },
+      ],
       selectedUser: {},
       user : {
         username: '',
-        role: ''
+        role: null
       }
 
     }

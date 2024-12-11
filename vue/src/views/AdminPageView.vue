@@ -16,16 +16,15 @@
 <!--    </li>-->
 <!--  </ul>-->
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-    <li class="nav-item btn btn-light" role="presentation">
+    <li class="nav-item" role="presentation">
       <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-breeds" type="button" role="tab" aria-controls="pills-breeds" aria-selected="true">Manage Breeds</button>
     </li>
-    <li class="nav-item btn btn-light" role="presentation">
+    <li class="nav-item" role="presentation">
       <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-dogs" type="button" role="tab" aria-controls="pills-dogs" aria-selected="false">Manage Dogs</button>
     </li>
-    <li class="nav-item btn btn-light" role="presentation">
+    <li class="nav-item" role="presentation">
       <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-users" type="button" role="tab" aria-controls="pills-users" aria-selected="false">Manage Users</button>
     </li>
-
   </ul>
   <div class="tab-content" id="pills-tabContent">
 
@@ -185,6 +184,25 @@ export default {
 .dog-management-section h3 {
   font-size: 1.2em;
   margin-bottom: 20px;
+  color: white;
+}
+.nav-pills .nav-link {
+  background-color: var(--purp1); /* Purple background */
+  color: white; /* White text */
+  border: none; /* Remove default borders */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 20px; /* Consistent padding */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
+}
+
+.nav-pills .nav-link:hover {
+  background-color: var(--purp5); /* Lighten on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  color: white; /* Ensure text stays white */
+}
+
+.nav-pills .nav-link.active {
+  background-color: var(--purp3); /* Distinct color for active pill */
   color: white;
 }
     

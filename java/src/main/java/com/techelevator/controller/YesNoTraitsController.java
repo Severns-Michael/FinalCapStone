@@ -4,16 +4,18 @@ import com.techelevator.exception.DaoException;
 import com.techelevator.model.Trait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 import com.techelevator.dao.UserDao;
 
 
 import java.security.Principal;
 import java.util.List;
 
+
+@RestController
+@CrossOrigin
+@PreAuthorize("isAuthenticated()")
 public class YesNoTraitsController {
     @Autowired
     private UserDao userDao;
@@ -25,6 +27,7 @@ public class YesNoTraitsController {
      * @return a list of included traits
      * @throws DaoException if there is an error accessing data
      */
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(path = "/traits/include")
     @ResponseStatus(HttpStatus.OK)
     public List<Trait> getYesTraitsByUser(Principal principal) throws DaoException {
@@ -38,6 +41,7 @@ public class YesNoTraitsController {
      * @return a list of excluded traits
      * @throws DaoException if there is an error accessing data
      */
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping(path = "/traits/exclude")
     @ResponseStatus(HttpStatus.OK)
     public List<Trait> getNoTraitsByUser(Principal principal) throws DaoException {

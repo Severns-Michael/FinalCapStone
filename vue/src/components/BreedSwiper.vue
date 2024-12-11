@@ -297,7 +297,7 @@ export default {
 
 <style>
 
-.container {
+/* .container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -316,6 +316,6 @@ export default {
   to {
     transform: rotate(360deg)
   }
-}
+} */
 
 </style>

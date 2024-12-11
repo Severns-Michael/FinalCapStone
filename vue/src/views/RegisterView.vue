@@ -1,25 +1,31 @@
 <template>
   <div id="register" class="text-center">
-    <form v-on:submit.prevent="register">
+    <div class="form-container">
       <h1>Create Account</h1>
-      <div role="alert" v-if="registrationErrors">
-        {{ registrationErrorMsg }}
-      </div>
-      <div class="form-input-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
-      </div>
-      <div class="form-input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" v-model="user.password" required />
-      </div>
-      <div class="form-input-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
-      </div>
-      <button type="submit" class="btn purple-btn">Create Account</button>
-      <p><router-link v-bind:to="{ name: 'login' }" class="login-link">Already have an account? Log in.</router-link></p>
-    </form>
+      <form v-on:submit.prevent="register">
+        <div role="alert" v-if="registrationErrors">
+          {{ registrationErrorMsg }}
+        </div>
+        <div class="form-input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" v-model="user.username" required autofocus />
+        </div>
+        <div class="form-input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" v-model="user.password" required />
+        </div>
+        <div class="form-input-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
+        </div>
+        <button type="submit" class="btn purple-btn">Create Account</button>
+        <p>
+          <router-link v-bind:to="{ name: 'login' }" class="login-link">
+            Already have an account? Log in.
+          </router-link>
+        </p>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -77,6 +83,7 @@ export default {
   margin-bottom: 1rem;
 }
 label {
+  color:white;
   margin-right: 0.5rem;
 }
 .purple-btn {
@@ -91,13 +98,13 @@ label {
 }
 
 .purple-btn:hover {
-  background-color: var(--purp5);
+  background-color: var(--purp4);
   transform: scale(1.05); 
 }
 .login-link {
   font-size: 1.1em;
   font-weight: bold; 
-  color: var(--purp3); 
+  color: white; 
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -135,5 +142,23 @@ button.purple-btn {
 .login-link {
   margin-top: 6px; 
   display: inline-block; 
+}
+
+.form-container {
+  background-color: var(--purp4); 
+  padding: 30px; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  max-width: 400px; 
+  margin: 110px auto; 
+  color: white;
+  text-align: center; 
+}
+
+h1 {
+  font-size: 2em; 
+  font-weight: bold; 
+  margin-bottom: 20px; 
+  color: white;
 }
 </style>

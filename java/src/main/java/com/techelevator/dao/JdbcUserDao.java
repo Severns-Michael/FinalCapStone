@@ -300,7 +300,7 @@ public class JdbcUserDao implements UserDao {
                 "( " +
                 "    SELECT DISTINCT bt.breed_id " +
                 "    FROM breed_trait AS bt " +
-                "    INNER JOIN users_trait_yes AS user_yes ON bt.trait_id = user_yes.trait_id " +
+                "    left JOIN users_trait_yes AS user_yes ON bt.trait_id = user_yes.trait_id " +
                 "    LEFT OUTER JOIN ( " +
                 "        SELECT bt.trait_id, SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) AS trait_count_adjusted " +
                 "        FROM user_swipe_breeds " +
@@ -309,7 +309,7 @@ public class JdbcUserDao implements UserDao {
                 "        GROUP BY bt.trait_id " +
                 "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) > -5 " +
                 "    ) AS table_one ON bt.trait_id = table_one.trait_id " +
-                "        where user_yes.user_id=? " +
+                "        where (user_yes.user_id=? or user_yes.user_id is null) " +
                 ") AS positive_breed " +
                 "LEFT JOIN " +
                 "( " +

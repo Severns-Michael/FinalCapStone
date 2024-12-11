@@ -70,9 +70,9 @@ public class JDBCDogDao implements DogDao {
 
     @Override
     public Dog updateDog(Dog dog) throws DaoException {
-        String sql = "update dog set dog_name = ?, breed_id = ?, img = ?, age = ?, size = ?, agency_id = ?, gender = ?";
+        String sql = "update dog set breed_id = ?, img = ?, age = ?, size = ?, agency_id = ?, gender = ? where dog_id = ?";
         try {
-            jdbcTemplate.update(sql, dog.getDogName(), dog.getBreedId(), dog.getImg(), dog.getAge(), dog.getSize(), dog.getAgencyId(), dog.getGender());
+            jdbcTemplate.update(sql, dog.getBreedId(), dog.getImg(), dog.getAge(), dog.getSize(), dog.getAgencyId(), dog.getGender(), dog.getDogId());
             dog = getDogById(dog.getDogId());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -95,22 +95,6 @@ public class JDBCDogDao implements DogDao {
     @Override
     public Dog getRandomDog() throws DaoException { //TODO wrap into user dog yes and no
         return null;
-    }
-
-    @Override
-    public List<Dog> getPreviewDog() throws DaoException {
-        List<Dog> previewDogList = new ArrayList<>();
-        String sql = "select * from preview_dog";
-        try {
-            SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
-            while (rs.next()) {
-                previewDogList.add(mapRowToDog(rs));
-            }
-        } catch (CannotGetJdbcConnectionException e) {
-            throw new DaoException("Unable to connect to server or database", e);
-        }
-
-        return previewDogList;
     }
 
     public Dog mapRowToDog(SqlRowSet rs) {

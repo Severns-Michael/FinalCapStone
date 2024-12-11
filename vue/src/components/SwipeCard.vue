@@ -3,7 +3,7 @@
 
   <div class="card drag-card" draggable="true" id="drag-card" ondragstart="pickupHandler(event)"
        ondragover="hoverHandler(event)" ondrop="dropHandler(event)">
-    <img draggable="false" class="card-img-top" :src="this.breed.imgpath"/>
+    <img draggable="false" class="card-img-top" :src="this.breed.img"/>
     <div class="card-body">
       <h2 v-text="this.breed.officialName"></h2>
       <ul>

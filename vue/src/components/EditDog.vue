@@ -17,7 +17,7 @@
     </div>
 
     <div>
-      <label>Adoption Agency : </label>
+      <label>Agency : </label>
       <select v-model="this.selectedDog.agencyId">
         <option v-for="agency in agenciesList" :key="agency.agencyId" :value="agency.agencyId">
           {{ agency.agencyName }}
@@ -50,10 +50,10 @@
 
     <div>
       <h6>Gender: </h6>
-      <input id="Male" type="radio" value="Male" v-model="selectedDog.gender" />
+      <input id="Male" type="radio" value="0" v-model="selectedDog.gender" />
       <label for=""> Male </label>
 
-      <input id="Female" type="radio" value="Female" v-model="selectedDog.gender" />
+      <input id="Female" type="radio" value="1" v-model="selectedDog.gender" />
       <label for="Female"> Female </label>
     </div>
 
@@ -99,13 +99,13 @@ export default {
   },
   methods: {
     getSelectedDog() {
-      // Logic to handle selected dog change, if needed
-      this.selectedDog = this.dogs.find(dog => {
+      this.dogs.find(dog => {
         if (this.selectedDog.dogName === dog.dogName) {
-          return dog;
+          this.selectedDog = dog;
         }
       });
       this.getBreedById();
+      this.getAllDogs();
     },
     getAllAgencies(){
       DogService.getAllAgencies().then(response => {
@@ -130,7 +130,9 @@ export default {
     },
     updateDog() {
       DogService.updateDog(this.selectedDog).then(response => {
-        this.selectedDog = {}
+        this.selectedDog = {
+          dogName: ''
+        }
       });
     }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="fh-box fh-row" id="breed-swiper">
+  <div class=" fh-row" id="breed-swiper">
 
 
     <breed-swiper/>

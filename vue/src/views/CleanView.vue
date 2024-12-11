@@ -1,11 +1,12 @@
 <template>
-  <breed-swiper/>
+<demo-card/>
 </template>
 <script>
-import BreedSwiper from "@/components/BreedSwiper.vue";
+import DemoCard from '@/components/DemoCard.vue'
+
 export default {
   components: {
-    BreedSwiper
+    DemoCard,
   }
 }
 </script>

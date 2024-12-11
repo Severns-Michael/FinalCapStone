@@ -14,7 +14,7 @@ export default {
     updateDog(dog) {
         return axios.put("/dogs", dog)
     },
-    getRandomDog() {
+    getRandomDogs() {
         return axios.get("/dogs/random")
     },
     createDog(dog){

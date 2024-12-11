@@ -3,7 +3,7 @@
     <div class="breed-selector">
       <label>Dog : </label>
       <select v-model="this.selectedDog.dogName" @change="this.getSelectedDog()" v-on:click="this.getAllDogs();">
-        <option v-for="dog in dogs" v-bind:key="dog.dogId">{{ dog.dogName }}</option>
+        <option v-for="dog in this.alphabetizedDogs" v-bind:key="dog.dogId">{{ dog.dogName }}</option>
       </select>
     </div>
 
@@ -19,7 +19,7 @@
     <div>
       <label>Agency : </label>
       <select v-model="this.selectedDog.agencyId">
-        <option v-for="agency in agenciesList" :key="agency.agencyId" :value="agency.agencyId">
+        <option v-for="agency in this.alphabetizedAgencies" :key="agency.agencyId" :value="agency.agencyId">
           {{ agency.agencyName }}
         </option>
       </select>
@@ -73,17 +73,12 @@ export default {
       selectedDog: {},
       selectedDogBreed: {},
       agency: {},
-      agenciesList: [],
-      selectedSize: 0
+      agenciesList: []
     };
   },
   created() {
     this.getAllDogs();
-    DogService.getAllAgencies().then(response => {
-      if (response.status === 200) {
-        this.agenciesList = response.data;
-      }
-    });
+    this.getAllAgencies();
     BreedService.getBreeds().then(response => {
       if (response.status === 200) {
         this.breeds = response.data;
@@ -91,7 +86,36 @@ export default {
     });
   },
   computed: {
-    
+    alphabetizedAgencies() {
+      const alphaAgencies = this.agenciesList;
+      alphaAgencies.sort((a, b) => {
+        const nameA = a.agencyName.toUpperCase(); 
+        const nameB = b.agencyName.toUpperCase(); 
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+          return 0;
+      });
+      return alphaAgencies;
+    },
+    alphabetizedDogs() {
+      const alphaDogs = this.dogs;
+      alphaDogs.sort((a, b) => {
+        const nameA = a.dogName.toUpperCase(); 
+        const nameB = b.dogName.toUpperCase(); 
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+          return 0;
+      });
+      return alphaDogs;
+    }
   },
   methods: {
     getSelectedDog() {
@@ -105,7 +129,7 @@ export default {
     getAllAgencies(){
       DogService.getAllAgencies().then(response => {
         if (response.status === 200) {
-          this.dogs = response.data;
+          this.agenciesList = response.data;
         }
       });
     },
@@ -125,8 +149,11 @@ export default {
     },
     updateDog() {
       DogService.updateDog(this.selectedDog).then(response => {
-        this.selectedDog = {
-          dogName: ''
+        if (response.status === 200) {
+          this.selectedDog = {
+            dogName: '',
+          },
+          this.selectedDogBreed = {}
         }
       });
     },

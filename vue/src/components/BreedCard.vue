@@ -83,4 +83,12 @@ export default {
 
 <style scoped>
 
+img {
+  max-width: 300px;
+}
+
+.container {
+  max-width: 300px;
+}
+
 </style>

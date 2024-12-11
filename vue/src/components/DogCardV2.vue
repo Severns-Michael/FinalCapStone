@@ -80,7 +80,7 @@ export default {
 
 <style scoped>
 .polaroid-card {
-  width: 200px;
+  width: 400px;
   background-color: white;
   padding: 10px;
   border-radius: 10px;
@@ -91,7 +91,7 @@ export default {
 
 .polaroid-image-container {
   width: 100%;
-  height: 180px;
+  height: 400px;
   overflow: hidden;
   background-color: #f0f0f0;
   border-radius: 8px;

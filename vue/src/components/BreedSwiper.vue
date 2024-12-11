@@ -1,6 +1,6 @@
 <template>
-  <div class="swipe" ondragover="hoverHandler(event)" @drop="swipeYes($event,this.currentBreed)" id="yes-div">
-   yes div
+  <div class="swipe" id="no-div">
+   no div
   </div>
 
   <div class="swipe swipe-dog" id="dog-div">
@@ -17,8 +17,8 @@
     <!--    </div>-->
     <swipe-card :breed="this.currentBreed"/>
   </div>
-  <div class="swipe" ondragover="hoverHandler(event)" @drop="swipeNo($event,this.currentBreed)" id="no-div">
-    no div
+  <div class="swipe" id="yes-div">
+    yes div
   </div>
 
 

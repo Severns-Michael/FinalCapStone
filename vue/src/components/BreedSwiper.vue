@@ -88,7 +88,7 @@ document.addEventListener('mousedown', (ev) => {
 document.addEventListener('mousemove', (ev) => {
 
 
-  console.log('MOUSE MOVE')
+  // console.log('MOUSE MOVE')
   // console.log('printing the targets dom property');
   // console.log(theCard.dom);
   if (theCard.dom != null) {

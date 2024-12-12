@@ -6,14 +6,42 @@
       </div>
     </header>
 
-    <!-- Swiper Section Placeholder waiting for flops
-    <section class="swiper-section">
-      <div class="swiper-container">
-        <div class="fh-box">
-
-        </div>
+<!--Swiper Section Placeholder waiting for flops-->
+    <div class="swiper-section fh-row">
+      <div class="swipe-demo" id="no-div-demo">
+        Not for me...
       </div>
-    </section> -->
+
+      <div class="swipe-demo swipe-dog-demo" id="dog-div">
+
+        <!--    <div class="card drag-card" draggable="true" id="drag-card" ondragstart="pickupHandler(event)"-->
+        <!--         ondragover="hoverHandler(event)" ondrop="dropHandler(event)">-->
+        <!--      <img draggable="false" class="card-img-top" :src="this.currentBreed.imgpath"/>-->
+        <!--      <div class="card-body">-->
+        <!--        <h2 v-text="this.currentBreed.officialName"></h2>-->
+        <!--        <ul>-->
+        <!--          <li v-for="trait in this.currentBreed.traits" v-text="trait.traitName"></li>-->
+        <!--        </ul>-->
+        <!--      </div>-->
+        <!--    </div>-->
+<!--        <swipe-card :swipedBreed="this.swipedBreed" :currentBreed="this.currentBreed" @mouseup="checkSwipe"/>-->
+        <!--      <div class="loading"></div>-->
+        <div class="card drag-card drag-card-demo" draggable="false" id="drag-card-demo" >
+          <img draggable="false" class="card-img-top dog-card-img" src=""/>
+          <div class="card-body">
+            <h2 v-text="`current breed name`"></h2>
+            <ul>
+              <li>trait 1</li>
+              <li>trait 2</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <div class="swipe-demo" id="yes-div-demo" v-text="`I Love These!`">
+
+      </div>
+    </div>
 
     <!-- Register Button that is routed to 'register' -->
     <div class="register-button-container">
@@ -44,11 +72,275 @@
 </template>
 
 <script>
+import DogService from "@/services/DogService";
+
+let clicking = 0;
+let cursor = {
+  posX: window.innerWidth / 2,
+  posY: window.innerHeight / 2
+}
+let theCardDemo = {
+  dom: null,
+  posX: null,
+  posY: null
+}
+let yesboxdemo = {
+  dom: null,
+  top: null,
+  left: null,
+  right: null,
+  bottom: null,
+}
+let noboxdemo = {
+  dom: null,
+  top: null,
+  left: null,
+  right: null,
+  bottom: null,
+}
+let currentCursor = {
+  posX: 0,
+  posY: 0
+};
+let distance = {
+  deltaX: 0,
+  deltaY: 0
+}
+
+
+document.addEventListener('mousedown', (ev) => {
+  clicking++;
+  console.log('MOUSEDOWN')
+  document.getElementById('drag-card-demo').style.position = 'relative'
+  console.log('SEACRHING FOR THE DEMOCARD @ev.target.parentnode')
+  console.log(ev.target)
+  if (ev.target.parentNode.classList.contains('drag-card-demo')) {
+    console.log('found DragCard')
+    cursor = {
+      posX: ev.clientX,
+      posY: ev.clientY
+    }
+    console.log('setting the cards DOM')
+    console.log('++++++++++++++++++++++++++++')
+    theCardDemo = {
+      dom: ev.target.parentNode,
+      posX: ev.target.getBoundingClientRect().left,
+      posY: ev.target.getBoundingClientRect().top
+    }
+    console.log('printing theCard');
+    console.log(theCardDemo)
+  }
+});
+document.addEventListener('mousemove', (ev) => {
+
+
+  console.log('MOUSE MOVE')
+  // console.log('printing the targets dom property');
+  // console.log(theCard.dom);
+  if (theCardDemo.dom != null) {
+    // console.log('mousemoveevent')
+    // console.log(theCard.dom)
+    currentCursor = {
+      posX: ev.clientX,
+      posY: ev.clientY
+    };
+    distance = {
+      deltaX: currentCursor.posX - cursor.posX,
+      deltaY: currentCursor.posY - cursor.posY
+    };
+    theCardDemo.dom.style.left = (distance.deltaX) + 'px';
+    theCardDemo.dom.style.top = (distance.deltaY) + 'px';
+    if (currentCursor.posX > yesboxdemo.left && clicking) {
+      console.log('================check this====================')
+      console.log(currentCursor.posX);
+      console.log('is greater than')
+      console.log(yesboxdemo.left)
+      console.log('correct?')
+      theCardDemo.dom.classList.add('thinking-yes');
+
+
+    }
+  }
+  if (currentCursor.posX < yesboxdemo.left && clicking) {
+    theCardDemo.dom.classList.remove('thinking-yes');
+  }
+  if (currentCursor.posX < noboxdemo.right && clicking) {
+    theCardDemo.dom.classList.add('thinking-no');
+
+  }
+  if (currentCursor.posX > noboxdemo.right && clicking) {
+    theCardDemo.dom.classList.remove('thinking-no');
+  }
+
+
+});
+document.addEventListener('mouseup', (ev) => {
+  clicking--;
+  console.log('EVENT TARGET')
+  console.log(ev)
+  console.log('MOUSE UP')
+
+  console.log('theCardDemo')
+  console.log(theCardDemo)
+  if (currentCursor.posX > noboxdemo.right) {
+    theCardDemo.dom.classList.remove('thinking-no');
+    resetCardPos()
+
+  }
+  if (currentCursor.posX < yesboxdemo.left) {
+    theCardDemo.dom.classList.remove('thinking-yes');
+    resetCardPos()
+  }
+  console.log('deselecting the dom for theCard')
+  currentCursor = {
+    posX: 0,
+    posY: 0
+  }
+  distance = {
+    deltaX: 0,
+    deltaY: 0
+  }
+  resetCardPos()
+  theCardDemo = {
+    dom: null,
+    posX: 0,
+    posY: 0,
+  };
+
+})
+
+function resetCardPos() {
+  const dogDiv = document.getElementById("dog-div");
+  document.getElementById("drag-card-demo").style.position = 'relative';
+  document.getElementById("drag-card-demo").style.top = 0;
+  document.getElementById("drag-card-demo").style.left = 0;
+  document.getElementById("drag-card-demo").classList.remove('thinking-yes');
+  document.getElementById("drag-card-demo").classList.remove('thinking-no');
+  dogDiv.appendChild(document.getElementById("drag-card-demo"));
+  console.log("called resetCardPos");
+}
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------
+import SwipeCard from "@/components/SwipeCard.vue";
+import BreedService from "@/services/BreedService";
+
 export default {
   data(){
 
   },
   components:{
+    SwipeCard
+  },
+  mounted: function() {
+    yesboxdemo.dom = document.getElementById("yes-div-demo");
+    yesboxdemo.top = yesboxdemo.dom.offsetTop;
+    yesboxdemo.bottom = yesboxdemo.dom.offsetTop + yesboxdemo.dom.offsetHeight;
+    yesboxdemo.left = yesboxdemo.dom.offsetLeft;
+    yesboxdemo.right = yesboxdemo.dom.offsetLeft + yesboxdemo.dom.offsetWidth;
+    console.log('yesbox');
+    console.log(yesboxdemo);
+
+    noboxdemo.dom = document.getElementById("no-div-demo");
+    noboxdemo.top = noboxdemo.dom.offsetTop;
+    noboxdemo.bottom = noboxdemo.dom.offsetTop + noboxdemo.dom.offsetHeight;
+    noboxdemo.left = noboxdemo.dom.offsetLeft;
+    noboxdemo.right = noboxdemo.dom.offsetLeft + noboxdemo.dom.offsetWidth;
+    console.log('nobox');
+    console.log(noboxdemo);
+  },
+  methods: {
+    setCurrentBreedImage() {
+      if (!this.currentBreed.subBreed) {
+        DogService.getBreedPic(this.currentBreed.breedName).then(
+            response => {
+              this.swipedBreed.img = response.data.message;
+            }
+        );
+      } else if (this.currentBreed.subBreed) {
+        DogService.getSubBreedPic(this.currentBreed.breedName, this.currentBreed.subBreed).then(
+            response => {
+              this.swipedBreed.img = response.data.message;
+            }
+        )
+      }
+    },
+    getRandomBreedList() {
+      BreedService.getRandomBreeds().then(response => {
+        this.randomBreedList = response.data;
+        BreedService.getBreedById(this.randomBreedList.pop().breedId).then(
+            response => {
+              this.currentBreed = response.data
+              this.swipedBreed.breedId = this.currentBreed.breedId;
+              this.setCurrentBreedImage();
+            }
+        );
+      });
+    },
+    getNextBreed() {
+      BreedService.getBreedById(this.randomBreedList.pop().breedId).then(
+          response => {
+            this.currentBreed = response.data
+            this.swipedBreed.breedId = this.currentBreed.breedId;
+            this.setCurrentBreedImage();
+          }
+      );
+      console.log('getNextBreed()')
+    },
+    swipeYes(e, breed) {
+      console.log('you swiped YES');
+      console.log(this.swipedBreed);
+
+
+          this.swipedBreed = {
+            userId: this.$store.state.user.id
+          };
+          this.currentBreed = {};
+          this.getNextBreed()
+          resetCardPos();
+
+
+    },
+    swipeNo(e, breed) {
+      console.log('you swiped NO');
+      this.swipedBreed = {...this.swipedBreed, breedId: breed.breedId};
+      this.swipedBreed.swipeYes = false;
+      console.log(this.swipedBreed);
+      DogService.addToSwipedBreeds(this.swipedBreed).then(response => {
+        console.log('addToSwipedBreeds().then()')
+        if (response.status === 201) {
+          this.swipedBreed = {
+            userId: this.$store.state.user.id
+          };
+          this.currentBreed = {};
+          this.getNextBreed()
+          resetCardPos();
+        }
+      });
+    },
+    checkSwipe(ev) {
+      ev.preventDefault();
+      console.log('CHECKSWIPE EVENT')
+      console.log(ev)
+      console.log('print nobox')
+      console.log(noboxdemo)
+      console.log('print yesbox')
+      console.log(yesboxdemo)
+      if (ev.clientX < noboxdemo.right) {
+        this.swipeNo(ev, this.swipedBreed)
+      }
+      if (ev.clientX > yesboxdemo.left) {
+        this.swipeYes(ev, this.swipedBreed)
+      } else {
+        resetCardPos();
+      }
+    },
   },
   name: "HomePage",
 };

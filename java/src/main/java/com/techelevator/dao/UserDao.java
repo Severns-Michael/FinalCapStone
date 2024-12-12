@@ -1,11 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
-import com.techelevator.model.RegisterUserDto;
-import com.techelevator.model.Trait;
-import com.techelevator.model.User;
-import com.techelevator.model.Breed;
-import com.techelevator.model.Swiped;
+import com.techelevator.model.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -37,5 +33,8 @@ public interface UserDao {
     Swiped addSwiped(Swiped swiped) throws DaoException;
 
     List<Breed> getBreedUserHasntSwiped(int userId) throws DaoException;
+
+    List<Dog> getPotentialDogs(int userId) throws DaoException;
+
 
 }

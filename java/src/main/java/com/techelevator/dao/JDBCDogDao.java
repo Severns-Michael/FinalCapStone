@@ -93,7 +93,7 @@ public class JDBCDogDao implements DogDao {
     }
 
     @Override
-    public Dog getRandomDog() throws DaoException { //TODO wrap into user dog yes and no
+    public Dog getRandomDog() throws DaoException {
         return null;
     }
 

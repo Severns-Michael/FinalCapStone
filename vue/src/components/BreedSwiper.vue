@@ -40,7 +40,7 @@ let theCard = {
 let yesbox = {
   dom: null,
   top: null,
-  left: null,
+  left: 1300,
   right: null,
   bottom: null,
 }
@@ -60,22 +60,7 @@ let distance = {
   deltaY: 0
 }
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('drag-card').style.position = 'fixed';
-  yesbox.dom = document.getElementById("yes-div");
-  yesbox.top = yesbox.dom.offsetTop;
-  yesbox.bottom = yesbox.dom.offsetTop + yesbox.dom.offsetHeight;
-  yesbox.left = yesbox.dom.offsetLeft;
-  yesbox.right = yesbox.dom.offsetLeft + yesbox.dom.offsetWidth;
-  console.log('yesbox');
-  console.log(yesbox);
 
-  nobox.dom = document.getElementById("no-div");
-  nobox.top = nobox.dom.offsetTop;
-  nobox.bottom = nobox.dom.offsetTop + nobox.dom.offsetHeight;
-  nobox.left = nobox.dom.offsetLeft;
-  nobox.right = nobox.dom.offsetLeft + nobox.dom.offsetWidth;
-  console.log('nobox');
-  console.log(nobox);
 
 
 })
@@ -101,6 +86,8 @@ document.addEventListener('mousedown', (ev) => {
   }
 });
 document.addEventListener('mousemove', (ev) => {
+
+
   console.log('MOUSE MOVE')
   // console.log('printing the targets dom property');
   // console.log(theCard.dom);
@@ -115,9 +102,9 @@ document.addEventListener('mousemove', (ev) => {
       deltaX: currentCursor.posX - cursor.posX,
       deltaY: currentCursor.posY - cursor.posY
     };
-    theCard.dom.style.left = ( distance.deltaX) + 'px';
-    theCard.dom.style.top = ( distance.deltaY) + 'px';
-    if (currentCursor.posX > yesbox.left && clicking) {
+    theCard.dom.style.left = (distance.deltaX) + 'px';
+    theCard.dom.style.top = (distance.deltaY) + 'px';
+    if (yesbox.left !== null && (currentCursor.posX > yesbox.left && clicking)) {
       console.log('================check this====================')
       console.log(currentCursor.posX);
       console.log('is greater than')
@@ -127,16 +114,16 @@ document.addEventListener('mousemove', (ev) => {
 
 
     }
-    if (currentCursor.posX < yesbox.left && clicking) {
-      theCard.dom.classList.remove('thinking-yes');
-    }
-    if (currentCursor.posX < nobox.right && clicking) {
-      theCard.dom.classList.add('thinking-no');
+  }
+  if (currentCursor.posX < yesbox.left && clicking) {
+    theCard.dom.classList.remove('thinking-yes');
+  }
+  if (currentCursor.posX < nobox.right && clicking) {
+    theCard.dom.classList.add('thinking-no');
 
-    }
-    if (currentCursor.posX > nobox.right && clicking) {
-      theCard.dom.classList.remove('thinking-no');
-    }
+  }
+  if (currentCursor.posX > nobox.right && clicking) {
+    theCard.dom.classList.remove('thinking-no');
   }
 
 
@@ -192,8 +179,23 @@ export default {
   beforeMount() {
     this.getRandomBreedList();
   },
-  mounted() {
+  mounted: function () {
+    document.getElementById('drag-card').style.position = 'fixed';
+    yesbox.dom = document.getElementById("yes-div");
+    yesbox.top = yesbox.dom.offsetTop;
+    yesbox.bottom = yesbox.dom.offsetTop + yesbox.dom.offsetHeight;
+    yesbox.left = yesbox.dom.offsetLeft;
+    yesbox.right = yesbox.dom.offsetLeft + yesbox.dom.offsetWidth;
+    console.log('yesbox');
+    console.log(yesbox);
 
+    nobox.dom = document.getElementById("no-div");
+    nobox.top = nobox.dom.offsetTop;
+    nobox.bottom = nobox.dom.offsetTop + nobox.dom.offsetHeight;
+    nobox.left = nobox.dom.offsetLeft;
+    nobox.right = nobox.dom.offsetLeft + nobox.dom.offsetWidth;
+    console.log('nobox');
+    console.log(nobox);
   },
   data() {
     return {
@@ -278,10 +280,12 @@ export default {
     },
     checkSwipe(ev) {
       ev.preventDefault();
-      console.log('SHITFUCK')
+      console.log('CHECKSWIPE EVENT')
       console.log(ev)
       console.log('print nobox')
       console.log(nobox)
+      console.log('print yesbox')
+      console.log(yesbox)
       if (ev.clientX < nobox.right) {
         this.swipeNo(ev, this.swipedBreed)
       }

@@ -23,7 +23,7 @@ function dropHandler(ev) {
 function printHappy() {
     console.log("YAY")
 }
-function resetCardPos(){
+function dontresetCardPos(){
     const dogDiv=document.getElementById("dog-div");
     dogDiv.appendChild(document.getElementById("drag-card"));
     console.log("resetCardPos");

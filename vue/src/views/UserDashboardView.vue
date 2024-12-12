@@ -62,7 +62,7 @@ export default {
             })
         });
 
-        DogService.getAllDogs().then(response => {
+        DogService.getRandomDogs().then(response => {
           this.currentDogList = response.data;
         })
             .catch(error => {

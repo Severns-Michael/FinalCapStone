@@ -29,7 +29,7 @@ public class TraitController {
      * @return a list of traits
      * @throws DaoException
      */
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @RequestMapping(path = "/traits", method = RequestMethod.GET)
     public List<Trait> getAllTraits() throws DaoException {
         return traitDao.listAllTraits();
@@ -43,7 +43,7 @@ public class TraitController {
      * @return returns the trait with the specified id
      * @throws DaoException if there is an error accessing data
      */
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @RequestMapping(path = "/traits/{traitId}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Trait getTraitById(@PathVariable int traitId) throws DaoException {

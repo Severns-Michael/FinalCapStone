@@ -391,6 +391,10 @@ div.drag-card:active {
     max-height: 400px;
     object-fit: cover;
 }
+.dog-card-img-demo{
+    max-height: 250px;
+    object-fit: cover;
+}
 #yes-div{
     box-shadow: 0px 0px 65px 20px rgba(46,255,137,0.85) inset;
     color:white;

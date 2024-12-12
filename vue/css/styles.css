@@ -44,7 +44,7 @@ div {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 173px;
+
 }
 
 #banner > .title > h1 {
@@ -389,6 +389,10 @@ div.drag-card:active {
 }
 .dog-card-img{
     max-height: 400px;
+    object-fit: cover;
+}
+.dog-card-img-demo{
+    max-height: 250px;
     object-fit: cover;
 }
 #yes-div{

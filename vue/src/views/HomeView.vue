@@ -6,7 +6,7 @@
       </div>
     </header>
 
-<!--Swiper Section Placeholder waiting for flops-->
+    <!--Swiper Section Placeholder waiting for flops-->
     <div class="swiper-section fh-row">
       <div class="swipe-demo" id="no-div-demo">
         Not for me...
@@ -24,21 +24,20 @@
         <!--        </ul>-->
         <!--      </div>-->
         <!--    </div>-->
-<!--        <swipe-card :swipedBreed="this.swipedBreed" :currentBreed="this.currentBreed" @mouseup="checkSwipe"/>-->
+        <!--        <swipe-card :swipedBreed="this.swipedBreed" :currentBreed="this.currentBreed" @mouseup="checkSwipe"/>-->
         <!--      <div class="loading"></div>-->
-        <div class="card drag-card drag-card-demo" draggable="false" id="drag-card-demo" >
-          <img draggable="false" class="card-img-top dog-card-img" src=""/>
+        <div class="card drag-card drag-card-demo" draggable="false" id="drag-card-demo" @mouseup="getNextDemoDog">
+          <img draggable="false" class="card-img-top dog-card-img-demo" :src="this.currentDemoBreed.img"/>
           <div class="card-body">
-            <h2 v-text="`current breed name`"></h2>
-            <ul>
-              <li>trait 1</li>
-              <li>trait 2</li>
-            </ul>
+            <h2 v-text="this.currentDemoBreed.officialName"></h2>
+<!--            <ul>-->
+<!--              <li v-for="trait in this.currentDemoBreed.traits" v-text="trait.traitName"></li>-->
+<!--            </ul>-->
           </div>
         </div>
 
       </div>
-      <div class="swipe-demo" id="yes-div-demo" v-text="`I Love These!`">
+      <div class="swipe-demo" id="yes-div-demo" v-text="`I Love ${currentDemoBreed.officialName}s!`">
 
       </div>
     </div>
@@ -60,15 +59,24 @@
       <div class="value-container">
         <h2>Our Mission</h2>
         <p>
-          At FoundHound, we are here to help individuals and families find the perfect dog breed to fit their home and lifestyle, while ensuring every dog is connected to a loving, responsible family. We believe that understanding a breed’s unique traits, temperament, and needs is key to creating lifelong bonds between pets and their people.
-          We value the individuality of every dog and the diversity of breeds, recognizing that each one has something special to offer. By connecting prospective adopters with trusted adoption agencies and rescue organizations, we empower people to make informed decisions and find their ideal canine companion.
-          Our platform is dedicated to bridging the gap between those seeking a specific breed and the agencies or shelters that care for them. Whether you’re looking for an energetic playmate, a loyal protector, or a calm companion, we’re here to guide you in finding the right match.
-          With compassion, expertise, and a commitment to responsible adoption, we strive to help every dog find a home where they are cherished, understood, and loved. Together, we’re making a difference, one perfect match at a time.
+          At FoundHound, we are here to help individuals and families find the perfect dog breed to fit their home and
+          lifestyle, while ensuring every dog is connected to a loving, responsible family. We believe that
+          understanding a breed’s unique traits, temperament, and needs is key to creating lifelong bonds between pets
+          and their people.
+          We value the individuality of every dog and the diversity of breeds, recognizing that each one has something
+          special to offer. By connecting prospective adopters with trusted adoption agencies and rescue organizations,
+          we empower people to make informed decisions and find their ideal canine companion.
+          Our platform is dedicated to bridging the gap between those seeking a specific breed and the agencies or
+          shelters that care for them. Whether you’re looking for an energetic playmate, a loyal protector, or a calm
+          companion, we’re here to guide you in finding the right match.
+          With compassion, expertise, and a commitment to responsible adoption, we strive to help every dog find a home
+          where they are cherished, understood, and loved. Together, we’re making a difference, one perfect match at a
+          time.
         </p>
       </div>
     </section>
   </div>
-  
+
 </template>
 
 <script>
@@ -176,12 +184,12 @@ document.addEventListener('mousemove', (ev) => {
 });
 document.addEventListener('mouseup', (ev) => {
   clicking--;
-  console.log('EVENT TARGET')
-  console.log(ev)
-  console.log('MOUSE UP')
+  console.log('EVENT TARGET');
+  console.log(ev);
+  console.log('MOUSE UP');
 
-  console.log('theCardDemo')
-  console.log(theCardDemo)
+  console.log('theCardDemo');
+  console.log(theCardDemo);
   if (currentCursor.posX > noboxdemo.right) {
     theCardDemo.dom.classList.remove('thinking-no');
     resetCardPos()
@@ -200,14 +208,14 @@ document.addEventListener('mouseup', (ev) => {
     deltaX: 0,
     deltaY: 0
   }
-  resetCardPos()
+  resetCardPos();
   theCardDemo = {
     dom: null,
     posX: 0,
     posY: 0,
   };
 
-})
+});
 
 function resetCardPos() {
   const dogDiv = document.getElementById("dog-div");
@@ -221,24 +229,81 @@ function resetCardPos() {
 }
 
 
-
-
-
-
-
-
 //------------------------------------------------------------------------
 import SwipeCard from "@/components/SwipeCard.vue";
 import BreedService from "@/services/BreedService";
 
 export default {
-  data(){
+  data() {
+    return {
+
+      demoBreedList:
+          [{
+            "breedId": 11,
+            "breedName": "boxer",
+            "subBreed": null,
+            "traits": [
+              {
+                "traitId": 6,
+                "traitName": "Anxious"
+              },
+              {
+                "traitId": 14,
+                "traitName": "Potential Health Issues"
+              },
+              {
+                "traitId": 17,
+                "traitName": "Territorial"
+              }
+            ],
+            "officialName": "Boxer",
+            "img":"https://images.dog.ceo/breeds/boxer/n02108089_6583.jpg"
+          },
+            {
+              "breedId": 9,
+              "breedName": "borzoi",
+              "subBreed": null,
+              "traits": [
+                {
+                  "traitId": 5,
+                  "traitName": "Swimmer"
+                },
+                {
+                  "traitId": 9,
+                  "traitName": "Pedigree"
+                },
+                {
+                  "traitId": 13,
+                  "traitName": "Cold Weather"
+                }
+              ],
+              "officialName": "Borzoi",
+              "img":"https://images.dog.ceo/breeds/borzoi/n02090622_7232.jpg"
+            },
+            {
+              "breedId": 75,
+              "breedName": "bulldog",
+              "subBreed": "french",
+              "traits": [],
+              "officialName": "Frenchie",
+              "img":"https://images.dog.ceo/breeds/bulldog-french/n02108915_5596.jpg"
+            }],
+      currentDemoBreed: {
+        "breedId": 64,
+        "breedName": "stbernard",
+        "subBreed": null,
+        "traits": [],
+        "officialName": "St. Bernard",
+        "img":"https://images.dog.ceo/breeds/stbernard/n02109525_11444.jpg"
+      }
+
+    }
 
   },
   components:{
     // SwipeCard
   },
-  mounted: function() {
+  mounted: function () {
     yesboxdemo.dom = document.getElementById("yes-div-demo");
     yesboxdemo.top = yesboxdemo.dom.offsetTop;
     yesboxdemo.bottom = yesboxdemo.dom.offsetTop + yesboxdemo.dom.offsetHeight;
@@ -254,96 +319,57 @@ export default {
     noboxdemo.right = noboxdemo.dom.offsetLeft + noboxdemo.dom.offsetWidth;
     console.log('nobox');
     console.log(noboxdemo);
+
   },
   methods: {
-    setCurrentBreedImage() {
-      if (!this.currentBreed.subBreed) {
-        DogService.getBreedPic(this.currentBreed.breedName).then(
+    getNextDemoDog() {
+      this.currentDemoBreed = this.demoBreedList.shift();
+      this.demoBreedList.push(this.currentDemoBreed);
+    }
+    ,
+    setCurrentBreedImage(breed) {
+      if (!breed.subBreed) {
+        DogService.getBreedPic(breed.breedName).then(
             response => {
-              this.swipedBreed.img = response.data.message;
+              breed.img = response.data.message;
             }
         );
-      } else if (this.currentBreed.subBreed) {
-        DogService.getSubBreedPic(this.currentBreed.breedName, this.currentBreed.subBreed).then(
+      } else if (this.currentDemoBreed.subBreed) {
+        DogService.getSubBreedPic(breed.breedName, breed.subBreed).then(
             response => {
-              this.swipedBreed.img = response.data.message;
+              breed.img = response.data.message;
             }
         )
       }
     },
-    getRandomBreedList() {
-      BreedService.getRandomBreeds().then(response => {
-        this.randomBreedList = response.data;
-        BreedService.getBreedById(this.randomBreedList.pop().breedId).then(
-            response => {
-              this.currentBreed = response.data
-              this.swipedBreed.breedId = this.currentBreed.breedId;
-              this.setCurrentBreedImage();
-            }
-        );
-      });
-    },
-    getNextBreed() {
-      BreedService.getBreedById(this.randomBreedList.pop().breedId).then(
-          response => {
-            this.currentBreed = response.data
-            this.swipedBreed.breedId = this.currentBreed.breedId;
-            this.setCurrentBreedImage();
-          }
-      );
-      console.log('getNextBreed()')
-    },
     swipeYes(e, breed) {
       console.log('you swiped YES');
-      console.log(this.swipedBreed);
-
-
-          this.swipedBreed = {
-            userId: this.$store.state.user.id
-          };
-          this.currentBreed = {};
-          this.getNextBreed()
-          resetCardPos();
-
-
+      this.getNextDemoDog();
+      resetCardPos();
     },
     swipeNo(e, breed) {
       console.log('you swiped NO');
-      this.swipedBreed = {...this.swipedBreed, breedId: breed.breedId};
-      this.swipedBreed.swipeYes = false;
-      console.log(this.swipedBreed);
-      DogService.addToSwipedBreeds(this.swipedBreed).then(response => {
-        console.log('addToSwipedBreeds().then()')
-        if (response.status === 201) {
-          this.swipedBreed = {
-            userId: this.$store.state.user.id
-          };
-          this.currentBreed = {};
-          this.getNextBreed()
-          resetCardPos();
-        }
-      });
-    },
-    checkSwipe(ev) {
-      ev.preventDefault();
-      console.log('CHECKSWIPE EVENT')
-      console.log(ev)
-      console.log('print nobox')
-      console.log(noboxdemo)
-      console.log('print yesbox')
-      console.log(yesboxdemo)
-      if (ev.clientX < noboxdemo.right) {
-        this.swipeNo(ev, this.swipedBreed)
-      }
-      if (ev.clientX > yesboxdemo.left) {
-        this.swipeYes(ev, this.swipedBreed)
-      } else {
-        resetCardPos();
-      }
-    },
+      this.getNextDemoDog();
+      resetCardPos();
+    }
   },
-  name: "HomePage",
-};
+
+  checkSwipe(ev) {
+    ev.preventDefault();
+    console.log('CHECKSWIPE EVENT')
+    console.log(ev)
+    console.log('print nobox')
+    console.log(noboxdemo)
+    console.log('print yesbox')
+    console.log(yesboxdemo)
+
+    resetCardPos();
+
+  },
+}
+
+
+;
 </script>
 
 <style scoped>
@@ -355,10 +381,12 @@ export default {
   margin: 0 auto;
   width: 90%;
 }
+
 .header {
   text-align: center;
   margin-top: 20px;
 }
+
 .header-container {
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.1);
@@ -367,16 +395,19 @@ export default {
   background-color: var(--purp3);
   color: white;
 }
+
 .header-container h1 {
   font-size: 2.5em;
   color: white;
   text-align: center;
 }
+
 .tagline {
   margin: 30px 0;
   text-align: center;
   font-size: 2em;
 }
+
 .tagline-container {
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.1);
@@ -386,6 +417,7 @@ export default {
   color: white;
   font-style: italic;
 }
+
 .value-statement {
   margin-top: auto;
   padding: 15px;
@@ -394,16 +426,19 @@ export default {
   border-radius: 20px;
   width: 80%;
 }
+
 .value-container {
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   border: 1px solid var(--purp5);
 }
+
 .register-button-container {
   margin: 20px;
   text-align: center;
 }
+
 .register-button {
   padding: 10px 20px;
   font-size: 1em;
@@ -414,10 +449,12 @@ export default {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .register-button:hover {
   background-color: var(--purp5);
 }
-.swiper-section{
+
+.swiper-section {
   width: 100%;
 }
 </style>

@@ -365,13 +365,15 @@ div.swipe-dog{
 
 div.drag-card {
     /*position: absolute;*/
-    height: auto;
+    height: 600px;
     min-width: 400px;
     max-width: 600px;
     transition: transform 0.2s ease;
+    margin-top: 100px;
 }
 div.drag-card-demo{
     height: 400px;
+    margin-top: 0px;
 }
 div.drag-card>img {
     max-width: 600px;

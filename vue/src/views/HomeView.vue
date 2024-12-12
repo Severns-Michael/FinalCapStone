@@ -44,7 +44,7 @@
 
     <!-- Register Button that is routed to 'register' -->
     <div class="register-button-container">
-      <button class="register-button" v-on:click="this.$router.push({name:'register'})">Register</button>
+      <button class="register-button" v-if="$store.state.token == ''" v-on:click="this.$router.push({name:'register'})">Register</button>
     </div>
 
     <!-- Tagline Section -->

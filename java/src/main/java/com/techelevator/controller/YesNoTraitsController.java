@@ -27,7 +27,7 @@ public class YesNoTraitsController {
      * @return a list of included traits
      * @throws DaoException if there is an error accessing data
      */
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping(path = "/traits/include")
     @ResponseStatus(HttpStatus.OK)
     public List<Trait> getYesTraitsByUser(Principal principal) throws DaoException {
@@ -41,7 +41,7 @@ public class YesNoTraitsController {
      * @return a list of excluded traits
      * @throws DaoException if there is an error accessing data
      */
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping(path = "/traits/exclude")
     @ResponseStatus(HttpStatus.OK)
     public List<Trait> getNoTraitsByUser(Principal principal) throws DaoException {
@@ -55,6 +55,7 @@ public class YesNoTraitsController {
      * @param principal the security principal of the user
      * @return the updated list of "Yes" traits
      */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @PutMapping(path = "/traits/include")
     @ResponseStatus(HttpStatus.OK)
     public List<Trait> updateYesTraitsForUser(@RequestBody List<Trait> yesTraits, Principal principal) {
@@ -69,6 +70,7 @@ public class YesNoTraitsController {
      * @param principal the security principal of the user
      * @return the updated list of "No" traits
      */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @PutMapping(path = "/traits/exclude")
     @ResponseStatus(HttpStatus.OK)
     public List<Trait> updateNoTraitsForUser(@RequestBody List<Trait> noTraits, Principal principal) {

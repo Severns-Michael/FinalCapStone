@@ -50,7 +50,7 @@ public class BreedController {
      * @throws ResponseStatusException if the breed is not found
      */
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @RequestMapping(path = "/breeds/{breedId}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public Breed getBreedById(@PathVariable int breedId) {
@@ -119,7 +119,7 @@ public class BreedController {
      * @throws DaoException if there is an error accessing the data
      */
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/swiped")
     public List<Swiped> getSwipedBreeds(Principal principal) throws DaoException {
@@ -134,7 +134,7 @@ public class BreedController {
      * @throws DaoException if there is an error during the creation process
      */
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path = "/swiped")
     public Swiped addSwipedBreed(@RequestBody Swiped swiped) throws DaoException {
@@ -149,7 +149,7 @@ public class BreedController {
      * @throws DaoException if there is an error accessing the data
      */
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/breeds/random")
     public List<Breed> getRandomBreeds(Principal principal) throws DaoException {

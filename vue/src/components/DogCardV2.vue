@@ -40,7 +40,7 @@ export default {
     DogService.getAllAgencies().then(response => {
         this.agencies = response.data;
         this.agencies.find(agency => {
-          if (agency.agencyId === this.currentDog.agencyId) {
+          if (agency.agencyId === this.currentDogProp.agencyId) {
             this.currentAgency = agency
           }
         });
@@ -51,14 +51,16 @@ export default {
     getDogBreed() {
       BreedService.getBreedById(this.currentDogProp.breedId).then(response => {
         this.currentDogBreed = response.data;
-        if (!this.currentDogBreed.subBreed === null) {
-          DogService.getSubBreedPic(this.currentDogBreed.breedName, this.currentDogBreed.subBreed).then(response => {
-            this.currentDog.img = response.data.message
-          });
-        } else {
-          DogService.getBreedPic(this.currentDogBreed.breedName).then(response => {
-            this.currentDog.img = response.data.message
-          });
+        if (this.currentDogProp.img === null) {
+          if (!this.currentDogBreed.subBreed === null) {
+            DogService.getSubBreedPic(this.currentDogBreed.breedName, this.currentDogBreed.subBreed).then(response => {
+              this.currentDog.img = response.data.message
+            });
+          } else {
+            DogService.getBreedPic(this.currentDogBreed.breedName).then(response => {
+              this.currentDog.img = response.data.message
+            });
+          }
         }
       })
     },

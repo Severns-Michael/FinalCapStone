@@ -92,11 +92,11 @@ h1 {
 
 .form-input-group {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-  width: 100%;
-  max-width: 300px;
+  flex-direction: column; 
+  align-items: flex-start; 
+  margin-bottom: 1rem; 
+  width: 100%; 
+  max-width: 300px; 
   margin: 0 auto;
 }
 

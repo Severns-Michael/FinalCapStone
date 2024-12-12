@@ -1,8 +1,7 @@
 <template>
 
 
-  <div class="card drag-card" draggable="true" id="drag-card" ondragstart="pickupHandler(event)"
-       ondragover="hoverHandler(event)" ondrop="dropHandler(event)">
+  <div class="card drag-card" draggable="false" id="drag-card">
     <img draggable="false" class="card-img-top" src="https://pet-health-content-media.chewy.com/wp-content/uploads/2024/09/11181054/202104doberman-pinscher-dog-breed.jpg"/>
     <div class="card-body">
       <h2>Doberman</h2>

@@ -1,8 +1,8 @@
 <template>
 
 
-  <div class="card drag-card" draggable="true" id="drag-card" ondragstart="pickupHandler(event)"
-       ondragover="hoverHandler(event)" ondrop="dropHandler(event)">
+
+  <div class="card drag-card" draggable="false" id="drag-card" >
     <img draggable="false" class="card-img-top" :src="this.swipedBreed.img"/>
     <div class="card-body">
       <h2 v-text="this.currentBreed.officialName"></h2>
@@ -28,7 +28,30 @@ export default {
       type: Object,
       required: true
     }
+  },
+  data() {
+    return {
+
+    }
+  },
+  beforeMount() {
+  },
+  methods: {
+    getDogPic() {
+      if (!this.breed.subBreed === null) {
+        DogService.getSubBreedPic(this.breed.breedName, this.breed.subBreed).then(response => {
+          this.swipedBreed.img = response.data.message
+        });
+      } else {
+        DogService.getBreedPic(this.breed.breedName).then(response => {
+          this.swipedBreed.img = response.data.message
+        });
+      }
+    },
+
+
   }
+
 }
 </script>
 

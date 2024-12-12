@@ -2,18 +2,18 @@
   <div class="home">
     <header class="header">
       <div class="header-container">
-        <h1>Find the BEST breed for YOU!</h1>
+        <h1>Find YOUR Furever Friend!</h1>
       </div>
     </header>
 
-    <!-- Swiper Section Placeholder waiting for flops-->
+    <!-- Swiper Section Placeholder waiting for flops
     <section class="swiper-section">
       <div class="swiper-container">
         <div class="fh-box">
 
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Register Button that is routed to 'register' -->
     <div class="register-button-container">

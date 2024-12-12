@@ -252,9 +252,8 @@ input {
 }
 
 input[type="radio"] {
-  width: 20px;
-  height: 20px;
-  margin-center: 8px;
+  width: 40px;
+  height: 40px;
   accent-color: mediumslateblue; /* Change radio button color */
 }
 </style>

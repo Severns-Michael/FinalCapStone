@@ -336,28 +336,48 @@ div.swipe {
     margin:10px
 }
 div.swipe-dog{
+    min-width: 600px;
+    height: 1000px;
     flex-basis: 50%;
 }
 
 div.drag-card {
+    position: absolute;
     height: auto;
     min-width: 400px;
     max-width: 600px;
     transition: transform 0.2s ease;
 }
-div.drag-card>img.card-img-top{
+div.drag-card>img {
     max-width: 600px;
     height: auto;
 }
 
 div.drag-card:hover {
-    transform: scale(1.05);
     cursor: grab;
 }
 
 div.drag-card:active {
     user-select: none;
     cursor: grabbing;
+
+}
+.thinking-yes{
+    transform: rotate(4deg) translate(0px, 0px) skew(0deg, 0deg);
+    -webkit-box-shadow:0px 0px 65px 51px rgba(46,255,137,0.85) ;
+    -moz-box-shadow: 0px 0px 65px 51px rgba(46,255,137,0.85);
+    box-shadow: 0px 0px 65px 51px rgba(46,255,137,0.85);
+}
+.thinking-yes:hover{
+
+}
+.thinking-no{
+    transform: rotate(-4deg) translate(0px, 0px) skew(0deg, 0deg);
+    -webkit-box-shadow:0px 0px 65px 51px rgba(255,46,116,0.85);
+    -moz-box-shadow: 0px 0px 65px 51px rgba(255,46,116,0.85);
+    box-shadow: 0px 0px 65px 51px rgba(255,46,116,0.85);
+}
+.thinking-no:hover{
 
 }
 
@@ -390,3 +410,26 @@ div.spacer > button {
 div.container {
     padding: 20px;
 }
+::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+    height: 10px; /* Height for horizontal scrollbars */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--purp1); /* Default color */
+    border-radius: 10px; /* Rounded scrollbar edges */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--purp3); /* Hover state color */
+  }
+  
+  ::-webkit-scrollbar-thumb:active {
+    background-color: var(--purp2); /* Active state color */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1); /* Light background track */
+    border-radius: 10px; /* Matches the thumb's rounded edges */
+  }

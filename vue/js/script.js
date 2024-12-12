@@ -1,7 +1,6 @@
 window.addEventListener("DOMContentLoaded", () => {
-const cardToDrag = document.getElementById('drag-card');
-const dragDests= document.querySelectorAll('div.swipe');
-cardToDrag.addEventListener('dragstart', pickupHandler);
+const dragElement = document.getElementById("drag-card");
+dragElement.addEventListener('dragstart', pickupHandler);
 });
 
 
@@ -24,12 +23,8 @@ function dropHandler(ev) {
 function printHappy() {
     console.log("YAY")
 }
-function resetCardPos(){
+function dontresetCardPos(){
     const dogDiv=document.getElementById("dog-div");
     dogDiv.appendChild(document.getElementById("drag-card"));
     console.log("resetCardPos");
-}
-
-function testFunction(){
-
 }

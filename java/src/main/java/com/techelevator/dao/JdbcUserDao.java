@@ -297,7 +297,7 @@ public class JdbcUserDao implements UserDao {
                 "        INNER JOIN public.breed_trait bt ON user_swipe_breeds.breed_id = bt.breed_id " +
                 "        where user_id=? " +
                 "        GROUP BY bt.trait_id " +
-                "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) > -5 " +
+                "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -15 END) > -5 " +
                 "    ) AS table_one ON bt.trait_id = table_one.trait_id " +
                 "        where (user_yes.user_id=? or user_yes.user_id is null) " +
                 ") AS positive_breed " +
@@ -312,7 +312,7 @@ public class JdbcUserDao implements UserDao {
                 "        INNER JOIN public.breed_trait bt ON user_swipe_breeds.breed_id = bt.breed_id " +
                 "        where user_id=? " +
                 "        GROUP BY bt.trait_id " +
-                "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) <= -5 " +
+                "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -15 END) <= -5 " +
                 "    ) AS table_one ON bt.trait_id = table_one.trait_id " +
                 ") AS negative_breed ON positive_breed.breed_id = negative_breed.breed_id " +
                 "INNER JOIN breed ON breed.breed_id = positive_breed.breed_id " +
@@ -351,7 +351,7 @@ public class JdbcUserDao implements UserDao {
                 "        INNER JOIN public.breed_trait bt ON user_swipe_breeds.breed_id = bt.breed_id " +
                 "        where user_id=? " +
                 "        GROUP BY bt.trait_id " +
-                "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) > -5 " +
+                "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -15 END) > -5 " +
                 "    ) AS table_one ON bt.trait_id = table_one.trait_id " +
                 "        where (user_yes.user_id=? or user_yes.user_id is null) " +
                 ") AS positive_breed " +
@@ -366,7 +366,7 @@ public class JdbcUserDao implements UserDao {
                 "        INNER JOIN public.breed_trait bt ON user_swipe_breeds.breed_id = bt.breed_id " +
                 "        where user_id=? " +
                 "        GROUP BY bt.trait_id " +
-                "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) <= -5 " +
+                "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -15 END) <= -5 " +
                 "    ) AS table_one ON bt.trait_id = table_one.trait_id " +
                 ") AS negative_breed ON positive_breed.breed_id = negative_breed.breed_id " +
                 "INNER JOIN breed ON breed.breed_id = positive_breed.breed_id " +

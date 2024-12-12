@@ -26,7 +26,7 @@ public class AdoptionAgencyController {
         return aaDao.getAgencies();
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("permitAll")
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/agencies/{agencyId}", method = RequestMethod.GET)
     public AdoptionAgency getAgencyById(@PathVariable int agencyId) throws DaoException {

@@ -20,7 +20,7 @@ public class AdoptionAgencyController {
     @Autowired
     private AdoptionAgencyDao aaDao;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("permitAll")
     @RequestMapping(path = "/agencies", method = RequestMethod.GET)
     public List<AdoptionAgency> getAdoptionAgencies() throws DaoException {
         return aaDao.getAgencies();

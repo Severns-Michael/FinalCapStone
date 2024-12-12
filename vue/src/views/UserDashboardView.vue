@@ -4,7 +4,7 @@
     <div class="Adoptable-Dogs">
       <h2>Potential Matches!</h2>
       <ul>
-        <li v-for="dogId in currentDogList" :key="dogId">
+        <li v-for="dog in currentDogList" :key="dog.dogId">
           <dog-card-v2 :current-dog-list="dogId"></dog-card-v2>
         </li>
       </ul>
@@ -37,6 +37,7 @@
 import BreedCard from '../components/BreedCard.vue';
 import DogService from '../services/DogService';
 import DogCardV2 from "../components/DogCardV2.vue";
+import BreedService from '../services/BreedService';
 
 
 export default {
@@ -64,6 +65,7 @@ export default {
 
         DogService.getRandomDogs().then(response => {
           this.currentDogList = response.data;
+          
         })
             .catch(error => {
               console.log(error);

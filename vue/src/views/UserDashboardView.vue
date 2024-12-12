@@ -5,7 +5,7 @@
       <h2>Potential Matches!</h2>
       <ul>
         <li v-for="dog in currentDogList" :key="dog.dogId">
-          <dog-card-v2 :current-dog-list="dogId"></dog-card-v2>
+          <dog-card-v2 :currentDogProp="dog"></dog-card-v2>
         </li>
       </ul>
     </div>

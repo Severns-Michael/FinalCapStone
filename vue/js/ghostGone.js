@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('mousedown', (ev) => {
     clicking++;
     console.log('MOUSEDOWN')
-    document.getElementById('drag-card').style.position = 'fixed'
+    // document.getElementById('drag-card').style.position = 'fixed'
 
     if (ev.target.parentNode.classList.contains('drag-card')) {
         console.log('found DragCard')

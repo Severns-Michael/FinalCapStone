@@ -321,9 +321,8 @@ div.swiper {
 div.swipe {
     display: flex;
     flex-direction: row;
-    border: 1px solid var(--purp3);
     border-radius: 20px;
-    width: 150px;
+
     padding: 10px;
     justify-content: space-around;
 }
@@ -333,11 +332,12 @@ div.card {
 
 div.swipe {
     flex-basis: 25%;
+    height:800px;
     margin:10px
 }
 div.swipe-dog{
     min-width: 600px;
-    height: 1000px;
+    height: auto;
     flex-basis: 50%;
 }
 
@@ -361,6 +361,21 @@ div.drag-card:active {
     user-select: none;
     cursor: grabbing;
 
+}
+.dog-card-img{
+    max-height: 400px;
+    object-fit: cover;
+}
+#yes-div{
+    box-shadow: 0px 0px 65px 20px rgba(46,255,137,0.85) inset;
+    color:white;
+    font-weight: 800;
+}
+#no-div{
+    box-shadow: 0px 0px 65px 20px rgba(255,46,116,0.85) inset;
+    color:white;
+    font-weight: 800;
+    text-orientation:mixed;
 }
 .thinking-yes{
     transform: rotate(4deg) translate(0px, 0px) skew(0deg, 0deg);

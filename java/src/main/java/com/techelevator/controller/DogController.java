@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Breed;
+import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,7 +31,7 @@ public class DogController {
      * @return a list of all dogs
      * @throws DaoException if there is an error accessing the data
      */
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/dogs")
     public List<Dog> getAllDogs() throws DaoException {
@@ -44,7 +45,7 @@ public class DogController {
      * @return the retrieved dog
      * @throws DaoException if there is an error accessing the data
      */
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/dogs/{dogId}")
     public Dog getDogById(@PathVariable int dogId) throws DaoException {
@@ -72,7 +73,7 @@ public class DogController {
         return dogDao.updateDog(dog);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/dogs/{dogId}", method = RequestMethod.DELETE)
     public void deleteDog(@PathVariable int dogId) throws DaoException {

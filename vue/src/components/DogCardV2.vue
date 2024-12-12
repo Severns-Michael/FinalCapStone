@@ -9,7 +9,7 @@
     <div class="polaroid-caption">
       <h2>{{ this.currentDog.dogName }}</h2>
       <ul>
-        <li>Breed: {{ this.currentDog.breed?.officialName }}</li>
+        <li>Breed: {{ this.currentDogBreed.officialName }}</li>
         <li>Age: {{ this.currentDog.age }} years old</li>
         <li>Size: {{ this.getDogSize() }}</li>
         <li>Gender: {{ this.getDogGender() }}</li>
@@ -25,13 +25,14 @@ import BreedService from "../services/BreedService";
 
 export default {
   props: {
-    currentDogList: {}
+    currentDogProp: {}
   },
   data() {
     return {
-      currentDog: this.currentDogList,
+      currentDog: this.currentDogProp,
       agencies: [],
-      currentAgency: {}
+      currentAgency: {},
+      currentDogBreed: {}
     }
   },
   created() {
@@ -44,12 +45,21 @@ export default {
           }
         });
     });
+    if (!this.currentDogBreed.subBreed === null) {
+      DogService.getSubBreedPic(this.currentDogBreed.breedName, this.currentDogBreed.subBreed).then(response => {
+        this.currentDog.img = response.data.message
+      });
+    } else {
+      DogService.getBreedPic(this.currentDogBreed.breedName).then(response => {
+        this.currentDog.img = response.data.message
+      });
+    }
   },
   methods: {
 
     getDogBreed() {
      BreedService.getBreedById(this.currentDog.breedId).then(response => {
-        this.currentDog.breed = response.data;
+        this.currentDogBreed = response.data;
       }
      )
     },

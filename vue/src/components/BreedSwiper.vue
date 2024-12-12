@@ -1,6 +1,6 @@
 <template>
   <div class="swipe" id="no-div">
-    no div
+ Not for me...
   </div>
 
   <div class="swipe swipe-dog" id="dog-div">
@@ -19,8 +19,8 @@
     <!--      <div class="loading"></div>-->
 
   </div>
-  <div class="swipe" id="yes-div">
-    yes div
+  <div class="swipe" id="yes-div" v-text="`I Love ${this.currentBreed.officialName}s!`">
+
   </div>
 
 
@@ -180,7 +180,7 @@ export default {
     this.getRandomBreedList();
   },
   mounted: function () {
-    document.getElementById('drag-card').style.position = 'fixed';
+    // document.getElementById('drag-card').style.position = 'fixed';
     yesbox.dom = document.getElementById("yes-div");
     yesbox.top = yesbox.dom.offsetTop;
     yesbox.bottom = yesbox.dom.offsetTop + yesbox.dom.offsetHeight;

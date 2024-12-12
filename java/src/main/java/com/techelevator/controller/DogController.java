@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.exception.DaoException;
+import com.techelevator.model.Breed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -70,6 +71,7 @@ public class DogController {
     public Dog updateDog(@RequestBody Dog dog) throws DaoException {
         return dogDao.updateDog(dog);
     }
+
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/dogs/{dogId}", method = RequestMethod.DELETE)
@@ -83,12 +85,13 @@ public class DogController {
      * @return a random dog
      * @throws DaoException if there is an error accessing the data
      */
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path = "/dogs/random")
-    public Dog getRandomDog() throws DaoException {
-        return dogDao.getRandomDog();
+    public List<Dog> getRandomDogs(Principal principal) throws DaoException {
+        return userDao.getPotentialDogs(userDao.getUserByUsername(principal.getName()).getId());
+
+
     }
-
-
 }

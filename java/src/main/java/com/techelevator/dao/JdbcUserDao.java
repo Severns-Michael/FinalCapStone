@@ -336,6 +336,65 @@ public class JdbcUserDao implements UserDao {
         return breeds;
     }
 
+    @Override
+    public List<Dog> getPotentialDogs(int userId) throws DaoException {
+        List<Dog> dogs = new ArrayList<>();
+        String sql = "Select positive_breed.breed_id, adopt.dog_name, adopt.age, adopt.size, adopt.img, adopt.agency_id, adopt.dog_id, adopt.gender " +
+                "FROM " +
+                "( " +
+                "    SELECT DISTINCT bt.breed_id " +
+                "    FROM breed_trait AS bt " +
+                "    left JOIN users_trait_yes AS user_yes ON bt.trait_id = user_yes.trait_id " +
+                "    LEFT OUTER JOIN ( " +
+                "        SELECT bt.trait_id, SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) AS trait_count_adjusted " +
+                "        FROM user_swipe_breeds " +
+                "        INNER JOIN public.breed_trait bt ON user_swipe_breeds.breed_id = bt.breed_id " +
+                "        where user_id=? " +
+                "        GROUP BY bt.trait_id " +
+                "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) > -5 " +
+                "    ) AS table_one ON bt.trait_id = table_one.trait_id " +
+                "        where (user_yes.user_id=? or user_yes.user_id is null) " +
+                ") AS positive_breed " +
+                "LEFT JOIN " +
+                "( " +
+                "    SELECT bt.breed_id " +
+                "    FROM breed_trait AS bt " +
+                "    INNER JOIN users_trait_no AS user_no ON bt.trait_id = user_no.trait_id " +
+                "    LEFT OUTER JOIN ( " +
+                "        SELECT bt.trait_id, SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) AS trait_count_adjusted " +
+                "        FROM user_swipe_breeds " +
+                "        INNER JOIN public.breed_trait bt ON user_swipe_breeds.breed_id = bt.breed_id " +
+                "        where user_id=? " +
+                "        GROUP BY bt.trait_id " +
+                "        HAVING SUM(CASE WHEN is_yes THEN 5 ELSE -5 END) <= -5 " +
+                "    ) AS table_one ON bt.trait_id = table_one.trait_id " +
+                ") AS negative_breed ON positive_breed.breed_id = negative_breed.breed_id " +
+                "INNER JOIN breed ON breed.breed_id = positive_breed.breed_id " +
+                "INNER JOIN ( " +
+                "select dog_id, breed_id, dog_name, age, size, img, gender, agency_id from dog " +
+                ") as adopt on breed.breed_id=adopt.breed_id " +
+                "WHERE negative_breed.breed_id IS NULL";
+        try {
+            SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId,userId,userId);
+            while (rs.next()) {
+                Dog dog = new Dog();
+                dog.setDogId(rs.getInt("dog_id"));
+                dog.setDogName(rs.getString("dog_name"));
+                dog.setBreedId(rs.getInt("breed_id"));
+                dog.setAge(rs.getInt("age"));
+                dog.setSize(rs.getInt("size"));
+                dog.setImg(rs.getString("img"));
+                dog.setGender(rs.getInt("gender"));
+                dog.setAgencyId(rs.getInt("agency_id"));
+                dogs.add(dog);
+            }
+        }  catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        Collections.shuffle(dogs);
+        return dogs;
+    }
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));

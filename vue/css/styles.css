@@ -410,4 +410,26 @@ div.spacer > button {
 div.container {
     padding: 20px;
 }
-
+::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+    height: 10px; /* Height for horizontal scrollbars */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--purp1); /* Default color */
+    border-radius: 10px; /* Rounded scrollbar edges */
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--purp3); /* Hover state color */
+  }
+  
+  ::-webkit-scrollbar-thumb:active {
+    background-color: var(--purp2); /* Active state color */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1); /* Light background track */
+    border-radius: 10px; /* Matches the thumb's rounded edges */
+  }

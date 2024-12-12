@@ -40,7 +40,7 @@ export default {
     DogService.getAllAgencies().then(response => {
         this.agencies = response.data;
         this.agencies.find(agency => {
-          if (agency.agencyId === this.currentDogProp.agencyId) {
+          if (agency.agencyId === this.currentDog.agencyId) {
             this.currentAgency = agency
           }
         });

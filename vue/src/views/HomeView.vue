@@ -300,8 +300,8 @@ export default {
     }
 
   },
-  components: {
-    SwipeCard
+  components:{
+    // SwipeCard
   },
   mounted: function () {
     yesboxdemo.dom = document.getElementById("yes-div-demo");

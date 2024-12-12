@@ -219,14 +219,38 @@ values
 insert into adoption_agency (agency_name, agency_city, agency_state)
 values ('Adoption Circle','Columbus','Ohio'),('Just Choice','Columbus','Ohio');
 
+insert into adoption_agency (agency_name, agency_city, agency_state)
+values
+('Columbus Dog Rescue', 'Columbus', 'OH'),
+('Forever Friends Canine Adoption', 'Columbus', 'OH'),
+('Paw Haven Adoption Center', 'Columbus', 'OH'),
+('Buckeye Dog Shelter', 'Columbus', 'OH'),
+('Happy Tails Rescue', 'Columbus', 'OH'),
+('Safe Paws Adoption Agency', 'Columbus', 'OH'),
+('Loyal Companions Rescue', 'Columbus', 'OH'),
+('New Leash on Life Shelter', 'Columbus', 'OH'),
+('Golden Hearts Canine Haven', 'Columbus', 'OH'),
+('Dream Dogs Adoption Center', 'Columbus', 'OH');
+
 insert into dog (dog_name,breed_id, age, size, img, gender, agency_id)
 		values  
 		('Rover',9,6,1,'https://images.dog.ceo/breeds/borzoi/n02090622_6894.jpg',0,1),
-		('Rocky',16,5,1,'https://images.dog.ceo/breeds/chow/n02112137_16354.jpg',0,1),
-		('Thaddeus',5,2,2,'https://images.dog.ceo/breeds/appenzeller/n02107908_691.jpg',0,1),
-		('Fido',12,7,2,'https://images.dog.ceo/breeds/brabancon/n02112706_1065.jpg',0,1),
-		('Darius',29,8,2,'https://images.dog.ceo/breeds/groenendael/n02105056_2685.jpg',0,1),
-		('Nova',11,9,3,'https://images.dog.ceo/breeds/boxer/n02108089_78.jpg',0,1);
+		('Rocky',16,5,1,'https://images.dog.ceo/breeds/chow/n02112137_16354.jpg',0,2),
+		('Thaddeus',5,2,2,'https://images.dog.ceo/breeds/appenzeller/n02107908_691.jpg',0,3),
+		('Fido',12,2,2,'https://images.dog.ceo/breeds/brabancon/n02112706_1065.jpg',0,4),
+		('Darius',29,8,2,'https://images.dog.ceo/breeds/groenendael/n02105056_2685.jpg',0,5),
+		('Nova',11,9,3,'https://images.dog.ceo/breeds/boxer/n02108089_78.jpg',1,6),
+		('Kenzie',34,4,1,null,1,7),
+		('Spot',87,4,1,null,0,8),
+		('Kevin',90,5,3,null,0,9),
+		('Fred',37,3,2,null,0,10),
+        ('Lexi',82,6,1,null,1,1),
+        ('Lola',98,5,3,null,1,2),
+		('Leo',29,7,2,null,0,3),
+		('Lucky',7,5,2,null,1,5),
+        ('Bucket',80,6,1,null,0,6),
+        ('Shemp',64,3,3,null,0,4),
+        ('Ghost',75,4,2,null,1,8);
 		
 insert into breed_trait (breed_id,trait_id)
 values
@@ -410,19 +434,6 @@ values
 (60, 5),
 (60, 6),
 (60, 18);
-
-insert into adoption_agency (agency_name, agency_city, agency_state)
-values
-('Columbus Dog Rescue', 'Columbus', 'OH'),
-('Forever Friends Canine Adoption', 'Columbus', 'OH'),
-('Paw Haven Adoption Center', 'Columbus', 'OH'),
-('Buckeye Dog Shelter', 'Columbus', 'OH'),
-('Happy Tails Rescue', 'Columbus', 'OH'),
-('Safe Paws Adoption Agency', 'Columbus', 'OH'),
-('Loyal Companions Rescue', 'Columbus', 'OH'),
-('New Leash on Life Shelter', 'Columbus', 'OH'),
-('Golden Hearts Canine Haven', 'Columbus', 'OH'),
-('Dream Dogs Adoption Center', 'Columbus', 'OH');
 
 insert into preview_breeds (breed_id) values (1), (2), (3), (4), (5), (6), (7), (8), (9), (10);
 

@@ -250,7 +250,7 @@ insert into dog (dog_name,breed_id, age, size, img, gender, agency_id)
 		('Lucky',7,5,2,null,1,5),
         ('Bucket',80,6,1,null,0,6),
         ('Shemp',64,3,3,null,0,4),
-        ('Ghost',75,4,2,null,1,8);
+        ('Ghost',75,4,1,null,1,8);
 		
 insert into breed_trait (breed_id,trait_id)
 values

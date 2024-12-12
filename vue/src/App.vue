@@ -17,9 +17,9 @@
       <router-link v-bind:to="{name: 'userdashboard'}"  v-if="$store.state.user.authorities[0].name == 'ROLE_USER'" >Dashboard</router-link>
       <router-link v-bind:to="{name: 'setcriteria'}" v-if="$store.state.user.authorities[0].name == 'ROLE_USER'"> Set Preferences </router-link>
       <router-link :to="{name: 'swipingview'}" v-if="$store.state.user.authorities[0].name == 'ROLE_USER'">Look at Dogs!</router-link>
-      <router-link :to="{name: 'Testview'}" >Test Swiper</router-link>
-      <router-link :to="{name:'cleanview'}" v-text="'clean view'"/>
-      <a>About Us</a>
+      <!-- <router-link :to="{name: 'Testview'}" >Test Swiper</router-link>
+      <router-link :to="{name:'cleanview'}" v-text="'clean view'"/> -->
+      <!-- <a>About Us</a> -->
     </div>
     <router-view />
   </div>

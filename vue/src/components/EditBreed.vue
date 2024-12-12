@@ -139,7 +139,6 @@ export default {
             this.selectedTraits = [];
         },
         addSelectedTraits() {
-          if (this.selectedBreed === {}) {
             this.traits = this.traits.filter(trait => {
                 if (!this.selectedTraits.includes(trait)) {
                     return trait;
@@ -149,7 +148,6 @@ export default {
             });
             this.updateBreed();
             this.selectedTraits = [];
-          }
         },
         addToSelected(trait) {
             if (!this.selectedTraits.includes(trait)) {

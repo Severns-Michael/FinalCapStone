@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Breed;
+import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;

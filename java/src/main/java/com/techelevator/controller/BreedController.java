@@ -89,7 +89,7 @@ public class BreedController {
      * @throws DaoException if there is an error during the update process
      */
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("permitAll")
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/breeds", method = RequestMethod.PUT)
     public Breed updateBreedTraits(@RequestBody Breed breed) throws DaoException {

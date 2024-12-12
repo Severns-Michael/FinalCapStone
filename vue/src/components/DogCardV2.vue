@@ -45,23 +45,24 @@ export default {
           }
         });
     });
-    if (!this.currentDogBreed.subBreed === null) {
-      DogService.getSubBreedPic(this.currentDogBreed.breedName, this.currentDogBreed.subBreed).then(response => {
-        this.currentDog.img = response.data.message
-      });
-    } else {
-      DogService.getBreedPic(this.currentDogBreed.breedName).then(response => {
-        this.currentDog.img = response.data.message
-      });
-    }
+  
   },
   methods: {
-
     getDogBreed() {
-     BreedService.getBreedById(this.currentDog.breedId).then(response => {
+      BreedService.getBreedById(this.currentDogProp.breedId).then(response => {
         this.currentDogBreed = response.data;
-      }
-     )
+        if (this.currentDogProp.img === null) {
+          if (!this.currentDogBreed.subBreed === null) {
+            DogService.getSubBreedPic(this.currentDogBreed.breedName, this.currentDogBreed.subBreed).then(response => {
+              this.currentDog.img = response.data.message
+            });
+          } else {
+            DogService.getBreedPic(this.currentDogBreed.breedName).then(response => {
+              this.currentDog.img = response.data.message
+            });
+          }
+        }
+      })
     },
     getDogSize() {
       if (this.currentDog.size === 1) {

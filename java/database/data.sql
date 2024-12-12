@@ -246,7 +246,7 @@ insert into dog (dog_name,breed_id, age, size, img, gender, agency_id)
 		('Fred',37,3,2,null,0,10),
         ('Lexi',82,6,1,null,1,1),
         ('Lola',98,5,3,null,1,2),
-		('Leo',29,7,2,null,0,3),
+		('Leo',24,7,2,null,0,3),
 		('Lucky',7,5,2,null,1,5),
         ('Bucket',80,6,1,null,0,6),
         ('Shemp',64,3,3,null,0,4),
@@ -254,36 +254,6 @@ insert into dog (dog_name,breed_id, age, size, img, gender, agency_id)
 		
 insert into breed_trait (breed_id,trait_id)
 values
-(1, 10),
-(2, 5),
-(2, 9),
-(2, 12),
-(3, 4),
-(3, 15),
-(4, 1),
-(4, 6),
-(4, 17),
-(5, 2),
-(5, 14),
-(6, 7),
-(6, 10),
-(6, 18),
-(8, 4),
-(8, 11),
-(8, 19),
-(9, 5),
-(9, 9),
-(10, 1),
-(10, 7),
-(10, 12),
-(11, 6),
-(11, 14),
-(11, 17),
-(12, 15),
-Here is the formatted data, ready to copy and insert into your database:
-
-scss
-Copy code
 (1,12),
 (1,30),
 (2,2),
